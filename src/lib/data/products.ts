@@ -1,9 +1,9 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Тестовый каталог из 14 товаров.
- * Изображения — placeholder emoji + пастельный фон.
- * Заменить на реальные 3D-рендеры (см. PLACEHOLDER_IMAGES.md).
+ * Каталог товаров.
+ * Изображения — реальные фото и placeholder emoji + пастельный фон.
+ * Заменить emoji на реальные 3D-рендеры (см. PLACEHOLDER_IMAGES.md).
  */
 export const PRODUCTS: Product[] = [
   {
@@ -293,6 +293,29 @@ export const PRODUCTS: Product[] = [
     dimensions: "Boîte 22 x 22 cm",
     color: "grape",
     bgClass: "bg-[#F3EDFA]",
+  },
+  {
+    id: "p-015",
+    slug: "boite-activites-hape",
+    name: "Boîte d'activités Hape",
+    category: "jouets-bebe",
+    categoryName: "Jouets bébé",
+    description: "Boîte d'activités 5 faces avec engrenages, boules, blocs, labyrinthe et miroir pour éveiller la motricité.",
+    longDescription:
+      "Cette boîte d'activités Hape à 5 faces offre une multitude d'activités pour développer la motricité fine et l'exploration sensorielle de votre enfant. Chaque face propose des jeux différents : engrenages en forme de fleurs, boules multicolores dans un laby rinthe, blocs pédagogiques, et un miroir pour refléter le sourire de bébé. La face recto présente une ferme colorée avec pièces encastrables (animaux), les engrenages à tourner, et un laby rinthe aquatique. Dimensions : L 25.5 x H 21.5 cm. Certifiée aux normes de sécurité CE et NF EN 71. Garantie 2 ans.",
+    price: 36.4,
+    rating: 4.8,
+    reviewCount: 112,
+    age: ["10m+", "1-3"],
+    images: ["/products/hape-boite-1.jpg", "/products/hape-boite-2.jpg", "/products/hape-boite-3.jpg", "/products/hape-boite-4.jpg", "/products/hape-boite-5.jpg"],
+    badge: "Nouveau",
+    inStock: true,
+    stockCount: 25,
+    materials: ["Bois massif", "Peinture à base d'eau", "Miroir"],
+    dimensions: "L 25.5 x H 21.5 cm",
+    safety: ["Certifié CE", "NF EN 71-1/2/3", "Garantie 2 ans"],
+    color: "sky",
+    bgClass: "bg-[#F0F7FE]",
   },
 ];
 
