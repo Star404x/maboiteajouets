@@ -306,7 +306,7 @@ export const PRODUCTS: Product[] = [
     price: 36.4,
     rating: 4.8,
     reviewCount: 112,
-    age: ["10m+", "1-3"],
+    age: ["0-12m", "1-3"],
     images: ["/products/hape-boite-1.jpg", "/products/hape-boite-2.jpg", "/products/hape-boite-3.jpg", "/products/hape-boite-4.jpg", "/products/hape-boite-5.jpg"],
     badge: "Nouveau",
     inStock: true,
