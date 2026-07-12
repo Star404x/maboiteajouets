@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PRODUCTS, getProduct, getRelatedProducts } from "@/lib/data/products";
+import { getProductBySlug, getProductsByCategory } from "@/lib/db";
+import { PRODUCTS } from "@/lib/data/products";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 
 export function generateStaticParams() {
+  // Keep static generation for known products
   return PRODUCTS.map((p) => ({ slug: p.slug }));
 }
 
@@ -15,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const p = getProduct(slug);
+  const p = await getProductBySlug(slug);
   if (!p) return { title: "Produit introuvable" };
 
   return {
@@ -36,10 +38,11 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = getProduct(slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
-  const related = getRelatedProducts(slug, product.category);
+  const allRelated = await getProductsByCategory(product.category);
+  const related = allRelated.filter((p) => p.slug !== slug).slice(0, 4);
 
   return (
     <div className="container-wide py-8 lg:py-14 pb-32 lg:pb-14">

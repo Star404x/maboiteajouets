@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CatalogView } from "@/components/catalog/CatalogView";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
+import { CatalogParams } from "@/components/catalog/CatalogParams";
 
 export const metadata: Metadata = {
   title: "Boutique — Tous nos jouets",
@@ -10,13 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/boutique" },
 };
 
-export default async function BoutiquePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string; age?: string }>;
-}) {
-  const params = await searchParams;
-
+export default function BoutiquePage() {
   return (
     <div className="container-wide py-8 lg:py-14">
       <Breadcrumbs items={[{ label: "Boutique" }]} />
@@ -26,7 +22,9 @@ export default async function BoutiquePage({
         accent="boutique"
         description="Une sélection premium de jouets d'éveil, sensoriels et éducatifs."
       />
-      <CatalogView initialCategory={params.category} initialAge={params.age} />
+      <Suspense fallback={<CatalogView />}>
+        <CatalogParams />
+      </Suspense>
     </div>
   );
 }

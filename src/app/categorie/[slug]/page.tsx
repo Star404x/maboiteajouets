@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATEGORIES, getCategory } from "@/lib/data/categories";
-import { getProductsByCategory } from "@/lib/data/products";
+import { getProductsByCategory as getProductsByCategoryDB } from "@/lib/db";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
@@ -35,7 +35,7 @@ export default async function CategoryPage({
   const category = getCategory(slug);
   if (!category) notFound();
 
-  const products = getProductsByCategory(slug);
+  const products = await getProductsByCategoryDB(slug);
 
   return (
     <div className="container-wide py-8 lg:py-14">

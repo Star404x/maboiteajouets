@@ -10,20 +10,20 @@ export function PromoBanner() {
 
   return (
     <section className="container-wide py-16 lg:py-20">
-      <div className="relative overflow-hidden rounded-4xl bg-gradient-to-br from-coral via-[#FF7A8B] to-coral p-8 md:p-14 lg:p-16">
-        {/* Decorative stars */}
+      <div className="relative overflow-hidden rounded-4xl bg-gradient-to-br from-coral via-[#FF7A8B] to-coral p-8 md:p-14 lg:p-16 lg:min-h-96">
+        {/* Decorative elements — background accents */}
         <motion.div
-          animate={reduce ? undefined : { rotate: 360 }}
+          animate={reduce ? undefined : { rotate: 360, scale: [1, 1.1, 1] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-8 right-16 text-2xl text-white/30"
+          className="absolute top-6 left-8 text-2xl text-white/20 pointer-events-none"
           aria-hidden
         >
           ✨
         </motion.div>
         <motion.div
           animate={reduce ? undefined : { rotate: -360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-14 left-1/3 text-3xl text-sunflower"
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-8 right-12 text-2xl text-white/25 pointer-events-none"
           aria-hidden
         >
           ⭐
@@ -49,27 +49,31 @@ export function PromoBanner() {
             </Button>
           </div>
 
-          {/* Gift box illustration */}
-          <div className="relative aspect-square max-w-sm mx-auto lg:mx-0 lg:ml-auto">
+          {/* Gift box illustration — properly contained */}
+          <div className="relative w-full h-80 lg:h-96 hidden lg:block">
+            {/* Main gift — centered, balanced size */}
             <motion.div
               animate={reduce ? undefined : { y: [0, -12, 0], rotate: [-2, 2, -2] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
             >
-              <div className="text-[220px] drop-shadow-2xl">🎁</div>
+              <div className="text-[140px] drop-shadow-2xl">🎁</div>
             </motion.div>
 
+            {/* Teddy bear — top right corner, no overlap */}
             <motion.div
-              animate={reduce ? undefined : { y: [0, -20, 0], rotate: [3, -3, 3] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-4 right-4 text-6xl"
+              animate={reduce ? undefined : { y: [0, -16, 0], rotate: [-4, 4, -4] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-0 right-2 text-5xl pointer-events-none"
             >
               🧸
             </motion.div>
+
+            {/* Bunny — bottom left corner, no overlap */}
             <motion.div
               animate={reduce ? undefined : { y: [0, -14, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-8 left-4 text-5xl"
+              className="absolute bottom-2 left-2 text-4xl pointer-events-none"
             >
               🐰
             </motion.div>

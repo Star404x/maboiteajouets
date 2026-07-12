@@ -3,9 +3,11 @@ import { Fredoka, Nunito } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Toaster } from "@/components/ui/Toaster";
 import { CookieBanner } from "@/components/legal/CookieBanner";
+import { HydrationGuard } from "@/lib/store/HydrationGuard";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -106,15 +108,19 @@ export default function RootLayout({
           }}
         />
 
-        <Header />
+        <ScrollToTop />
 
-        <main className="flex-1">{children}</main>
+        <HydrationGuard>
+          <Header />
 
-        <Footer />
+          <main className="flex-1">{children}</main>
 
-        <CartDrawer />
-        <Toaster />
-        <CookieBanner />
+          <Footer />
+
+          <CartDrawer />
+          <Toaster />
+          <CookieBanner />
+        </HydrationGuard>
       </body>
     </html>
   );

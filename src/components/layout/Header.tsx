@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { useCart } from "@/lib/store/cart";
+import { useIsHydrated } from "@/lib/store/HydrationGuard";
 import { CATEGORIES } from "@/lib/data/categories";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
@@ -26,8 +27,13 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const openCart = useCart((s) => s.openCart);
-  const itemCount = useCart((s) => s.getItemCount());
-  const favCount = useCart((s) => s.favorites.length);
+  const items = useCart((s) => s.items);
+  const favorites = useCart((s) => s.favorites);
+  const hydrated = useIsHydrated();
+  const itemCount = hydrated
+    ? items.reduce((s, i) => s + i.quantity, 0)
+    : 0;
+  const favCount = hydrated ? favorites.length : 0;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);

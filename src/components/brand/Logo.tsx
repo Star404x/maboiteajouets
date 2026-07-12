@@ -33,10 +33,7 @@ export function Logo({
 
       {!compact && (
         <span className={cn("font-display font-bold text-lg leading-none tracking-tight", baseColor)}>
-          <span className="text-coral">Ma</span>{" "}
-          <span>Boîte</span>{" "}
-          <span className="text-sunflower">à</span>{" "}
-          <span className="text-mint">Jouets</span>
+          <span className="text-coral">Ma Boîte à Jouets</span>
         </span>
       )}
     </Link>

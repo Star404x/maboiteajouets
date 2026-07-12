@@ -1,14 +1,15 @@
-import { PRODUCTS } from "@/lib/data/products";
+import { getProducts } from "@/lib/db";
 import { ProductSlider } from "@/components/product/ProductSlider";
 import Link from "next/link";
 
-export function NewProductsSlider() {
+export async function NewProductsSlider() {
   // Prend les 8 derniers ajoutés
-  const products = [...PRODUCTS].reverse().slice(0, 8);
+  const allProducts = await getProducts();
+  const products = [...allProducts].reverse().slice(0, 8);
 
   return (
     <section className="container-wide py-16 lg:py-24">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-12">
         <div>
           <p className="text-xs font-bold uppercase tracking-wider text-coral mb-2">
             Fraîchement arrivés
@@ -17,7 +18,7 @@ export function NewProductsSlider() {
             <span className="text-coral">Nouveautés</span>
           </h2>
         </div>
-        <Link href="/nouveautes" className="text-navy font-semibold hover:text-coral transition-colors">
+        <Link href="/nouveautes" className="text-navy font-semibold hover:text-coral transition-colors whitespace-nowrap">
           Toutes les nouveautés →
         </Link>
       </div>

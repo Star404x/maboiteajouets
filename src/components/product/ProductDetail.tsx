@@ -29,7 +29,8 @@ export function ProductDetail({ product }: { product: Product }) {
   const addItem = useCart((s) => s.addItem);
   const openCart = useCart((s) => s.openCart);
   const toggleFav = useCart((s) => s.toggleFavorite);
-  const isFav = useCart((s) => s.isFavorite(product.id));
+  const favorites = useCart((s) => s.favorites);
+  const isFav = favorites.includes(product.id);
   const discount = product.oldPrice ? computeDiscount(product.oldPrice, product.price) : 0;
 
   const gallery = product.images.length > 1

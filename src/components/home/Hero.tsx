@@ -16,40 +16,27 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-hero pt-8 pb-20 lg:pt-16 lg:pb-32">
-      {/* Decorative background — clouds & stars */}
+      {/* Subtle background decorations — positioned to not interfere */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={reduce ? undefined : { x: [0, 30, 0], y: [0, -10, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-16 left-[6%] text-[80px] opacity-70"
-        >
-          ☁️
-        </motion.div>
-        <motion.div
-          animate={reduce ? undefined : { x: [0, -40, 0], y: [0, 20, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-8 right-[10%] text-6xl opacity-50"
-        >
-          ☁️
-        </motion.div>
+        {/* Stars and sparkles - below content z-index */}
         <motion.div
           animate={reduce ? undefined : { rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute top-32 right-[20%] text-4xl"
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-32 left-[8%] text-2xl opacity-40"
         >
           ⭐
         </motion.div>
         <motion.div
           animate={reduce ? undefined : { rotate: -360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-40 left-[15%] text-3xl opacity-60"
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 right-[5%] text-xl opacity-30"
         >
           ✨
         </motion.div>
         <motion.div
-          animate={reduce ? undefined : { rotate: 360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-24 right-[8%] text-3xl opacity-70"
+          animate={reduce ? undefined : { scale: [1, 1.1, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[20%] right-[12%] text-3xl opacity-50"
         >
           ⭐
         </motion.div>
@@ -80,21 +67,13 @@ export function Hero() {
               Le bonheur <br className="hidden sm:inline" />
               commence <span className="text-coral relative inline-block">
                 ici
-                <svg
-                  className="absolute -bottom-3 left-0 w-full"
-                  viewBox="0 0 100 8"
-                  preserveAspectRatio="none"
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.5, duration: 0.7 }}
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-coral rounded-full origin-left"
                   aria-hidden
-                >
-                  <path
-                    d="M0 4 Q 25 0 50 4 T 100 4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    className="text-coral/60"
-                  />
-                </svg>
+                />
               </span>
             </motion.h1>
 
@@ -111,16 +90,19 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start"
+              className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start items-center"
             >
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="shadow-md hover:shadow-lg">
                 <Link href="/boutique">
                   Découvrir la collection
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/nouveautes">Voir les nouveautés</Link>
+              <Button asChild size="lg" variant="outline" className="border-2 border-coral text-coral hover:bg-coral hover:text-white transition-colors shadow-sm">
+                <Link href="/nouveautes">
+                  Voir les nouveautés
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </Button>
             </motion.div>
 
@@ -150,101 +132,103 @@ export function Hero() {
 
 function HeroIllustration({ reduce }: { reduce: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      className="relative aspect-square max-w-[560px] mx-auto lg:mx-0 lg:ml-auto"
-    >
-      {/* Sun glow behind box */}
-      <div className="absolute inset-6 rounded-full bg-gradient-to-br from-sunflower/30 via-coral/20 to-transparent blur-3xl" />
+    <div className="relative w-full h-[500px] hidden lg:block">
+      {/* Soft glow background */}
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-coral/5 via-transparent to-mint/5 blur-3xl" />
 
-      {/* Big cardboard box */}
+
+
+      {/* Floating toys — well-contained, balanced */}
+      {/* Teddy bear — top left */}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -12, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-x-0 bottom-0 flex items-end justify-center"
-      >
-        <div className="relative w-[75%] h-[65%] mb-4">
-          {/* Box body */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#E8B575] to-[#C68F52] rounded-[2rem] shadow-card" />
-          {/* Front flap darker */}
-          <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-b from-[#C68F52] to-[#A8783F] rounded-b-[2rem]" />
-          {/* Highlight */}
-          <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-transparent via-white/10 to-white/30" />
-
-          {/* Logo on box */}
-          <div className="absolute inset-x-0 top-[45%] flex flex-col items-center gap-1 text-white">
-            <span className="text-2xl">★</span>
-            <span className="font-display font-bold text-lg">Ma Boîte</span>
-            <span className="font-display font-semibold text-xs opacity-90">à Jouets</span>
-          </div>
-
-          {/* Open flaps at top */}
-          <div className="absolute -top-6 left-0 w-1/2 h-14 bg-gradient-to-br from-[#E8B575] to-[#D4A25E] rounded-tl-[2rem] origin-bottom-right -rotate-[25deg] shadow-soft" />
-          <div className="absolute -top-6 right-0 w-1/2 h-14 bg-gradient-to-bl from-[#E8B575] to-[#D4A25E] rounded-tr-[2rem] origin-bottom-left rotate-[25deg] shadow-soft" />
-        </div>
-      </motion.div>
-
-      {/* Floating toys — layered */}
-      <motion.div
-        animate={reduce ? undefined : { y: [0, -14, 0], rotate: [-4, 4, -4] }}
+        animate={reduce ? undefined : { y: [0, -16, 0], rotate: [-3, 3, -3] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[8%] left-[20%] text-[6rem] drop-shadow-2xl"
+        className="absolute top-16 left-8 text-5xl drop-shadow-lg"
       >
         🧸
       </motion.div>
+
+      {/* Bunny — top right */}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -18, 0], rotate: [3, -3, 3] }}
+        animate={reduce ? undefined : { y: [0, -20, 0], rotate: [4, -4, 4] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-        className="absolute top-[6%] right-[18%] text-[5rem] drop-shadow-2xl"
+        className="absolute top-12 right-12 text-4xl drop-shadow-lg"
       >
         🐰
       </motion.div>
+
+      {/* Rocket — upper right */}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -10, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        className="absolute top-[26%] right-[6%] text-[4.5rem] drop-shadow-xl"
-      >
-        🦕
-      </motion.div>
-      <motion.div
-        animate={reduce ? undefined : { y: [0, -22, 0], rotate: [-8, 8, -8] }}
+        animate={reduce ? undefined : { y: [0, -18, 0], rotate: [-5, 5, -5] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
-        className="absolute top-[18%] left-[6%] text-[4rem] drop-shadow-xl"
+        className="absolute top-56 right-8 text-4xl drop-shadow-lg"
       >
         🚀
       </motion.div>
+
+      {/* Dinosaur — lower left */}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -8, 0] }}
+        animate={reduce ? undefined : { y: [0, -12, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+        className="absolute bottom-24 left-16 text-3xl drop-shadow-lg"
+      >
+        🦕
+      </motion.div>
+
+      {/* Puzzle — center-left */}
+      <motion.div
+        animate={reduce ? undefined : { y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-        className="absolute top-[38%] left-[35%] text-[3.5rem] drop-shadow-lg"
+        className="absolute top-1/2 left-40 text-3xl drop-shadow-lg"
       >
         🧩
       </motion.div>
+
+      {/* Palette — bottom right */}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -12, 0], rotate: [5, -5, 5] }}
+        animate={reduce ? undefined : { y: [0, -14, 0], rotate: [6, -6, 6] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        className="absolute top-[42%] right-[28%] text-[3rem] drop-shadow-lg"
+        className="absolute bottom-40 right-24 text-2xl drop-shadow-lg"
       >
         🎨
       </motion.div>
 
-      {/* Sparkles */}
+      {/* ✨ Stars & sparkles — decorative accents, subtle */}
+      {/* Top left star */}
       <motion.div
-        animate={reduce ? undefined : { rotate: 360, scale: [1, 1.2, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[12%] right-[38%] text-3xl text-sunflower"
-      >
-        ✨
-      </motion.div>
-      <motion.div
-        animate={reduce ? undefined : { rotate: -360 }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[30%] left-[8%] text-2xl"
+        animate={reduce ? undefined : { rotate: 360, scale: [1, 1.1, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute top-8 left-32 text-2xl opacity-60"
       >
         ⭐
       </motion.div>
-    </motion.div>
+
+      {/* Center-top sparkle */}
+      <motion.div
+        animate={reduce ? undefined : { y: [0, -8, 0], opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 left-1/2 text-xl text-sunflower opacity-70"
+      >
+        ✨
+      </motion.div>
+
+      {/* Right side star */}
+      <motion.div
+        animate={reduce ? undefined : { rotate: -360 }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute top-1/3 right-16 text-xl opacity-50"
+      >
+        ⭐
+      </motion.div>
+
+      {/* Bottom sparkle */}
+      <motion.div
+        animate={reduce ? undefined : { y: [0, 10, 0], rotate: [0, 360, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-20 right-1/3 text-lg text-coral opacity-60"
+      >
+        ✨
+      </motion.div>
+    </div>
   );
 }

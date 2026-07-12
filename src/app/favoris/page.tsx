@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
 import { Heart } from "lucide-react";
 import { useCart } from "@/lib/store/cart";
+import { useIsHydrated } from "@/lib/store/HydrationGuard";
 import { PRODUCTS } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Button } from "@/components/ui/Button";
@@ -11,7 +13,11 @@ import { PageHero } from "@/components/shared/PageHero";
 
 export default function FavoritesPage() {
   const favorites = useCart((s) => s.favorites);
-  const products = PRODUCTS.filter((p) => favorites.includes(p.id));
+  const hydrated = useIsHydrated();
+  const products = useMemo(
+    () => (hydrated ? PRODUCTS.filter((p) => favorites.includes(p.id)) : []),
+    [favorites, hydrated],
+  );
 
   return (
     <div className="container-wide py-8 lg:py-14">

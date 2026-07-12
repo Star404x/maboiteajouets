@@ -31,7 +31,7 @@ export function ProductSlider({ products }: { products: Product[] }) {
           prevSlideMessage: "Produit précédent",
           nextSlideMessage: "Produit suivant",
         }}
-        className="!pb-14 !overflow-visible md:!overflow-hidden"
+        className="!pb-14 !overflow-hidden"
       >
         {products.map((p) => (
           <SwiperSlide key={p.id} className="!h-auto">
@@ -40,18 +40,18 @@ export function ProductSlider({ products }: { products: Product[] }) {
         ))}
       </Swiper>
 
-      {/* Arrows */}
-      <div className="hidden md:flex items-center gap-2 absolute -top-16 right-0">
+      {/* Arrows — positioned above slider, not overlapping header */}
+      <div className="hidden md:flex items-center gap-2 absolute -top-14 right-0 z-20">
         <button
           onClick={() => swiperRef.current?.slidePrev()}
-          className="h-11 w-11 rounded-full bg-white shadow-soft hover:bg-coral hover:text-white text-navy inline-flex items-center justify-center transition-all"
+          className="h-10 w-10 rounded-full bg-coral/10 hover:bg-coral hover:text-white text-coral inline-flex items-center justify-center transition-all shadow-sm"
           aria-label="Précédent"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={() => swiperRef.current?.slideNext()}
-          className="h-11 w-11 rounded-full bg-white shadow-soft hover:bg-coral hover:text-white text-navy inline-flex items-center justify-center transition-all"
+          className="h-10 w-10 rounded-full bg-coral/10 hover:bg-coral hover:text-white text-coral inline-flex items-center justify-center transition-all shadow-sm"
           aria-label="Suivant"
         >
           <ChevronRight className="w-5 h-5" />

@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { getFeaturedProducts } from "@/lib/data/products";
+import { getProducts } from "@/lib/db";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
-export function FeaturedProducts() {
-  const products = getFeaturedProducts(8);
+export async function FeaturedProducts() {
+  const allProducts = await getProducts();
+  const products = allProducts.slice(0, 8);
   return (
     <section className="container-wide py-16 lg:py-24">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
         <div>
           <p className="text-xs font-bold uppercase tracking-wider text-coral mb-2">
             La sélection
@@ -20,8 +21,8 @@ export function FeaturedProducts() {
             Nos jouets préférés du moment, choisis avec soin par notre équipe.
           </p>
         </div>
-        <Button asChild variant="secondary" className="self-start md:self-auto">
-          <Link href="/boutique">
+        <Button asChild variant="secondary" className="self-start md:self-auto shrink-0">
+          <Link href="/boutique" className="whitespace-nowrap">
             Tout voir <ArrowRight className="w-4 h-4" />
           </Link>
         </Button>

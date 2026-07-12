@@ -1,20 +1,23 @@
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Truck, Minus, Plus, Trash2, ArrowRight, ArrowLeft } from "lucide-react";
-import { useCart, FREE_SHIPPING } from "@/lib/store/cart";
+import { useCart, FREE_SHIPPING, computeCart } from "@/lib/store/cart";
 import { formatPrice, cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 
 export function CartPageClient() {
-  const lines = useCart((s) => s.getLines());
-  const subtotal = useCart((s) => s.getSubtotal());
-  const shipping = useCart((s) => s.getShipping());
-  const total = useCart((s) => s.getTotal());
+  const items = useCart((s) => s.items);
   const updateQty = useCart((s) => s.updateQuantity);
   const removeItem = useCart((s) => s.removeItem);
+
+  const { lines, subtotal, shipping, total } = useMemo(
+    () => computeCart(items),
+    [items],
+  );
 
   const remaining = Math.max(0, FREE_SHIPPING - subtotal);
 

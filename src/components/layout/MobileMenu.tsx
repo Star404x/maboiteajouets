@@ -23,6 +23,12 @@ export function MobileMenu({
   open: boolean;
   onClose: () => void;
 }) {
+  const handleNavClick = () => {
+    onClose();
+    // Скролл вверх при навигации
+    window.scrollTo(0, 0);
+  };
+
   return (
     <AnimatePresence>
       {open && (
@@ -65,7 +71,7 @@ export function MobileMenu({
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={onClose}
+                    onClick={handleNavClick}
                     className="px-4 py-3 rounded-2xl font-display font-semibold text-navy hover:bg-coral/5 hover:text-coral transition-colors"
                   >
                     {item.label}
@@ -82,7 +88,7 @@ export function MobileMenu({
                     <Link
                       key={cat.slug}
                       href={`/categorie/${cat.slug}`}
-                      onClick={onClose}
+                      onClick={handleNavClick}
                       className={cn(
                         "flex flex-col items-center gap-2 p-4 rounded-2xl",
                         cat.bgClass,
@@ -100,7 +106,7 @@ export function MobileMenu({
               <div className="border-t border-navy/5 pt-5 flex flex-col gap-1">
                 <Link
                   href="/compte"
-                  onClick={onClose}
+                  onClick={handleNavClick}
                   className="flex items-center gap-3 px-4 py-3 rounded-2xl text-navy hover:bg-navy/5 font-semibold"
                 >
                   <User className="w-5 h-5" />
@@ -108,7 +114,7 @@ export function MobileMenu({
                 </Link>
                 <Link
                   href="/favoris"
-                  onClick={onClose}
+                  onClick={handleNavClick}
                   className="flex items-center gap-3 px-4 py-3 rounded-2xl text-navy hover:bg-navy/5 font-semibold"
                 >
                   <Heart className="w-5 h-5" />
@@ -116,7 +122,7 @@ export function MobileMenu({
                 </Link>
                 <Link
                   href="/panier"
-                  onClick={onClose}
+                  onClick={handleNavClick}
                   className="flex items-center gap-3 px-4 py-3 rounded-2xl text-navy hover:bg-navy/5 font-semibold"
                 >
                   <ShoppingBag className="w-5 h-5" />

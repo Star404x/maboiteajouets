@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, CreditCard, Truck, User, ShoppingBag, Lock, ArrowLeft } from "lucide-react";
-import { useCart } from "@/lib/store/cart";
+import { useCart, computeCart } from "@/lib/store/cart";
 import { formatPrice, cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -17,11 +17,13 @@ const STEPS = [
 
 export function CheckoutView() {
   const [step, setStep] = useState(1);
-  const lines = useCart((s) => s.getLines());
-  const subtotal = useCart((s) => s.getSubtotal());
-  const shipping = useCart((s) => s.getShipping());
-  const total = useCart((s) => s.getTotal());
+  const items = useCart((s) => s.items);
   const clear = useCart((s) => s.clear);
+
+  const { lines, subtotal, shipping, total } = useMemo(
+    () => computeCart(items),
+    [items],
+  );
 
   const submit = () => {
     if (step < 4) {

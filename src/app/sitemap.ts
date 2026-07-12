@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { PRODUCTS } from "@/lib/data/products";
 import { CATEGORIES } from "@/lib/data/categories";
 
+export const dynamic = "force-static";
+
 const BASE = "https://maboiteajouets.fr";
 
 export default function sitemap(): MetadataRoute.Sitemap {

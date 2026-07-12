@@ -39,7 +39,7 @@ export function BenefitsSection() {
 
   return (
     <section className="relative overflow-hidden bg-skywash">
-      <div className="container-wide py-20 lg:py-28 relative">
+      <div className="container-wide py-12 lg:py-20 relative">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           {/* Text + benefits */}
           <div>
@@ -62,7 +62,7 @@ export function BenefitsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="flex gap-4 p-5 rounded-3xl bg-white shadow-soft hover:shadow-card transition-all"
+                  className="flex gap-4 p-5 rounded-3xl bg-white shadow-soft hover:shadow-card transition-all h-full"
                 >
                   <div
                     className={`h-12 w-12 rounded-2xl inline-flex items-center justify-center shrink-0 ${b.bg}`}
@@ -78,56 +78,59 @@ export function BenefitsSection() {
             </div>
           </div>
 
-          {/* Rocket illustration */}
-          <div className="relative aspect-square max-w-md mx-auto lg:mx-0 lg:ml-auto">
-            {/* Clouds */}
+          {/* Rocket illustration — properly contained */}
+          <div className="relative w-full h-96 hidden lg:block overflow-hidden">
+            {/* Soft glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-sunflower/5 to-coral/5 rounded-3xl blur-2xl" />
+
+            {/* Rocket — centered, larger but contained */}
             <motion.div
-              animate={reduce ? undefined : { x: [0, 20, 0] }}
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 left-4 text-6xl opacity-70"
+              animate={reduce ? undefined : { y: [0, -20, 0], rotate: [-2, 2, -2] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <div className="text-9xl drop-shadow-2xl">🚀</div>
+            </motion.div>
+
+            {/* Smoke trail */}
+            <motion.div
+              animate={reduce ? undefined : { opacity: [0.3, 0.6, 0.3], y: [0, 20, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute bottom-20 left-1/2 -translate-x-1/2 text-5xl"
+            >
+              💨
+            </motion.div>
+
+            {/* Clouds — subtle, positioned safely */}
+            <motion.div
+              animate={reduce ? undefined : { x: [0, 15, 0] }}
+              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-12 left-8 text-4xl opacity-50"
             >
               ☁️
             </motion.div>
             <motion.div
-              animate={reduce ? undefined : { x: [0, -25, 0] }}
-              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute top-24 right-6 text-5xl opacity-60"
+              animate={reduce ? undefined : { x: [0, -20, 0] }}
+              transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute top-1/3 right-16 text-3xl opacity-40"
             >
               ☁️
             </motion.div>
 
-            {/* Stars */}
+            {/* Stars — sparse, corner accents */}
             <motion.div
-              animate={reduce ? undefined : { rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute top-16 right-24 text-2xl text-sunflower"
+              animate={reduce ? undefined : { rotate: 360, scale: [1, 1.1, 1] }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute top-8 right-12 text-2xl text-sunflower opacity-70"
             >
               ⭐
             </motion.div>
             <motion.div
-              animate={reduce ? undefined : { rotate: -360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-32 left-8 text-xl"
+              animate={reduce ? undefined : { y: [0, -10, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-32 right-8 text-lg text-sunflower opacity-60"
             >
               ✨
-            </motion.div>
-
-            {/* Rocket */}
-            <motion.div
-              animate={reduce ? undefined : { y: [0, -20, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <div className="text-[200px] drop-shadow-2xl">🚀</div>
-            </motion.div>
-
-            {/* Smoke */}
-            <motion.div
-              animate={reduce ? undefined : { opacity: [0.4, 0.7, 0.4], scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute bottom-16 left-1/2 -translate-x-1/2 text-6xl"
-            >
-              💨
             </motion.div>
           </div>
         </div>

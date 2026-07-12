@@ -8,6 +8,7 @@ import { formatPrice, cn, computeDiscount } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 import { Rating } from "@/components/ui/Rating";
 import { useCart } from "@/lib/store/cart";
+import { useIsHydrated } from "@/lib/store/HydrationGuard";
 import { toast } from "@/lib/store/toast";
 
 export function ProductCard({
@@ -20,7 +21,9 @@ export function ProductCard({
   const addItem = useCart((s) => s.addItem);
   const openCart = useCart((s) => s.openCart);
   const toggleFav = useCart((s) => s.toggleFavorite);
-  const isFav = useCart((s) => s.isFavorite(product.id));
+  const favorites = useCart((s) => s.favorites);
+  const hydrated = useIsHydrated();
+  const isFav = hydrated && favorites.includes(product.id);
   const discount = product.oldPrice ? computeDiscount(product.oldPrice, product.price) : 0;
 
   return (
