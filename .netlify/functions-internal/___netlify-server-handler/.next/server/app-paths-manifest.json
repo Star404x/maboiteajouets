@@ -7,6 +7,7 @@
   "/admin/prices/page": "app/admin/prices/page.js",
   "/api/checkout/create-payment-intent/route": "app/api/checkout/create-payment-intent/route.js",
   "/api/contact/route": "app/api/contact/route.js",
+  "/api/prices/route": "app/api/prices/route.js",
   "/boutique/page": "app/boutique/page.js",
   "/categorie/[slug]/page": "app/categorie/[slug]/page.js",
   "/cgv/page": "app/cgv/page.js",

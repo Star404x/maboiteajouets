@@ -95,6 +95,12 @@
       "namedRegex": "^/api/contact(?:/)?$"
     },
     {
+      "page": "/api/prices",
+      "regex": "^/api/prices(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/prices(?:/)?$"
+    },
+    {
       "page": "/boutique",
       "regex": "^/boutique(?:/)?$",
       "routeKeys": {},

@@ -20,7 +20,8 @@ export default function AdminPricesPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
-  const ADMIN_PASSWORD = "admin123"; // Change this!
+  const ADMIN_PASSWORD = "admin123";
+const ADMIN_API_KEY = process.env.NEXT_PUBLIC_ADMIN_API_KEY || "admin123";
 
   // Load prices from API
   const loadPrices = async () => {
@@ -61,7 +62,7 @@ export default function AdminPricesPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": ADMIN_PASSWORD,
+          "x-api-key": ADMIN_API_KEY,
         },
         body: JSON.stringify({ id, price: newPrice }),
       });

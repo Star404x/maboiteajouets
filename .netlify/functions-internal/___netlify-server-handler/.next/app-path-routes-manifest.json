@@ -7,6 +7,7 @@
   "/admin/prices/page": "/admin/prices",
   "/api/checkout/create-payment-intent/route": "/api/checkout/create-payment-intent",
   "/api/contact/route": "/api/contact",
+  "/api/prices/route": "/api/prices",
   "/boutique/page": "/boutique",
   "/categorie/[slug]/page": "/categorie/[slug]",
   "/cgv/page": "/cgv",
