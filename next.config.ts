@@ -3,9 +3,9 @@ import type { NextConfig } from "next";
 // This allows both static pages AND dynamic API routes on Netlify
 
 const nextConfig: NextConfig = {
-  // Use standalone for API routes + static pages
-  // Netlify will serve static files from CDN and route API calls to Node.js
-  output: "standalone",
+  // Use export for static pages
+  // API routes will be handled by Netlify Functions
+  output: "export",
   images: { unoptimized: true },
   trailingSlash: true,
 };
@@ -13,11 +13,9 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 
 /**
- * Migration note:
- * Changed from output: "export" to output: "standalone"
- * - "export" = static HTML only (no API routes)
- * - "standalone" = self-contained Node.js server (API routes supported)
- * 
- * Netlify automatically detects and uses the Node.js runtime.
- * Static pages are still optimized and cached globally.
+ * Architecture:
+ * - output: "export" = static HTML (built pages)
+ * - Netlify Functions handle API routes (use env vars correctly)
+ * - Admin panel calls Functions to update prices
+ * - Static pages generated at build time from products.ts
  */

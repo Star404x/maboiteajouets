@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Синхронизировано из БД: 2026-07-17T17:56:01.124Z
+ * Синхронизировано из БД: 2026-07-17T18:00:21.645Z
  * Всего товаров: 25
  */
 export const PRODUCTS: Product[] = [
@@ -440,7 +440,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.6,
     "reviewCount": 0,
     "age": [
-      "1-3"
+      "1 à 5 ans"
     ],
     "images": [
       "/products/circuit-train-figurines-1.png",
@@ -481,7 +481,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.7,
     "reviewCount": 0,
     "age": [
-      "0-12m"
+      "Dès 12 mois"
     ],
     "images": [
       "/products/camion-pompier-figurines-1.png",
@@ -520,7 +520,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.5,
     "reviewCount": 0,
     "age": [
-      "0-12m"
+      "À partir de 12 mois"
     ],
     "images": [
       "/products/lot-mini-vehicules-1.png",
@@ -581,7 +581,7 @@ export const PRODUCTS: Product[] = [
     "safety": [
       "CE",
       "NF EN 71-1/2/3",
-      "0-12m",
+      "Dès 12 mois",
       "Garantie 2 ans"
     ],
     "color": "amber",
@@ -792,7 +792,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "0-12m"
+      "12 mois et +"
     ],
     "images": [
       "/products/table-activites-dinosaure-1.png",
@@ -834,7 +834,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "0-12m"
+      "12 mois et +"
     ],
     "images": [
       "/products/cube-volcan-activites-1.png",
@@ -876,7 +876,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "0-12m"
+      "6 mois et +"
     ],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
@@ -915,7 +915,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "3-5"
+      "2 à 6 ans"
     ],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
