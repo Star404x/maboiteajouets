@@ -49,6 +49,8 @@ export default async function ProductPage({
     r.id.startsWith(`r-${productNum}`)
   );
   
+  console.log(`[BUILD] Product: ${product.id}, Reviews found: ${productReviews.length}`);
+  
   // Update product with actual review count
   product.reviewCount = productReviews.length;
 
@@ -68,7 +70,7 @@ export default async function ProductPage({
       <ProductDetail product={product} />
 
       {/* Customer Reviews - Inline JSX */}
-      {productReviews && productReviews.length > 0 && (
+      {productReviews.length > 0 && (
         <div className="mt-16 lg:mt-24">
           <h2 className="font-display font-bold text-navy text-2xl md:text-3xl mb-8">
             Avis clients ({productReviews.length})
