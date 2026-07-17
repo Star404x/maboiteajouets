@@ -15,7 +15,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Boîte d'activités 5 faces avec engrenages, boules, blocs, labyrinthe et miroir pour éveiller la motricité.",
     "price": 36.4,
     "rating": 4.8,
-    "reviewCount": 4,
+    "reviewCount": 16,
     "age": [
       "0-12m",
       "1-3"
@@ -53,7 +53,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Le classique ballon O-Ball aux 32 anneaux entrelacés. Ses couleurs vives (bleu, vert, rouge, jaune) stimulent la perception visuelle. Idéal pour développer le réflexe de préhension et la motricité fine. Plastique souple sans BPA. À partir de la naissance.",
     "price": 7.8,
     "rating": 4.7,
-    "reviewCount": 5,
+    "reviewCount": 10,
     "age": [],
     "images": [
       "/products/balle-prehension-1.png",
@@ -91,7 +91,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Cube avec différentes activités sensorielles pour l'éveil de bébé.",
     "price": 13.9,
     "rating": 4.8,
-    "reviewCount": 4,
+    "reviewCount": 11,
     "age": [
       "0-12m",
       "1-3"
@@ -129,7 +129,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Le rouleau musical ingénieux pour accompagner les tout-petits dès 6 mois dans leur développement psychomoteur. Sa forme cylindrique (largeur 18 cm) incite les bébés à ramper, se déplacer à quatre pattes et explorer. Surface douce et résistante en plastique robuste, parfait pour les espaces collectifs (crèches, salles de jeux). Stimule la coordination des mouvements et la manipulation fine. Léger mais solide, facile à manipuler par les enfants eux-mêmes. Idéal pour développer confiance et autonomie. Ludique et pédagogique!",
     "price": 32.8,
     "rating": 4.7,
-    "reviewCount": 4,
+    "reviewCount": 13,
     "age": [],
     "images": [
       "/products/actiroller-rouleau-musical-1.png",
@@ -167,7 +167,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Tapis d'éveil naturel en bois avec arche de jeu.",
     "price": 69.9,
     "rating": 4.9,
-    "reviewCount": 4,
+    "reviewCount": 20,
     "age": [
       "0-12m",
       "1-3"
@@ -196,7 +196,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Portique d'éveil pliable avec jouets sensoriels attachés.",
     "price": 64.8,
     "rating": 4.8,
-    "reviewCount": 4,
+    "reviewCount": 20,
     "age": [
       "0-12m",
       "1-3"
@@ -225,7 +225,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Mobile musical avec pingouins pour l'éveil sensoriel.",
     "price": 46.8,
     "rating": 4.7,
-    "reviewCount": 4,
+    "reviewCount": 10,
     "age": [
       "0-12m"
     ],
@@ -253,7 +253,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Tapis d'éveil avec arche montgolfière amovible. Stimule la motricité et la dextérité de bébé dès la naissance. Dimensions: 119 x 49 x 91 cm. 100% polyester, lavable en machine. 3 jouets amovibles inclus.",
     "price": 49.9,
     "rating": 4.5,
-    "reviewCount": 4,
+    "reviewCount": 7,
     "age": [],
     "images": [
       "/products/tapis-activites-montgolfiere-1.png",
@@ -288,7 +288,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Panier de basket réglable de 117 à 177 cm. Parfait pour développer la coordination et l'activité physique. Système de roues pour déplacement facile. Largeur 72 cm, diamètre kringue 26 cm.",
     "price": 131.72,
     "rating": 4.7,
-    "reviewCount": 5,
+    "reviewCount": 17,
     "age": [],
     "images": [
       "/products/panier-basket-reglable-1.png",
@@ -325,7 +325,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Balançoire confortable pour enfants. Dimensions: 104 x 96 x 144 cm. Mousse de polyuréthane 25 mm, revêtement PVC-polyester. Design amusant avec animaux sympathiques. Facile à nettoyer.",
     "price": 199.9,
     "rating": 4.8,
-    "reviewCount": 5,
+    "reviewCount": 11,
     "age": [],
     "images": [
       "/products/balancoire-confortable-1.png",
@@ -364,7 +364,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Montagne russe pour enfants. Dimensions: 310 x 33 x 37 cm. Poids: 16,80 kg. Capacité: 50 kg. Plastique durable. Développe la coordination et l'équilibre. Intérieur ou extérieur.",
     "price": 255.19,
     "rating": 4.6,
-    "reviewCount": 4,
+    "reviewCount": 9,
     "age": [],
     "images": [
       "/products/montagne-russe-1.png",
@@ -402,7 +402,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Table à balles STEM Discovery de Step2. Dimensions: 76,2 x 71,1 x 77,5 cm. Capacité: 15 litres. Plastique EverTough durable. Inclut rampе, poulie, flipper et 10 balles. À partir de 2 ans.",
     "price": 168.8,
     "rating": 4.7,
-    "reviewCount": 4,
+    "reviewCount": 14,
     "age": [],
     "images": [
       "/products/table-balles-fun-ball-1.png",
@@ -439,7 +439,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Circuit de train pour enfants 1-5 ans. 19 pièces: train, wagon, figurines avec bras/jambes mobiles. Schéma en forme de 8. Poids: 1,7 kg. Certifications: EN71, ASTM, CPSIA.",
     "price": 138.8,
     "rating": 4.6,
-    "reviewCount": 4,
+    "reviewCount": 14,
     "age": [],
     "images": [
       "/products/circuit-train-figurines-1.png",
@@ -478,7 +478,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Camion de pompier Tolo avec 2 figurines. Dimensions: 20 x 16 cm. Plastique de qualité. Figurines articulées. À partir de 12 mois. Certifié EN71. Facile à nettoyer.",
     "price": 52.8,
     "rating": 4.7,
-    "reviewCount": 4,
+    "reviewCount": 15,
     "age": [],
     "images": [
       "/products/camion-pompier-figurines-1.png",
@@ -516,7 +516,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "4 minis véhicules Edushape avec système push-down. Idéal pour développer la motricité fine. À partir de 12 mois. Sans batterie, plastique robuste, bords arrondis sécurisés. Certifié CE.",
     "price": 18.8,
     "rating": 4.5,
-    "reviewCount": 4,
+    "reviewCount": 19,
     "age": [],
     "images": [
       "/products/lot-mini-vehicules-1.png",
@@ -593,7 +593,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "118 pièces pour assembler diverses compositions. Développe l'imagination, la motricité et la perception de l'espace.",
     "price": 74.95,
     "rating": 4.8,
-    "reviewCount": 4,
+    "reviewCount": 16,
     "age": [],
     "images": [
       "/products/blocks-construction-m-1.png",
@@ -630,7 +630,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "101 pièces en bois colorées de formes différentes (cubes, cylindriques, triangulaires). Parfait pour construire châteaux, maisons, villages et bien plus!",
     "price": 25.99,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 17,
     "age": [],
     "images": [
       "/products/baril-blocs-bois-1.png",
@@ -668,7 +668,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "60 pièces en bois FSC de 6 couleurs différentes. Avec 8 modèles inclus. Parfait pour la créativité et l'imagination!",
     "price": 22.39,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 12,
     "age": [],
     "images": [
       "/products/set-construction-60-5.png",
@@ -706,7 +706,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Blocs d'exploration avec kaleidoscope, perles et billes. Stimule la motricité fine et la découverte sensorielle!",
     "price": 22.5,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 4,
     "age": [],
     "images": [
       "/products/blocs-empiler-exploration-1.png",
@@ -743,7 +743,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "La Boîte à Formes Goki : Un outil ludique pour l'éveil des jeunes enfants. Jouet éducatif essentiel pour le développement de la motricité fine des jeunes enfants, que ce soit en crèche ou à la maison.",
     "price": 43.5,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 15,
     "age": [
       "0-12m",
       "1-3"
@@ -786,7 +786,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Table d'activités avec 8 jeux : tricératops, volcan, boulier, engrenages, miroir rotatif, œuf sonore. Idéal pour explorer le monde des dinosaures!",
     "price": 58.8,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 13,
     "age": [],
     "images": [
       "/products/table-activites-dinosaure-1.png",
@@ -823,7 +823,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "Cube volcan multi-activités avec boîte à formes dinosaures, 3 engrenages, miroir, labyrinthe et boulier. Un voyage au temps des dinosaures!",
     "price": 26.8,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 18,
     "age": [],
     "images": [
       "/products/cube-volcan-activites-1.png",
@@ -861,7 +861,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "10 blocs en bois avec bords silicone souple. Lettres, chiffres et motifs. Parfait pour la motricité libre et le développement sensoriel!",
     "price": 19.9,
     "rating": 4.8,
-    "reviewCount": 3,
+    "reviewCount": 11,
     "age": [],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
@@ -897,7 +897,7 @@ const PRODUCTS_BASE: Product[] = [
     "description": "20 pierres en bois multicolores pour la construction libre et l'équilibre. Approche Montessori. Design français, dès 2 ans!",
     "price": 28.8,
     "rating": 4.8,
-    "reviewCount": 4,
+    "reviewCount": 18,
     "age": [],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
@@ -927,17 +927,7 @@ const PRODUCTS_BASE: Product[] = [
   }
 ];
 
-// Enrich products with actual review counts
-function enrichProductsWithReviews(products: Product[]): Product[] {
-  return products.map((product) => {
-    const productNum = product.id.replace('p-', '');
-    const reviewCount = REVIEWS.filter((r) => r.id.startsWith(`r-${productNum}`)).length;
-    return { ...product, reviewCount };
-  });
-}
-
-// Export enriched products
-export const PRODUCTS: Product[] = enrichProductsWithReviews(PRODUCTS_BASE);
+export const PRODUCTS = PRODUCTS_BASE;
 
 // Helpers
 export function getProduct(slug: string): Product | undefined {
