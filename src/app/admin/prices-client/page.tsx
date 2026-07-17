@@ -15,8 +15,8 @@ interface PriceRow {
   isSyncing?: boolean;
 }
 
-// Static product list from products.ts
-const DEMO_PRODUCTS = [
+// Static product list - always available
+const DEMO_PRODUCTS: PriceRow[] = [
   { id: "p-001", name: "Ours en peluche tout doux", price: 19.90, slug: "ours-peluche" },
   { id: "p-003", name: "Boîte créative", price: 29.90, slug: "boite-creative" },
   { id: "p-005", name: "Robot éducatif", price: 59.90, slug: "robot-educatif" },
@@ -35,34 +35,43 @@ export default function AdminPricesPage() {
   const [prices, setPrices] = useState<PriceRow[]>([]);
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
-  const [syncStatus, setSyncStatus] = useState<{ [key: string]: "idle" | "syncing" | "done" }> ({});
 
   const ADMIN_PASSWORD = "admin123";
 
-  // Initialize prices from localStorage and products
+  // Load prices on mount
   useEffect(() => {
-    const savedPrices = localStorage.getItem("adminPrices");
-    if (savedPrices) {
+    setTimeout(() => {
       try {
-        const cached = JSON.parse(savedPrices);
-        setPrices(cached);
-        setMessage({ type: "success", text: "Prices loaded from cache" });
-      } catch {
-        loadDefaultPrices();
+        const cached = localStorage.getItem("adminPrices");
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setPrices(parsed);
+            console.log("✅ Loaded from cache:", parsed.length);
+          } else {
+            loadDefaults();
+          }
+        } else {
+          loadDefaults();
+        }
+      } catch (error) {
+        console.error("Load error:", error);
+        loadDefaults();
       }
-    } else {
-      loadDefaultPrices();
-    }
+      setIsLoading(false);
+    }, 100);
   }, []);
 
-  const loadDefaultPrices = () => {
-    setPrices(
-      DEMO_PRODUCTS.map((p) => ({
-        ...p,
-        originalPrice: p.price,
-      }))
-    );
+  const loadDefaults = () => {
+    const withOriginal = DEMO_PRODUCTS.map((p) => ({
+      ...p,
+      originalPrice: p.price,
+    }));
+    setPrices(withOriginal);
+    localStorage.setItem("adminPrices", JSON.stringify(withOriginal));
+    console.log("✅ Loaded defaults:", withOriginal.length);
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -70,27 +79,28 @@ export default function AdminPricesPage() {
     if (password === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
       setPassword("");
+      setMessage(null);
     } else {
       setMessage({ type: "error", text: "❌ Wrong password" });
     }
   };
 
   const updatePrice = (id: string, newPrice: number) => {
-    const updated = prices.map((p) => (p.id === id ? { ...p, price: newPrice, isEditing: false } : p));
+    const updated = prices.map((p) =>
+      p.id === id ? { ...p, price: newPrice } : p
+    );
     setPrices(updated);
     localStorage.setItem("adminPrices", JSON.stringify(updated));
-    setMessage({ type: "success", text: `✅ ${updated.find((p) => p.id === id)?.name} → €${newPrice}` });
+    const product = updated.find((p) => p.id === id);
+    setMessage({ type: "success", text: `✅ ${product?.name} → €${newPrice}` });
   };
 
   const syncToDatabase = async (id: string) => {
     const product = prices.find((p) => p.id === id);
     if (!product) return;
 
-    setSyncStatus((prev) => ({ ...prev, [id]: "syncing" }));
-
     try {
-      // Webhook endpoint to update database
-      const response = await fetch("https://maboiteajouets.fr/api/webhook/update-price", {
+      const response = await fetch("/.netlify/functions/webhook-update-price", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -98,28 +108,35 @@ export default function AdminPricesPage() {
           newPrice: product.price,
           timestamp: new Date().toISOString(),
         }),
-      }).catch(() => null); // Webhook failure doesn't block admin
-
-      setSyncStatus((prev) => ({ ...prev, [id]: "done" }));
-      setTimeout(() => setSyncStatus((prev) => ({ ...prev, [id]: "idle" })), 2000);
+      }).catch(() => null);
 
       if (response?.ok) {
-        setMessage({ type: "success", text: `✅ Synced to database` });
+        setMessage({ type: "success", text: `✅ ${product.name} synced to database` });
+      } else {
+        setMessage({ type: "success", text: "✅ Saved locally (DB sync pending)" });
       }
     } catch (error) {
-      setSyncStatus((prev) => ({ ...prev, [id]: "idle" }));
-      setMessage({ type: "error", text: "⚠️ Local save OK, database sync pending" });
+      setMessage({ type: "success", text: "✅ Saved locally (DB sync pending)" });
     }
   };
 
-  const syncAllToDatabase = async () => {
+  const syncAll = async () => {
     for (const product of prices) {
       await syncToDatabase(product.id);
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
-    setMessage({ type: "success", text: "✅ All prices synced to database" });
   };
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/5 to-coral/5">
+        <p className="text-navy text-lg font-semibold">⏳ Loading...</p>
+      </div>
+    );
+  }
+
+  // Login screen
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-coral to-coral/80">
@@ -128,6 +145,12 @@ export default function AdminPricesPage() {
             <Lock className="w-8 h-8 text-coral mr-2" />
             <h1 className="text-2xl font-display font-bold text-navy">Admin Panel</h1>
           </div>
+
+          {message && (
+            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm font-semibold">
+              {message.text}
+            </div>
+          )}
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -150,6 +173,7 @@ export default function AdminPricesPage() {
     );
   }
 
+  // Main admin panel
   return (
     <div className="min-h-screen bg-gradient-to-br from-navy/5 to-coral/5 p-6">
       <div className="max-w-7xl mx-auto">
@@ -163,7 +187,7 @@ export default function AdminPricesPage() {
           <button
             onClick={() => {
               setIsAuthenticated(false);
-              setPrices([]);
+              setPassword("");
             }}
             className="px-6 py-2 text-coral hover:bg-coral/10 rounded-lg transition"
           >
@@ -191,7 +215,7 @@ export default function AdminPricesPage() {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-navy">Product</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-navy">Original</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-navy">Current</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-navy">Actions</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-navy">Sync</th>
                 </tr>
               </thead>
               <tbody>
@@ -208,17 +232,10 @@ export default function AdminPricesPage() {
                         className="w-24 px-3 py-2 border border-navy/20 rounded-lg text-sm focus:border-coral focus:outline-none"
                       />
                     </td>
-                    <td className="px-6 py-4 flex gap-2">
+                    <td className="px-6 py-4">
                       <button
                         onClick={() => syncToDatabase(p.id)}
-                        disabled={syncStatus[p.id] === "syncing"}
-                        className={`p-2 rounded-lg transition ${
-                          syncStatus[p.id] === "syncing"
-                            ? "bg-gray-200 text-gray-400"
-                            : syncStatus[p.id] === "done"
-                            ? "bg-green-100 text-green-600"
-                            : "bg-coral/10 text-coral hover:bg-coral/20"
-                        }`}
+                        className="p-2 rounded-lg bg-coral/10 text-coral hover:bg-coral/20 transition"
                       >
                         <RotateCw className="w-4 h-4" />
                       </button>
@@ -231,13 +248,13 @@ export default function AdminPricesPage() {
 
           <div className="border-t border-navy/10 px-6 py-4 bg-navy/2 flex gap-3 justify-end">
             <button
-              onClick={() => loadDefaultPrices()}
+              onClick={() => loadDefaults()}
               className="px-6 py-2 text-navy border-2 border-navy/20 rounded-lg hover:bg-navy/5 transition"
             >
               Reset
             </button>
             <button
-              onClick={syncAllToDatabase}
+              onClick={syncAll}
               className="px-6 py-2 bg-coral text-white rounded-lg hover:bg-coral/90 transition flex items-center gap-2"
             >
               <Save className="w-4 h-4" />
@@ -250,8 +267,8 @@ export default function AdminPricesPage() {
           <h3 className="font-semibold text-blue-900 mb-2">💡 How it works:</h3>
           <ul className="text-sm text-blue-800 space-y-1">
             <li>✅ Edit prices directly - they save to your browser instantly</li>
-            <li>✅ Click the sync button or "Sync All" to update the database</li>
-            <li>✅ Prices are always cached locally, even if database sync fails</li>
+            <li>✅ Click the refresh button to sync prices to the database</li>
+            <li>✅ Prices are always cached locally in your browser</li>
             <li>✅ Website shows prices from cache when available</li>
           </ul>
         </div>
