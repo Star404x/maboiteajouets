@@ -6,24 +6,3 @@
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_VERSION = "20"
   npm_package_engines_node = "20"
-
-# Email configuration
-[env]
-  ADMIN_EMAIL = "info.maboiteajouets@gmail.com"
-  EMAIL_FROM = "noreply@maboiteajouets.fr"
-
-# Security headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
-[[headers]]
-  for = "/_next/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Netlify automatically publishes .next with proper routing

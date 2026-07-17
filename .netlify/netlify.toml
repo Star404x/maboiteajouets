@@ -1,11 +1,7 @@
-headersOrigin = "config"
-redirectsOrigin = "config"
+headersOrigin = "inline"
+redirectsOrigin = "inline"
 functionsDirectory = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
 functionsDirectoryOrigin = "config-v1"
-
-[env]
-ADMIN_EMAIL = "info.maboiteajouets@gmail.com"
-EMAIL_FROM = "noreply@maboiteajouets.fr"
 
 [functions]
 
@@ -18,8 +14,8 @@ package = "@netlify/plugin-nextjs"
 [plugins.inputs]
 
 [build]
-publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next/standalone/.next/server"
-publishOrigin = "config"
+publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next"
+publishOrigin = "ui"
 commandOrigin = "config"
 command = "npm run build"
 functions = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
@@ -42,27 +38,36 @@ npm_package_engines_node = "20"
 [build.services]
 
 [[headers]]
-for = "/*"
-
-[headers.values]
-X-Frame-Options = "SAMEORIGIN"
-X-Content-Type-Options = "nosniff"
-Referrer-Policy = "strict-origin-when-cross-origin"
-Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
-[[headers]]
 for = "/_next/static/*"
 
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
 status = 200.0
 force = false
 
 [redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
 
 [redirects.conditions]
 
