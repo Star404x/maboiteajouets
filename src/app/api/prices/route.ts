@@ -1,19 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
-const dbUrl = process.env.DATABASE_URL || process.env.NEXT_PUBLIC_DATABASE_URL;
+// Use environment variable or fallback to hardcoded connection for production
+const dbUrl = process.env.DATABASE_URL || "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require";
 
-if (!dbUrl) {
-  console.warn("⚠️ [API Route] WARNING: DATABASE_URL not set! Environment variables:", Object.keys(process.env).filter(k => k.includes('DATABASE') || k.includes('DB') || k.includes('NETLIFY')));
-}
-
-console.log("[API Route] DATABASE_URL available:", !!dbUrl ? "✅ YES" : "❌ NO");
-if (dbUrl) {
-  console.log("[API Route] DB Host:", dbUrl.split('@')[1]?.split('/')[0] || 'unknown');
-}
+console.log("[API Route] DATABASE_URL source:", process.env.DATABASE_URL ? "env var" : "hardcoded");
+console.log("[API Route] DB Host:", dbUrl.split('@')[1]?.split('/')[0] || 'unknown');
 
 const pool = new Pool({
-  connectionString: dbUrl || "postgresql://localhost/fallback",
+  connectionString: dbUrl,
 });
 
 export async function GET(request: NextRequest) {
