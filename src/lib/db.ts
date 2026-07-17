@@ -28,33 +28,40 @@ export interface Product {
   safety?: string[];
   color?: string;
   bgClass?: string;
+  stripelink?: string;
 }
 
 // Normalize DB row to proper types
 function normalizeProduct(row: any): TypeProduct {
-  return {
+  const product: TypeProduct = {
     id: row.id,
     slug: row.slug,
     name: row.name,
     category: row.category as any,
-    categoryName: row.categoryName,
+    categoryName: row.categoryname || row.categoryName,
     description: row.description,
-    longDescription: row.longDescription,
+    longDescription: row.longdescription || row.longDescription,
     price: parseFloat(row.price),
-    oldPrice: row.oldPrice ? parseFloat(row.oldPrice) : undefined,
+    oldPrice: row.oldprice ? parseFloat(row.oldprice) : undefined,
     rating: row.rating ? parseFloat(row.rating) : 0,
-    reviewCount: row.reviewCount || 0,
+    reviewCount: row.reviewcount || row.reviewCount || 0,
     age: row.age || [],
     images: row.images || [],
     badge: row.badge,
-    inStock: row.inStock,
-    stockCount: row.stockCount,
+    inStock: row.instock !== undefined ? row.instock : row.inStock,
+    stockCount: row.stockcount || row.stockCount || 0,
     materials: row.materials || [],
     dimensions: row.dimensions,
     safety: row.safety || [],
     color: row.color,
-    bgClass: row.bgClass,
+    bgClass: row.bgclass || row.bgClass,
   };
+  
+  // Add stripeLink if it exists (handle both camelCase and lowercase from DB)
+  if (row.stripeLink) product.stripeLink = row.stripeLink;
+  else if (row.stripelink) product.stripeLink = row.stripelink;
+  
+  return product;
 }
 
 export async function getProducts(): Promise<TypeProduct[]> {
