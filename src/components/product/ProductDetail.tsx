@@ -62,7 +62,7 @@ export function ProductDetail({ product }: { product: Product }) {
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: product.rating,
-              reviewCount: reviews.length > 0 ? reviews.length : product.reviewCount,
+              reviewCount: product.reviewCount,
             },
           }),
         }}
@@ -149,7 +149,7 @@ export function ProductDetail({ product }: { product: Product }) {
           </h1>
 
           <div className="mt-4 flex items-center gap-4">
-            <Rating value={product.rating} count={reviews.length > 0 ? reviews.length : product.reviewCount} size="lg" />
+            <Rating value={product.rating} count={product.reviewCount} size="lg" />
             <span className="inline-flex items-center gap-1 text-sm text-mint font-semibold">
               <Check className="w-4 h-4" />
               En stock
