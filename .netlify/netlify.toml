@@ -1,5 +1,5 @@
 functionsDirectory = "/data/.openclaw/workspace/maboiteajouets-v2/netlify/functions"
-functionsDirectoryOrigin = "default"
+functionsDirectoryOrigin = "config-v1"
 headers = []
 redirects = []
 
@@ -32,6 +32,7 @@ ADMIN_API_KEY = "admin123"
 [functions]
 
 [functions."*"]
+node_bundler = "esbuild"
 
 [[plugins]]
 origin = "default"

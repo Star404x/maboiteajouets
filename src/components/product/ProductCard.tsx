@@ -10,6 +10,7 @@ import { Rating } from "@/components/ui/Rating";
 import { useCart } from "@/lib/store/cart";
 import { useIsHydrated } from "@/lib/store/HydrationGuard";
 import { toast } from "@/lib/store/toast";
+import { usePriceCache } from "@/hooks/usePriceCache";
 
 export function ProductCard({
   product,
@@ -24,7 +25,8 @@ export function ProductCard({
   const favorites = useCart((s) => s.favorites);
   const hydrated = useIsHydrated();
   const isFav = hydrated && favorites.includes(product.id);
-  const discount = product.oldPrice ? computeDiscount(product.oldPrice, product.price) : 0;
+  const cachedPrice = usePriceCache(product.price, product.id);
+  const discount = product.oldPrice ? computeDiscount(product.oldPrice, cachedPrice) : 0;
 
   return (
     <motion.article
@@ -116,7 +118,7 @@ export function ProductCard({
             <Rating value={product.rating} count={product.reviewCount} size="sm" />
             <div className="flex items-baseline gap-2 mt-1">
               <span className="font-display font-bold text-navy text-lg">
-                {formatPrice(product.price)}
+                {formatPrice(cachedPrice)}
               </span>
               {product.oldPrice && (
                 <span className="text-navy/40 text-sm line-through">
