@@ -1,5 +1,6 @@
 [build]
   command = "npm run build"
+  functions = "netlify/functions"
 
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
@@ -8,4 +9,5 @@
   DATABASE_URL = "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require"
   ADMIN_API_KEY = "admin123"
 
-
+[functions]
+  node_bundler = "esbuild"
