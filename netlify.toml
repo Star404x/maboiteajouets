@@ -1,6 +1,5 @@
 [build]
   command = "npm run build"
-  publish = ".next/standalone/.next/server"
   functions = ".netlify/functions"
 
 [build.environment]
@@ -27,9 +26,4 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Nice URLs - Only redirect if file doesn't exist
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
+# Netlify automatically publishes .next with proper routing

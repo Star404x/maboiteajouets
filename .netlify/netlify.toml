@@ -1,5 +1,5 @@
-headersOrigin = "inline"
-redirectsOrigin = "inline"
+headersOrigin = "config"
+redirectsOrigin = "config"
 functionsDirectory = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
 functionsDirectoryOrigin = "config-v1"
 
@@ -18,8 +18,8 @@ package = "@netlify/plugin-nextjs"
 [plugins.inputs]
 
 [build]
-publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next"
-publishOrigin = "ui"
+publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next/standalone/.next/server"
+publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
 functions = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
@@ -63,36 +63,6 @@ status = 200.0
 force = false
 
 [redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "/_next/image"
-to = "/.netlify/images?url=:url&w=:width&q=:quality"
-status = 200.0
-force = false
-
-[redirects.query]
-url = ":url"
-w = ":width"
-q = ":quality"
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "/_ipx/*"
-to = "/.netlify/images?url=:url&w=:width&q=:quality"
-status = 200.0
-force = false
-
-[redirects.query]
-url = ":url"
-w = ":width"
-q = ":quality"
 
 [redirects.conditions]
 

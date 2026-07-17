@@ -69,14 +69,13 @@ export default async function ProductPage({
 
       <ProductDetail product={product} />
 
-      {/* Customer Reviews - Inline JSX */}
-      {productReviews.length > 0 && (
-        <div className="mt-16 lg:mt-24">
-          <h2 className="font-display font-bold text-navy text-2xl md:text-3xl mb-8">
-            Avis clients ({productReviews.length})
-          </h2>
-          <div className="space-y-6">
-            {productReviews.map((review) => (
+      {/* Customer Reviews - ALWAYS render for build-time embedding */}
+      <div className="mt-16 lg:mt-24">
+        <h2 className="font-display font-bold text-navy text-2xl md:text-3xl mb-8">
+          Avis clients ({productReviews.length})
+        </h2>
+        <div className="space-y-6">
+          {productReviews.map((review) => (
               <div
                 key={review.id}
                 className="p-6 rounded-2xl bg-cream-soft border border-navy/5 hover:border-navy/10 transition-colors"
@@ -114,10 +113,9 @@ export default async function ProductPage({
 
                 <p className="text-navy/80 leading-relaxed">{review.content}</p>
               </div>
-            ))}
-          </div>
+          ))}
         </div>
-      )}
+      </div>
 
       {related.length > 0 && (
         <section className="mt-20 lg:mt-28">
