@@ -38,6 +38,11 @@ export function ProductDetail({ product }: { product: Product }) {
     ? product.images
     : [product.images[0], product.images[0], product.images[0], product.images[0]];
 
+  // Filter reviews for this product
+  const productReviews = REVIEWS.filter((r) =>
+    r.id.startsWith(`r-${product.id.replace('p-', '')}`)
+  );
+
   return (
     <>
       {/* Structured data */}
@@ -334,14 +339,8 @@ export function ProductDetail({ product }: { product: Product }) {
       </div>
 
       {/* Customer Reviews */}
-      {(() => {
-        const productReviews = REVIEWS.filter((r) =>
-          r.id.startsWith(`r-${product.id.replace('p-', '')}`)
-        );
-        if (productReviews.length === 0) return null;
-
-        return (
-          <div className="mt-16 lg:mt-24">
+      {productReviews.length > 0 && (
+        <div className="mt-16 lg:mt-24">
             <h2 className="font-display font-bold text-navy text-2xl md:text-3xl mb-8">
               Avis clients ({productReviews.length})
             </h2>
@@ -390,9 +389,8 @@ export function ProductDetail({ product }: { product: Product }) {
                 </div>
               ))}
             </div>
-          </div>
-        );
-      })()}
+        </div>
+      )}
 
       {/* Sticky mobile CTA */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur border-t border-navy/5 p-3 flex items-center gap-3 shadow-card">
