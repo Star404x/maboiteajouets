@@ -122,6 +122,54 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/admin/prices": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/admin/prices",
+      "dataRoute": "/admin/prices.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/admin/prices-client": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/admin/prices-client",
+      "dataRoute": "/admin/prices-client.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/boutique": {
       "experimentalBypassFor": [
         {
@@ -1398,8 +1446,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "431fbaf820a6d09079953588f8af0d99",
-    "previewModeSigningKey": "ebbc131876a215b86e8de0d518ddc23068ea9b05e1c1505152e1ffb836458add",
-    "previewModeEncryptionKey": "0ede777fbac953b8816a55b1eef1149df55887cf8a05a05a68c0c915430da340"
+    "previewModeId": "939917bc15a4d775bd7eac99c6c00656",
+    "previewModeSigningKey": "5a77f3720da909f29950f45d376c539c276ef6857df51c5d1f4b106ee45cfe7d",
+    "previewModeEncryptionKey": "5d8d6306a9ffba4dfecdcd8c6e04deedf5c02c6bb708b5c095517e985f60f99d"
   }
 }

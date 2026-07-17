@@ -26,7 +26,7 @@ export default function AdminPricesPage() {
   const loadPrices = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/.netlify/functions/get-prices");
+      const res = await fetch("/api/prices");
       const data = await res.json();
       if (data.success) {
         setPrices(data.prices.map((p: any) => ({ ...p, originalPrice: p.price })));
@@ -57,7 +57,7 @@ export default function AdminPricesPage() {
 
   const updatePrice = async (id: string, newPrice: number) => {
     try {
-      const res = await fetch("/.netlify/functions/update-price", {
+      const res = await fetch("/api/prices", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,6 +3,8 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/a-propos/page": "app/a-propos/page.js",
   "/admin/orders/page": "app/admin/orders/page.js",
+  "/admin/prices-client/page": "app/admin/prices-client/page.js",
+  "/admin/prices/page": "app/admin/prices/page.js",
   "/api/checkout/create-payment-intent/route": "app/api/checkout/create-payment-intent/route.js",
   "/api/contact/route": "app/api/contact/route.js",
   "/boutique/page": "app/boutique/page.js",

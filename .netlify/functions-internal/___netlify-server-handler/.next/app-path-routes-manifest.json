@@ -3,6 +3,8 @@
   "/_not-found/page": "/_not-found",
   "/a-propos/page": "/a-propos",
   "/admin/orders/page": "/admin/orders",
+  "/admin/prices-client/page": "/admin/prices-client",
+  "/admin/prices/page": "/admin/prices",
   "/api/checkout/create-payment-intent/route": "/api/checkout/create-payment-intent",
   "/api/contact/route": "/api/contact",
   "/boutique/page": "/boutique",

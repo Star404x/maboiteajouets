@@ -71,6 +71,18 @@
       "namedRegex": "^/admin/orders(?:/)?$"
     },
     {
+      "page": "/admin/prices",
+      "regex": "^/admin/prices(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/prices(?:/)?$"
+    },
+    {
+      "page": "/admin/prices-client",
+      "regex": "^/admin/prices\\-client(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/prices\\-client(?:/)?$"
+    },
+    {
       "page": "/api/checkout/create-payment-intent",
       "regex": "^/api/checkout/create\\-payment\\-intent(?:/)?$",
       "routeKeys": {},
