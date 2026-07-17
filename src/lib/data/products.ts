@@ -1,10 +1,9 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Синхронизировано из БД: 2026-07-17T20:25:34.938Z
+ * Синхронизировано из БД: 2026-07-17T20:30:09.486Z
  * Всего товаров: 25
  */
-// Fix all invalid age ranges
 export const PRODUCTS: Product[] = [
   {
     "id": "p-009",
@@ -441,8 +440,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.6,
     "reviewCount": 0,
     "age": [
-      "1-3",
-      "3-5"
+      "1 à 5 ans"
     ],
     "images": [
       "/products/circuit-train-figurines-1.png",
@@ -917,9 +915,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "1-3",
-      "3-5",
-      "6-8"
+      "2 à 6 ans"
     ],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
