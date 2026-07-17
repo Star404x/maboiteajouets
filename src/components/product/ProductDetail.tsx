@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -18,8 +20,6 @@ const AGE_LABEL: Record<string, string> = {
   "6-8": "6-8 ans",
   "9+": "9 ans et +",
 };
-
-"use client";
 
 interface ProductDetailProps {
   product: Product;
