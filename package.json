@@ -6,7 +6,7 @@
     "dev": "next dev",
     "sync": "node scripts/sync-products-from-db.js",
     "build": "npm run sync && next build",
-    "start": "next start"
+    "start": "node server.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

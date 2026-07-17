@@ -2,6 +2,12 @@ const { Pool } = require("pg");
 const fs = require("fs");
 const path = require("path");
 
+// Skip if DATABASE_URL is not available
+if (!process.env.DATABASE_URL) {
+  console.log("⚠️  DATABASE_URL not set, skipping database sync. Using local product data.");
+  process.exit(0);
+}
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
