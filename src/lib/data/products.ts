@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Синхронизировано из БД: 2026-07-17T20:31:23.786Z
+ * Синхронизировано из БД: 2026-07-17T20:44:25.907Z
  * Всего товаров: 25
  */
 export const PRODUCTS: Product[] = [
@@ -386,7 +386,7 @@ export const PRODUCTS: Product[] = [
       "CE",
       "EN-71",
       "Europe",
-      "3-5"
+      "Dès 3 ans"
     ],
     "color": "rose",
     "bgClass": "bg-gradient-to-br from-rose-100 to-rose-50",
@@ -423,7 +423,7 @@ export const PRODUCTS: Product[] = [
     "safety": [
       "CE",
       "USA",
-      "1-3"
+      "Dès 2 ans"
     ],
     "color": "rose",
     "bgClass": "bg-gradient-to-br from-rose-100 to-rose-50",
@@ -440,8 +440,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.6,
     "reviewCount": 0,
     "age": [
-      "1-3",
-      "3-5"
+      "1 à 5 ans"
     ],
     "images": [
       "/products/circuit-train-figurines-1.png",
@@ -482,7 +481,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.7,
     "reviewCount": 0,
     "age": [
-      "0-12m"
+      "Dès 12 mois"
     ],
     "images": [
       "/products/camion-pompier-figurines-1.png",
@@ -521,7 +520,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.5,
     "reviewCount": 0,
     "age": [
-      "9+"
+      "À partir de 12 mois"
     ],
     "images": [
       "/products/lot-mini-vehicules-1.png",
@@ -582,7 +581,7 @@ export const PRODUCTS: Product[] = [
     "safety": [
       "CE",
       "NF EN 71-1/2/3",
-      "0-12m",
+      "Dès 12 mois",
       "Garantie 2 ans"
     ],
     "color": "amber",
@@ -789,11 +788,11 @@ export const PRODUCTS: Product[] = [
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
     "description": "Partez pour un voyage extraordinaire au cœur de l'ère des dinosaures avec cette incroyable table d'activités en bois ! Cette table, aux teintes rouilles et bleues vibrantes, transporte les petits explorateurs dans un univers jurassique fascinant.\n\nCette table d'aventures palpitantes offre 8 activités variées, conçues pour stimuler la curiosité, la motricité et la concentration des tout-petits :\n- Circuit du tricératops : Faites rouler le tricératops sur son circuit, le faisant passer sous le volcan pour déclencher un tintement joyeux\n- Boulier dinosaure : Explorez le monde des dinosaures avec un boulier de 10 perles en bois accompagné d'un ptéranodon volant\n- Roues à engrenages pour développer la motricité fine\n- Miroir rotatif pour une dimension ludique\n- Œuf sonore pour l'éveil auditif\n- Zones de jeux colorées et détails enchanteurs\n- Éléments en feutrine douce représentant la fumée du volcan\n- Dinosaures aux yeux ronds et petits œufs animés\n\nCette table d'activités regorge de détails captivants qui stimulent l'imagination. Les roues à engrenages, l'œuf sonore et le miroir rotatif ajoutent une dimension sensorielle enrichissante à l'expérience de jeu.",
-    "price": 100,
+    "price": 101,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "9+"
+      "12 mois et +"
     ],
     "images": [
       "/products/table-activites-dinosaure-1.png",
@@ -835,7 +834,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "9+"
+      "12 mois et +"
     ],
     "images": [
       "/products/cube-volcan-activites-1.png",
@@ -877,8 +876,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "6-8",
-      "9+"
+      "6 mois et +"
     ],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
@@ -917,7 +915,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "1-3", "3-5", "6-8"
+      "2 à 6 ans"
     ],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
