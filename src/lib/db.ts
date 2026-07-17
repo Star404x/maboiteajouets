@@ -96,26 +96,13 @@ function enrichProductsWithReviews(products: TypeProduct[]): TypeProduct[] {
 }
 
 export async function getProductsByCategory(category: string): Promise<TypeProduct[]> {
-  const client = await pool.connect();
-  try {
-    const result = await client.query("SELECT * FROM products WHERE category = $1 ORDER BY id", [category]);
-    const products = result.rows.map(normalizeProduct) as TypeProduct[];
-    return enrichProductsWithReviews(products);
-  } finally {
-    client.release();
-  }
+  // Use local products data instead of DB for better build-time performance
+  const { PRODUCTS } = await import("./data/products");
+  return PRODUCTS.filter((p) => p.category === category);
 }
 
 export async function getProductsByAge(age: string): Promise<TypeProduct[]> {
-  const client = await pool.connect();
-  try {
-    const result = await client.query(
-      "SELECT * FROM products WHERE $1 = ANY(age) ORDER BY id",
-      [age]
-    );
-    const products = result.rows.map(normalizeProduct) as TypeProduct[];
-    return enrichProductsWithReviews(products);
-  } finally {
-    client.release();
-  }
+  // Use local products data instead of DB for better build-time performance
+  const { PRODUCTS } = await import("./data/products");
+  return PRODUCTS.filter((p) => p.age.includes(age as never));
 }
