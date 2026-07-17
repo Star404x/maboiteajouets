@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   functions = "netlify/functions"
+  publish = "out"
 
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
@@ -11,3 +12,8 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
