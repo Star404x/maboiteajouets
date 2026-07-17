@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { PRODUCTS } from "@/lib/data/products";
+import { getPriceFromSync } from "@/hooks/usePriceSync";
 import type { Product } from "@/lib/types";
 
 export interface CartLine {
@@ -104,12 +105,18 @@ export const useCart = create<CartState>()(
 /**
  * Compute the derived cart data (product-joined lines + totals).
  * Called by components with useMemo to keep referential stability.
+ * Uses getPriceFromSync to get fresh prices from database if available.
  */
 export function computeCart(items: CartLine[]) {
   const lines = items
     .map((i) => {
       const product = PRODUCTS.find((p) => p.id === i.productId);
-      return product ? { ...i, product } : null;
+      if (!product) return null;
+      
+      // Get price from sync (database) or fallback to product default
+      const currentPrice = getPriceFromSync(i.productId, product.price);
+      
+      return { ...i, product: { ...product, price: currentPrice } };
     })
     .filter(Boolean) as Array<CartLine & { product: Product }>;
 

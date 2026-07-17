@@ -8,6 +8,7 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Toaster } from "@/components/ui/Toaster";
 import { CookieBanner } from "@/components/legal/CookieBanner";
 import { HydrationGuard } from "@/lib/store/HydrationGuard";
+import { PriceSyncProvider } from "@/components/layout/PriceSyncProvider";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -110,17 +111,19 @@ export default function RootLayout({
 
         <ScrollToTop />
 
-        <HydrationGuard>
-          <Header />
+        <PriceSyncProvider>
+          <HydrationGuard>
+            <Header />
 
-          <main className="flex-1">{children}</main>
+            <main className="flex-1">{children}</main>
 
-          <Footer />
+            <Footer />
 
-          <CartDrawer />
-          <Toaster />
-          <CookieBanner />
-        </HydrationGuard>
+            <CartDrawer />
+            <Toaster />
+            <CookieBanner />
+          </HydrationGuard>
+        </PriceSyncProvider>
       </body>
     </html>
   );
