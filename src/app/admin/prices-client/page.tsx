@@ -23,11 +23,11 @@ export default function AdminPricesPage() {
   const ADMIN_PASSWORD = "admin123";
 const ADMIN_API_KEY = process.env.NEXT_PUBLIC_ADMIN_API_KEY || "admin123";
 
-  // Load prices from API
+  // Load prices from Netlify Function
   const loadPrices = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/prices");
+      const res = await fetch("/.netlify/functions/prices");
       const data = await res.json();
       if (data.success) {
         setPrices(data.prices.map((p: any) => ({ ...p, originalPrice: p.price })));
@@ -58,7 +58,7 @@ const ADMIN_API_KEY = process.env.NEXT_PUBLIC_ADMIN_API_KEY || "admin123";
 
   const updatePrice = async (id: string, newPrice: number) => {
     try {
-      const res = await fetch("/api/prices", {
+      const res = await fetch("/.netlify/functions/prices", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

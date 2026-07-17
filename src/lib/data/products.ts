@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Синхронизировано из БД: 2026-07-17T16:34:59.132Z
+ * Синхронизировано из БД: 2026-07-17T16:38:05.560Z
  * Всего товаров: 25
  */
 export const PRODUCTS: Product[] = [

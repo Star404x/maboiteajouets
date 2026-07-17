@@ -32,7 +32,7 @@ export function usePriceSync(interval: number = 60000) {
 
   async function syncPrices() {
     try {
-      const res = await fetch("/api/prices");
+      const res = await fetch("/.netlify/functions/prices");
       if (!res.ok) return;
 
       const data = await res.json();
