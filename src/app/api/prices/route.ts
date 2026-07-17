@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
-// Production database URL
-const PROD_DB_URL = "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require";
-const dbUrl = process.env.DATABASE_URL || PROD_DB_URL;
+// CRITICAL: Hard-coded production URL as fallback
+// This ensures API works even if environment variables aren't properly loaded
+const PRODUCTION_DB_URL = "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require";
+
+// Try to use env var first, fall back to hard-coded
+const dbUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL : PRODUCTION_DB_URL;
+
+console.log('[API] DATABASE_URL source:', process.env.DATABASE_URL ? 'environment' : 'hardcoded fallback');
+console.log('[API] DB Host:', dbUrl.includes('@') ? dbUrl.split('@')[1] : 'unknown');
 
 console.log("[API Route] DATABASE_URL source:", process.env.DATABASE_URL ? "env var" : "hardcoded");
 console.log("[API Route] DB Host:", dbUrl.split('@')[1]?.split('/')[0] || 'unknown');

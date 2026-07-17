@@ -5,17 +5,19 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Use export for static pages
   // API routes will be handled by Netlify Functions
-  output: "export",
+  output: "standalone",
   images: { unoptimized: true },
-  trailingSlash: true,
+  trailingSlash: false,
 };
+
+console.log('[next.config] Output mode:', nextConfig.output);
 
 export default nextConfig;
 
 /**
  * Architecture:
- * - output: "export" = static HTML (built pages)
- * - Netlify Functions handle API routes (use env vars correctly)
- * - Admin panel calls Functions to update prices
- * - Static pages generated at build time from products.ts
+ * - output: "standalone" = Node.js server with API routes
+ * - API routes at /api/prices handle GET/POST
+ * - Admin panel calls /api/prices to update
+ * - Netlify runs Node server and serves static pages
  */

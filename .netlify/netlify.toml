@@ -1,11 +1,11 @@
 functionsDirectory = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
 functionsDirectoryOrigin = "config-v1"
+redirectsOrigin = "config"
 headers = []
-redirects = []
 
 [build]
-publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next"
-publishOrigin = "ui"
+publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next/server"
+publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
 functions = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
@@ -38,3 +38,15 @@ origin = "default"
 package = "@netlify/plugin-nextjs"
 
 [plugins.inputs]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
