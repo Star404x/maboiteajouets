@@ -1,7 +1,7 @@
 functionsDirectory = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
 functionsDirectoryOrigin = "config-v1"
-headersOrigin = "inline"
-redirectsOrigin = "inline"
+headers = []
+redirects = []
 
 [build]
 publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next"
@@ -36,39 +36,3 @@ origin = "default"
 package = "@netlify/plugin-nextjs"
 
 [plugins.inputs]
-
-[[headers]]
-for = "/_next/static/*"
-
-[headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
-
-[[redirects]]
-from = "/_next/image"
-to = "/.netlify/images?url=:url&w=:width&q=:quality"
-status = 200.0
-force = false
-
-[redirects.query]
-url = ":url"
-w = ":width"
-q = ":quality"
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "/_ipx/*"
-to = "/.netlify/images?url=:url&w=:width&q=:quality"
-status = 200.0
-force = false
-
-[redirects.query]
-url = ":url"
-w = ":width"
-q = ":quality"
-
-[redirects.conditions]
-
-[redirects.headers]

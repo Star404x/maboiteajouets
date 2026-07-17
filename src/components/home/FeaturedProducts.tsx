@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { getProducts } from "@/lib/db";
+import { PRODUCTS } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
-export async function FeaturedProducts() {
-  const allProducts = await getProducts();
-  const products = allProducts.slice(0, 8);
+export function FeaturedProducts() {
+  // Use static PRODUCTS data instead of DB query during SSG
+  const products = PRODUCTS.slice(0, 8);
   return (
-    <section className="container-wide py-16 lg:py-24">
+    <section className="container-wide py-16 lg:py-24" suppressHydrationWarning>
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
         <div>
           <p className="text-xs font-bold uppercase tracking-wider text-coral mb-2">

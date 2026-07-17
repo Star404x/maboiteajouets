@@ -1,11 +1,11 @@
-import { getProducts } from "@/lib/db";
+import { PRODUCTS } from "@/lib/data/products";
 import { ProductSlider } from "@/components/product/ProductSlider";
 import Link from "next/link";
 
-export async function NewProductsSlider() {
-  // Prend les 8 derniers ajoutés
-  const allProducts = await getProducts();
-  const products = [...allProducts].reverse().slice(0, 8);
+export function NewProductsSlider() {
+  // Use static PRODUCTS data instead of DB query during SSG
+  // Prend les 8 derniers ajoutés (les plus récents en bas de la liste)
+  const products = [...PRODUCTS].reverse().slice(0, 8);
 
   return (
     <section className="container-wide py-16 lg:py-24">

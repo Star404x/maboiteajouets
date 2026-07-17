@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Star } from "lucide-react";
-import { getProductBySlug, getProductsByCategory } from "@/lib/db";
+// Removed DB imports - using static PRODUCTS data for SSG
 import { PRODUCTS } from "@/lib/data/products";
 import { REVIEWS } from "@/lib/data/reviews";
 import type { Review } from "@/lib/types";
@@ -19,7 +19,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const p = await getProductBySlug(slug);
+  // Use PRODUCTS data (available at build time) instead of DB query
+  // This avoids database connection errors during static generation
+  const p = PRODUCTS.find((prod) => prod.slug === slug);
   if (!p) return { title: "Produit introuvable" };
 
   return {
@@ -40,7 +42,9 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  // Use PRODUCTS data (available at build time) instead of DB query
+  // This avoids database connection errors during static generation
+  let product = PRODUCTS.find((prod) => prod.slug === slug);
   if (!product) notFound();
 
   // Load reviews for this product at build-time
@@ -51,10 +55,11 @@ export default async function ProductPage({
   
   console.log(`[BUILD] Product: ${product.id}, Reviews found: ${productReviews.length}`);
   
-  // Update product with actual review count
-  product.reviewCount = productReviews.length;
+  // Update product with actual review count from embedded data
+  product = { ...product, reviewCount: productReviews.length };
 
-  const allRelated = await getProductsByCategory(product.category);
+  // Get related products from PRODUCTS list instead of DB
+  const allRelated = PRODUCTS.filter((p) => p.category === product.category);
   const related = allRelated.filter((p) => p.slug !== slug).slice(0, 4);
 
   return (
