@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Синхронизировано из БД: 2026-07-17T20:30:09.486Z
+ * Синхронизировано из БД: 2026-07-17T20:31:23.786Z
  * Всего товаров: 25
  */
 export const PRODUCTS: Product[] = [
@@ -386,7 +386,7 @@ export const PRODUCTS: Product[] = [
       "CE",
       "EN-71",
       "Europe",
-      "Dès 3 ans"
+      "3-5"
     ],
     "color": "rose",
     "bgClass": "bg-gradient-to-br from-rose-100 to-rose-50",
@@ -423,7 +423,7 @@ export const PRODUCTS: Product[] = [
     "safety": [
       "CE",
       "USA",
-      "Dès 2 ans"
+      "1-3"
     ],
     "color": "rose",
     "bgClass": "bg-gradient-to-br from-rose-100 to-rose-50",
@@ -440,7 +440,8 @@ export const PRODUCTS: Product[] = [
     "rating": 4.6,
     "reviewCount": 0,
     "age": [
-      "1 à 5 ans"
+      "1-3",
+      "3-5"
     ],
     "images": [
       "/products/circuit-train-figurines-1.png",
@@ -481,7 +482,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.7,
     "reviewCount": 0,
     "age": [
-      "Dès 12 mois"
+      "0-12m"
     ],
     "images": [
       "/products/camion-pompier-figurines-1.png",
@@ -520,7 +521,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.5,
     "reviewCount": 0,
     "age": [
-      "À partir de 12 mois"
+      "9+"
     ],
     "images": [
       "/products/lot-mini-vehicules-1.png",
@@ -581,7 +582,7 @@ export const PRODUCTS: Product[] = [
     "safety": [
       "CE",
       "NF EN 71-1/2/3",
-      "Dès 12 mois",
+      "0-12m",
       "Garantie 2 ans"
     ],
     "color": "amber",
@@ -792,7 +793,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "12 mois et +"
+      "9+"
     ],
     "images": [
       "/products/table-activites-dinosaure-1.png",
@@ -834,7 +835,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "12 mois et +"
+      "9+"
     ],
     "images": [
       "/products/cube-volcan-activites-1.png",
@@ -876,7 +877,8 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "6 mois et +"
+      "6-8",
+      "9+"
     ],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
@@ -915,7 +917,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "2 à 6 ans"
+      "1-3", "3-5", "6-8"
     ],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
