@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import type { Product as TypeProduct } from "@/lib/types";
+import { REVIEWS } from "@/lib/data/reviews";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -85,11 +86,21 @@ export async function getProductBySlug(slug: string): Promise<TypeProduct | null
   }
 }
 
+// Enrich products with actual review counts from REVIEWS data
+function enrichProductsWithReviews(products: TypeProduct[]): TypeProduct[] {
+  return products.map((product) => {
+    const productNum = product.id.replace('p-', '');
+    const reviewCount = REVIEWS.filter((r) => r.id.startsWith(`r-${productNum}`)).length;
+    return { ...product, reviewCount };
+  });
+}
+
 export async function getProductsByCategory(category: string): Promise<TypeProduct[]> {
   const client = await pool.connect();
   try {
     const result = await client.query("SELECT * FROM products WHERE category = $1 ORDER BY id", [category]);
-    return result.rows.map(normalizeProduct) as TypeProduct[];
+    const products = result.rows.map(normalizeProduct) as TypeProduct[];
+    return enrichProductsWithReviews(products);
   } finally {
     client.release();
   }
@@ -102,7 +113,8 @@ export async function getProductsByAge(age: string): Promise<TypeProduct[]> {
       "SELECT * FROM products WHERE $1 = ANY(age) ORDER BY id",
       [age]
     );
-    return result.rows.map(normalizeProduct) as TypeProduct[];
+    const products = result.rows.map(normalizeProduct) as TypeProduct[];
+    return enrichProductsWithReviews(products);
   } finally {
     client.release();
   }
