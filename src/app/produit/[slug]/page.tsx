@@ -5,6 +5,7 @@ import { PRODUCTS } from "@/lib/data/products";
 import { REVIEWS } from "@/lib/data/reviews";
 import type { Review } from "@/lib/types";
 import { ProductDetail } from "@/components/product/ProductDetail";
+import { ProductReviewsSection } from "@/components/product/ProductReviewsSection";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 
@@ -62,7 +63,10 @@ export default async function ProductPage({
         ]}
       />
 
-      <ProductDetail product={product} reviews={productReviews} />
+      <ProductDetail product={product} />
+
+      {/* Reviews Section - Server Component */}
+      <ProductReviewsSection reviews={productReviews} />
 
       {related.length > 0 && (
         <section className="mt-20 lg:mt-28">
