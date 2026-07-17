@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/types";
 
 /**
- * Синхронизировано из БД: 2026-07-17T20:07:10.011Z
+ * Синхронизировано из БД: 2026-07-17T20:20:47.994Z
  * Всего товаров: 25
  */
 export const PRODUCTS: Product[] = [
@@ -788,7 +788,7 @@ export const PRODUCTS: Product[] = [
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
     "description": "Partez pour un voyage extraordinaire au cœur de l'ère des dinosaures avec cette incroyable table d'activités en bois ! Cette table, aux teintes rouilles et bleues vibrantes, transporte les petits explorateurs dans un univers jurassique fascinant.\n\nCette table d'aventures palpitantes offre 8 activités variées, conçues pour stimuler la curiosité, la motricité et la concentration des tout-petits :\n- Circuit du tricératops : Faites rouler le tricératops sur son circuit, le faisant passer sous le volcan pour déclencher un tintement joyeux\n- Boulier dinosaure : Explorez le monde des dinosaures avec un boulier de 10 perles en bois accompagné d'un ptéranodon volant\n- Roues à engrenages pour développer la motricité fine\n- Miroir rotatif pour une dimension ludique\n- Œuf sonore pour l'éveil auditif\n- Zones de jeux colorées et détails enchanteurs\n- Éléments en feutrine douce représentant la fumée du volcan\n- Dinosaures aux yeux ronds et petits œufs animés\n\nCette table d'activités regorge de détails captivants qui stimulent l'imagination. Les roues à engrenages, l'œuf sonore et le miroir rotatif ajoutent une dimension sensorielle enrichissante à l'expérience de jeu.",
-    "price": 81.8,
+    "price": 100,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [

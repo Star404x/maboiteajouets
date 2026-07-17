@@ -5,7 +5,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Use export for static pages
   // API routes will be handled by Netlify Functions
-  output: "export",
+  output: "standalone",
   images: { unoptimized: true },
   trailingSlash: false,
 };
