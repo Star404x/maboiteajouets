@@ -1,10 +1,11 @@
 import type { Product } from "@/lib/types";
+import { REVIEWS } from "./reviews";
 
 /**
  * Синхронизировано из БД: 2026-07-15T19:34:00.531Z
  * Всего товаров: 25
  */
-export const PRODUCTS: Product[] = [
+const PRODUCTS_BASE: Product[] = [
   {
     "id": "p-009",
     "slug": "boite-activites-hape",
@@ -925,6 +926,18 @@ export const PRODUCTS: Product[] = [
     "badge": "Nouveau"
   }
 ];
+
+// Enrich products with actual review counts
+function enrichProductsWithReviews(products: Product[]): Product[] {
+  return products.map((product) => {
+    const productNum = product.id.replace('p-', '');
+    const reviewCount = REVIEWS.filter((r) => r.id.startsWith(`r-${productNum}`)).length;
+    return { ...product, reviewCount };
+  });
+}
+
+// Export enriched products
+export const PRODUCTS: Product[] = enrichProductsWithReviews(PRODUCTS_BASE);
 
 // Helpers
 export function getProduct(slug: string): Product | undefined {
