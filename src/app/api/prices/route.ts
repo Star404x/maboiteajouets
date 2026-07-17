@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
-// Use environment variable or fallback to hardcoded connection for production
-const dbUrl = process.env.DATABASE_URL || "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require";
+// Production database URL
+const PROD_DB_URL = "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require";
+const dbUrl = process.env.DATABASE_URL || PROD_DB_URL;
 
 console.log("[API Route] DATABASE_URL source:", process.env.DATABASE_URL ? "env var" : "hardcoded");
 console.log("[API Route] DB Host:", dbUrl.split('@')[1]?.split('/')[0] || 'unknown');
@@ -13,10 +14,11 @@ const pool = new Pool({
 
 export async function GET(request: NextRequest) {
   try {
-    console.log("[GET /api/prices] Connecting to DB...");
+    console.log("[GET /api/prices] Attempt 1: Testing pool connection...");
     const client = await pool.connect();
     const result = await client.query("SELECT id, name, price FROM products ORDER BY id");
     client.release();
+    console.log(`[GET /api/prices] ✅ Success: ${result.rows.length} products`);
 
     return NextResponse.json({
       success: true,
@@ -24,13 +26,10 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
   } catch (error: any) {
-    console.error("[GET /api/prices] ❌ Error:", error.message);
-    console.error("[GET /api/prices] Error details:", JSON.stringify({
-      code: error.code,
-      address: error.address,
-      port: error.port,
-      dbUrl: process.env.DATABASE_URL ? '***set***' : 'NOT SET',
-    }));
+    console.error("[GET /api/prices] ❌ Connection Error:", error.code || error.message);
+    console.error("[GET /api/prices] Host:", error.address || 'unknown');
+    console.error("[GET /api/prices] Port:", error.port || 'unknown');
+    console.error("[GET /api/prices] DB_URL from env:", !!process.env.DATABASE_URL);
     return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
