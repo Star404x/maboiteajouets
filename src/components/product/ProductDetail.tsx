@@ -9,6 +9,7 @@ import { formatPrice, cn, computeDiscount } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 import { Rating } from "@/components/ui/Rating";
 import { QuantitySelector } from "./QuantitySelector";
+import { ProductReviews } from "./ProductReviews";
 import { Button } from "@/components/ui/Button";
 import { useCart } from "@/lib/store/cart";
 import { toast } from "@/lib/store/toast";
@@ -77,17 +78,29 @@ export function ProductDetail({ product }: { product: Product }) {
               product.bgClass,
             )}
           >
-            <motion.span
-              key={imgIndex}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="text-[14rem] leading-none"
-              role="img"
-              aria-label={product.name}
-            >
-              {gallery[imgIndex]}
-            </motion.span>
+            {typeof gallery[imgIndex] === 'string' && gallery[imgIndex].startsWith('/') ? (
+              <motion.img
+                key={imgIndex}
+                src={gallery[imgIndex]}
+                alt={product.name}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <motion.span
+                key={imgIndex}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="text-[14rem] leading-none"
+                role="img"
+                aria-label={product.name}
+              >
+                {gallery[imgIndex]}
+              </motion.span>
+            )}
             {product.badge && (
               <div className="absolute top-4 left-4">
                 <Badge label={product.badge} />
@@ -107,13 +120,17 @@ export function ProductDetail({ product }: { product: Product }) {
                 key={i}
                 onClick={() => setImgIndex(i)}
                 className={cn(
-                  "aspect-square rounded-2xl flex items-center justify-center text-4xl transition-all",
+                  "aspect-square rounded-2xl flex items-center justify-center text-4xl transition-all overflow-hidden",
                   product.bgClass,
                   imgIndex === i ? "ring-2 ring-coral scale-105" : "opacity-70 hover:opacity-100",
                 )}
                 aria-label={`Image ${i + 1}`}
               >
-                {img}
+                {typeof img === 'string' && img.startsWith('/') ? (
+                  <img src={img} alt={`${product.name} ${i + 1}`} className="w-full h-full object-contain" />
+                ) : (
+                  img
+                )}
               </button>
             ))}
           </div>
@@ -134,14 +151,10 @@ export function ProductDetail({ product }: { product: Product }) {
 
           <div className="mt-4 flex items-center gap-4">
             <Rating value={product.rating} count={product.reviewCount} size="lg" />
-            {product.inStock ? (
-              <span className="inline-flex items-center gap-1 text-sm text-mint font-semibold">
-                <Check className="w-4 h-4" />
-                En stock
-              </span>
-            ) : (
-              <span className="text-sm text-coral font-semibold">Rupture de stock</span>
-            )}
+            <span className="inline-flex items-center gap-1 text-sm text-mint font-semibold">
+              <Check className="w-4 h-4" />
+              En stock
+            </span>
           </div>
 
           <p className="mt-6 text-lg text-navy/70 leading-relaxed">{product.description}</p>
@@ -319,6 +332,9 @@ export function ProductDetail({ product }: { product: Product }) {
           )}
         </div>
       </div>
+
+      {/* Customer Reviews */}
+      <ProductReviews productId={product.id} />
 
       {/* Sticky mobile CTA */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur border-t border-navy/5 p-3 flex items-center gap-3 shadow-card">
