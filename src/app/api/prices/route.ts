@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
+const dbUrl = process.env.DATABASE_URL;
+console.log("[API Route] DATABASE_URL available:", !!dbUrl ? "✅ YES" : "❌ NO");
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: dbUrl,
 });
 
 export async function GET(request: NextRequest) {
   try {
+    console.log("[GET /api/prices] Connecting to DB...");
     const client = await pool.connect();
     const result = await client.query("SELECT id, name, price FROM products ORDER BY id");
     client.release();
@@ -17,9 +21,14 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
   } catch (error: any) {
-    console.error("[GET /api/prices] Error:", error.message);
+    console.error("[GET /api/prices] ❌ Error:", error.message);
+    console.error("[GET /api/prices] Error details:", JSON.stringify({
+      code: error.code,
+      address: error.address,
+      port: error.port,
+    }));
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: error.message, debug: { code: error.code, addr: error.address } },
       { status: 500 }
     );
   }
