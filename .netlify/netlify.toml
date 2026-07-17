@@ -3,6 +3,16 @@ functionsDirectoryOrigin = "config-v1"
 headers = []
 redirects = []
 
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "default"
+package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+
 [build]
 publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next"
 publishOrigin = "ui"
@@ -28,13 +38,3 @@ ADMIN_API_KEY = "admin123"
 [build.processing.js]
 
 [build.services]
-
-[functions]
-
-[functions."*"]
-
-[[plugins]]
-origin = "default"
-package = "@netlify/plugin-nextjs"
-
-[plugins.inputs]
