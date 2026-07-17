@@ -1,5 +1,6 @@
 [build]
   command = "npm run build"
+  publish = ".next/server"
   functions = ".netlify/functions"
 
 [build.environment]
@@ -8,3 +9,8 @@
   npm_package_engines_node = "20"
   DATABASE_URL = "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require"
   ADMIN_API_KEY = "admin123"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
