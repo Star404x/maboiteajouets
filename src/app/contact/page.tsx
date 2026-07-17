@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 const INFO = [
-  { Icon: Mail, label: "Email", value: "bonjour@maboiteajouets.fr" },
-  { Icon: Phone, label: "Téléphone", value: "01 23 45 67 89" },
+  { Icon: Mail, label: "Email", value: "info.maboiteajouets@gmail.com" },
+  { Icon: Phone, label: "Téléphone", value: "0785301551" },
   { Icon: MapPin, label: "Adresse", value: "Paris, France" },
   { Icon: Clock, label: "Horaires", value: "Lun-Ven · 9h-18h" },
 ];
@@ -25,7 +25,7 @@ export default function ContactPage() {
         eyebrow="Une question ?"
         title="Contactez-nous"
         accent="Contactez-nous"
-        description="Notre équipe est là pour vous aider. Réponse garantie sous 24h ouvrées."
+        description="Écrivez-nous ou appelez. Notre équipe est là pour vous aider. Réponse garantie sous 24h ouvrées."
       />
 
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 max-w-5xl mx-auto">

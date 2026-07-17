@@ -7,6 +7,7 @@ import { Check, ArrowRight, CreditCard, Truck, User, ShoppingBag, Lock, ArrowLef
 import { useCart, computeCart } from "@/lib/store/cart";
 import { formatPrice, cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { StripePaymentForm } from "./StripePaymentForm";
 
 const STEPS = [
   { id: 1, label: "Coordonnées", Icon: User },
@@ -15,8 +16,34 @@ const STEPS = [
   { id: 4, label: "Confirmation", Icon: Check },
 ];
 
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  postal: string;
+  city: string;
+  country: string;
+  shippingMethod: string;
+}
+
 export function CheckoutView() {
   const [step, setStep] = useState(1);
+  // Стабильный orderId — генерируется один раз за сессию
+  const [orderId] = useState(() => `MBAJ-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    postal: "",
+    city: "",
+    country: "France",
+    shippingMethod: "standard",
+  });
+
   const items = useCart((s) => s.items);
   const clear = useCart((s) => s.clear);
 
@@ -25,13 +52,30 @@ export function CheckoutView() {
     [items],
   );
 
+  const handlePaymentSuccess = () => {
+    clear();
+    setStep(4);
+  };
+
   const submit = () => {
-    if (step < 4) {
-      setStep(step + 1);
-      if (step === 3) {
-        // TODO: appel réel à l'API de paiement (Stripe / Adyen / etc.)
-        clear();
+    // Валидация на шаге 1
+    if (step === 1) {
+      if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+        alert("Veuillez remplir tous les champs");
+        return;
       }
+      setStep(step + 1);
+    } else if (step === 2) {
+      if (!formData.address || !formData.postal || !formData.city) {
+        alert("Veuillez remplir l'adresse de livraison");
+        return;
+      }
+      setStep(step + 1);
+    } else if (step < 3) {
+      setStep(step + 1);
+    } else if (step === 3) {
+      // Stripe form будет обработан внутри компонента StripePaymentForm
+      // и вызовет handlePaymentSuccess
     }
   };
 
@@ -103,9 +147,26 @@ export function CheckoutView() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
             >
-              {step === 1 && <StepContact />}
-              {step === 2 && <StepShipping />}
-              {step === 3 && <StepPayment />}
+              {step === 1 && <StepContact formData={formData} setFormData={setFormData} />}
+              {step === 2 && <StepShipping formData={formData} setFormData={setFormData} />}
+              {step === 3 && (
+                <StepPayment
+                  total={total}
+                  subtotal={subtotal}
+                  shipping={shipping}
+                  orderId={orderId}
+                  formData={formData}
+                  items={lines.map((l: any) => ({
+                    id: l.product.id,
+                    slug: l.product.slug,
+                    name: l.product.name,
+                    image: Array.isArray(l.product.images) ? l.product.images[0] : undefined,
+                    price: l.product.price,
+                    quantity: l.quantity,
+                  }))}
+                  onSuccess={handlePaymentSuccess}
+                />
+              )}
               {step === 4 && <StepConfirmation />}
             </motion.div>
           </AnimatePresence>
@@ -121,16 +182,11 @@ export function CheckoutView() {
                   <Link href="/panier"><ArrowLeft className="w-4 h-4" /> Panier</Link>
                 </Button>
               )}
-              <Button size="lg" onClick={submit}>
-                {step === 3 ? (
-                  <>
-                    <Lock className="w-4 h-4" />
-                    Payer {formatPrice(total)}
-                  </>
-                ) : (
-                  <>Continuer <ArrowRight className="w-4 h-4" /></>
-                )}
-              </Button>
+              {step < 3 && (
+                <Button size="lg" onClick={submit}>
+                  Continuer <ArrowRight className="w-4 h-4" />
+                </Button>
+              )}
             </div>
           )}
         </div>
@@ -143,8 +199,16 @@ export function CheckoutView() {
           <ul className="space-y-3 mb-4 max-h-64 overflow-y-auto">
             {lines.map((line) => (
               <li key={line.productId} className="flex items-center gap-3">
-                <span className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0", line.product.bgClass)}>
-                  {line.product.images[0]}
+                <span className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0 overflow-hidden", line.product.bgClass)}>
+                  {typeof line.product.images[0] === 'string' && line.product.images[0].startsWith('/') ? (
+                    <img
+                      src={line.product.images[0]}
+                      alt={line.product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    line.product.images[0]
+                  )}
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-navy text-sm line-clamp-1">{line.product.name}</p>
@@ -177,75 +241,153 @@ export function CheckoutView() {
   );
 }
 
-function Field({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+function Field({
+  label,
+  value,
+  onChange,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & {
+  label: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   return (
     <div>
       <label className="block text-sm font-semibold text-navy mb-1.5">{label}</label>
       <input
         {...props}
+        value={value}
+        onChange={onChange}
         className="w-full h-12 px-4 rounded-2xl border-2 border-navy/10 text-navy focus:outline-none focus:border-coral transition-colors"
       />
     </div>
   );
 }
 
-function StepContact() {
+function StepContact({
+  formData,
+  setFormData,
+}: {
+  formData: FormData;
+  setFormData: (data: FormData) => void;
+}) {
   return (
     <div>
       <h2 className="font-display font-bold text-navy text-2xl mb-6">Vos coordonnées</h2>
       <div className="grid sm:grid-cols-2 gap-4">
-        <Field label="Prénom" placeholder="Sophie" />
-        <Field label="Nom" placeholder="Martin" />
+        <Field
+          label="Prénom"
+          placeholder="Sophie"
+          value={formData.firstName}
+          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+        />
+        <Field
+          label="Nom"
+          placeholder="Martin"
+          value={formData.lastName}
+          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+        />
         <div className="sm:col-span-2">
-          <Field label="Email" type="email" placeholder="sophie@email.com" />
+          <Field
+            label="Email"
+            type="email"
+            placeholder="sophie@email.com"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          />
         </div>
         <div className="sm:col-span-2">
-          <Field label="Téléphone" type="tel" placeholder="+33 6 12 34 56 78" />
+          <Field
+            label="Téléphone"
+            type="tel"
+            placeholder="+33 6 12 34 56 78"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          />
         </div>
       </div>
     </div>
   );
 }
 
-function StepShipping() {
+function StepShipping({
+  formData,
+  setFormData,
+}: {
+  formData: FormData;
+  setFormData: (data: FormData) => void;
+}) {
   return (
     <div>
       <h2 className="font-display font-bold text-navy text-2xl mb-6">Adresse de livraison</h2>
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4 mb-6">
         <div className="sm:col-span-2">
-          <Field label="Adresse" placeholder="12 rue de la Paix" />
+          <Field
+            label="Adresse"
+            placeholder="12 rue de la Paix"
+            value={formData.address}
+            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+          />
         </div>
-        <Field label="Code postal" placeholder="75002" />
-        <Field label="Ville" placeholder="Paris" />
+        <Field
+          label="Code postal"
+          placeholder="75002"
+          value={formData.postal}
+          onChange={(e) => setFormData({ ...formData, postal: e.target.value })}
+        />
+        <Field
+          label="Ville"
+          placeholder="Paris"
+          value={formData.city}
+          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+        />
         <div className="sm:col-span-2">
-          <Field label="Pays" defaultValue="France" />
+          <Field
+            label="Pays"
+            value={formData.country}
+            onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+          />
         </div>
       </div>
 
-      <div className="mt-6 space-y-2">
+      <div className="space-y-2">
         <h3 className="font-display font-bold text-navy mb-3">Mode de livraison</h3>
-        {[
-          { id: "standard", label: "Standard (48-72h)", price: "Gratuit dès 49 €" },
-          { id: "express", label: "Express (24h)", price: "+ 6,90 €" },
-          { id: "pickup", label: "Point relais", price: "3,90 €" },
-        ].map((opt, i) => (
-          <label
-            key={opt.id}
-            className="flex items-center gap-4 p-4 rounded-2xl border-2 border-navy/10 hover:border-coral cursor-pointer transition-colors"
-          >
-            <input type="radio" name="shipping" defaultChecked={i === 0} className="accent-coral" />
-            <div className="flex-1">
-              <p className="font-semibold text-navy">{opt.label}</p>
-            </div>
-            <span className="font-bold text-navy text-sm">{opt.price}</span>
-          </label>
-        ))}
+        <label className="flex items-center gap-4 p-4 rounded-2xl border-2 border-coral bg-coral/5 cursor-pointer transition-colors">
+          <input
+            type="radio"
+            name="shipping"
+            checked={formData.shippingMethod === "standard"}
+            onChange={(e) => setFormData({ ...formData, shippingMethod: "standard" })}
+            className="accent-coral"
+          />
+          <div className="flex-1">
+            <p className="font-semibold text-navy">Standard (48-72h)</p>
+            <p className="text-xs text-navy/60 mt-0.5">Livraison en France métropolitaine</p>
+          </div>
+          <span className="font-bold text-mint text-sm">Gratuite</span>
+        </label>
       </div>
     </div>
   );
 }
 
-function StepPayment() {
+function StepPayment({
+  total,
+  subtotal,
+  shipping,
+  orderId,
+  formData,
+  items,
+  onSuccess,
+}: {
+  total: number;
+  subtotal: number;
+  shipping: number;
+  orderId: string;
+  formData: FormData;
+  items: any[];
+  onSuccess: () => void;
+}) {
   return (
     <div>
       <h2 className="font-display font-bold text-navy text-2xl mb-2">Paiement sécurisé</h2>
@@ -253,25 +395,27 @@ function StepPayment() {
         <Lock className="w-3.5 h-3.5" /> Vos données de carte ne sont pas stockées sur nos serveurs.
       </p>
 
-      <div className="grid sm:grid-cols-3 gap-3 mb-6">
-        {["Carte bancaire", "Apple Pay", "PayPal"].map((m, i) => (
-          <label
-            key={m}
-            className="p-4 rounded-2xl border-2 border-navy/10 hover:border-coral cursor-pointer transition-colors flex items-center gap-3 has-[:checked]:border-coral has-[:checked]:bg-coral/5"
-          >
-            <input type="radio" name="pay" defaultChecked={i === 0} className="accent-coral" />
-            <span className="font-semibold text-navy text-sm">{m}</span>
-          </label>
-        ))}
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div className="sm:col-span-2">
-          <Field label="Numéro de carte" placeholder="1234 5678 9012 3456" />
-        </div>
-        <Field label="Date d'expiration" placeholder="MM/AA" />
-        <Field label="Cryptogramme" placeholder="123" />
-      </div>
+      <StripePaymentForm
+        amount={total}
+        subtotal={subtotal}
+        shipping={shipping}
+        orderId={orderId}
+        customerEmail={formData.email}
+        customer={{
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+        }}
+        address={{
+          line1: formData.address,
+          postalCode: formData.postal,
+          city: formData.city,
+          country: formData.country === "France" ? "FR" : formData.country,
+        }}
+        items={items}
+        onSuccess={onSuccess}
+      />
     </div>
   );
 }
@@ -294,16 +438,11 @@ function StepConfirmation() {
         Un email de confirmation vous a été envoyé. Votre colis arrive bientôt&nbsp;! 📦
       </p>
       <p className="text-sm text-navy/50 mb-8">
-        Numéro de commande : <span className="font-bold text-navy">#MBAJ-2026-00042</span>
+        Numéro de commande : <span className="font-bold text-navy">#MBAJ-{Date.now()}</span>
       </p>
-      <div className="flex gap-3 justify-center">
-        <Button asChild variant="secondary">
-          <Link href="/compte/commandes">Suivre ma commande</Link>
-        </Button>
-        <Button asChild>
-          <Link href="/boutique">Continuer les achats</Link>
-        </Button>
-      </div>
+      <Button asChild>
+        <Link href="/boutique">Continuer les achats</Link>
+      </Button>
     </div>
   );
 }

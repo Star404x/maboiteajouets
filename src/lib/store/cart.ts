@@ -30,8 +30,8 @@ interface CartState {
   closeCart: () => void;
 }
 
-export const FREE_SHIPPING = 49;
-export const STANDARD_SHIPPING = 4.9;
+export const FREE_SHIPPING = 0; // Доставка всегда бесплатна
+export const STANDARD_SHIPPING = 0;
 
 /**
  * Selectors return only primitive/raw slices of state.
@@ -117,8 +117,7 @@ export function computeCart(items: CartLine[]) {
     (sum, l) => sum + l.product.price * l.quantity,
     0,
   );
-  const shipping =
-    subtotal === 0 ? 0 : subtotal >= FREE_SHIPPING ? 0 : STANDARD_SHIPPING;
+  const shipping = 0; // Доставка бесплатна
   const total = subtotal + shipping;
   const itemCount = lines.reduce((s, l) => s + l.quantity, 0);
 

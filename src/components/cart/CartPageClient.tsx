@@ -64,11 +64,19 @@ export function CartPageClient() {
                   <Link
                     href={`/produit/${line.product.slug}`}
                     className={cn(
-                      "shrink-0 w-full sm:w-32 h-32 rounded-2xl flex items-center justify-center text-6xl",
+                      "shrink-0 w-full sm:w-32 h-32 rounded-2xl flex items-center justify-center text-6xl overflow-hidden",
                       line.product.bgClass,
                     )}
                   >
-                    {line.product.images[0]}
+                    {typeof line.product.images[0] === 'string' && line.product.images[0].startsWith('/') ? (
+                      <img
+                        src={line.product.images[0]}
+                        alt={line.product.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      line.product.images[0]
+                    )}
                   </Link>
                   <div className="flex-1 flex flex-col">
                     <div className="flex-1">

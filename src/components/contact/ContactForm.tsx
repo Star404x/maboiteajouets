@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/Button";
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
 
   if (sent) {
     return (
@@ -19,15 +22,33 @@ export function ContactForm() {
     );
   }
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setSent(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-        // TODO: POST vers API interne / Formspree / Resend
-      }}
-      className="space-y-4"
-    >
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="c-name" className="block text-sm font-semibold text-navy mb-1.5">
@@ -36,6 +57,8 @@ export function ContactForm() {
           <input
             id="c-name"
             required
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full h-12 px-4 rounded-2xl border-2 border-navy/10 focus:outline-none focus:border-coral"
           />
         </div>
@@ -47,6 +70,8 @@ export function ContactForm() {
             id="c-email"
             type="email"
             required
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className="w-full h-12 px-4 rounded-2xl border-2 border-navy/10 focus:outline-none focus:border-coral"
           />
         </div>
@@ -58,6 +83,8 @@ export function ContactForm() {
         <input
           id="c-subject"
           required
+          value={formData.subject}
+          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
           className="w-full h-12 px-4 rounded-2xl border-2 border-navy/10 focus:outline-none focus:border-coral"
         />
       </div>
@@ -69,12 +96,15 @@ export function ContactForm() {
           id="c-message"
           rows={5}
           required
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           className="w-full px-4 py-3 rounded-2xl border-2 border-navy/10 focus:outline-none focus:border-coral resize-none"
         />
       </div>
-      <Button type="submit" size="lg" className="w-full">
+      {error && <p className="text-red-600 text-sm font-semibold">{error}</p>}
+      <Button type="submit" size="lg" className="w-full" disabled={loading}>
         <Send className="w-4 h-4" />
-        Envoyer le message
+        {loading ? "Envoi en cours..." : "Envoyer le message"}
       </Button>
     </form>
   );

@@ -8,12 +8,12 @@ export type Badge = "Nouveau" | "Promo" | "Meilleure vente" | "Coup de cœur";
 export type AgeRange = "0-12m" | "1-3" | "3-5" | "6-8" | "9+";
 
 export type CategorySlug =
-  | "peluches"
   | "jouets-educatifs"
   | "vehicules"
-  | "jeux-de-societe"
+  | "jeux-de-construction"
   | "jouets-bebe"
-  | "jeux-exterieur";
+  | "jeux-exterieur"
+  | "tapis-bebe";
 
 export interface Category {
   slug: CategorySlug;
@@ -55,6 +55,7 @@ export interface Product {
   safety?: string[];
   color: string; // main accent color for card background
   bgClass: string; // pastel bg for the image area
+  stripeLink?: string; // Stripe payment link
 }
 
 export interface CartItem {

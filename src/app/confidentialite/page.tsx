@@ -36,7 +36,7 @@ export default function PrivacyPage() {
         {
           heading: "Vos droits (RGPD)",
           body:
-            "Vous disposez d'un droit d'accès, de rectification, de suppression, d'opposition, de limitation et de portabilité de vos données. Pour exercer ces droits : bonjour@maboiteajouets.fr.",
+            "Vous disposez d'un droit d'accès, de rectification, de suppression, d'opposition, de limitation et de portabilité de vos données. Pour exercer ces droits : info.maboiteajouets@gmail.com.",
         },
         {
           heading: "Durée de conservation",

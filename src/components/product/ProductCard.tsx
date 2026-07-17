@@ -42,14 +42,22 @@ export function ProductCard({
             product.bgClass,
           )}
         >
-          {/* Placeholder emoji — replace with <Image /> when 3D renders arrive */}
-          <span
-            className="text-[7rem] leading-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6"
-            role="img"
-            aria-label={product.name}
-          >
-            {product.images[0]}
-          </span>
+          {/* Image or emoji fallback */}
+          {typeof product.images[0] === 'string' && product.images[0].startsWith('/') ? (
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+            />
+          ) : (
+            <span
+              className="text-[7rem] leading-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6"
+              role="img"
+              aria-label={product.name}
+            >
+              {product.images[0]}
+            </span>
+          )}
 
           {/* Top-left badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">

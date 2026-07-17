@@ -1,5 +1,11 @@
 headersOrigin = "inline"
 redirectsOrigin = "inline"
+functionsDirectory = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
+functionsDirectoryOrigin = "config-v1"
+
+[env]
+ADMIN_EMAIL = "info.maboiteajouets@gmail.com"
+EMAIL_FROM = "noreply@maboiteajouets.fr"
 
 [functions]
 
@@ -12,14 +18,16 @@ package = "@netlify/plugin-nextjs"
 [plugins.inputs]
 
 [build]
-publish = "/data/.openclaw/workspace/maboiteajouets-v2/out"
-publishOrigin = "config"
+publish = "/data/.openclaw/workspace/maboiteajouets-v2/.next"
+publishOrigin = "ui"
 commandOrigin = "config"
 command = "npm run build"
+functions = "/data/.openclaw/workspace/maboiteajouets-v2/.netlify/functions"
 
 [build.environment]
 NEXT_TELEMETRY_DISABLED = "1"
 NODE_VERSION = "20"
+npm_package_engines_node = "20"
 
 [build.processing]
 
@@ -61,7 +69,7 @@ force = false
 [redirects.headers]
 
 [[redirects]]
-from = "/_next/image/"
+from = "/_next/image"
 to = "/.netlify/images?url=:url&w=:width&q=:quality"
 status = 200.0
 force = false

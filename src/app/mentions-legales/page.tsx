@@ -15,12 +15,12 @@ export default function LegalNoticePage() {
         {
           heading: "Éditeur du site",
           body: [
-            "Ma Boîte à Jouets — SAS au capital de 10 000 €",
+            "Ma Boîte à Jouets",
             "Siège social : Paris, France",
-            "SIRET : à compléter",
-            "Numéro TVA intracommunautaire : à compléter",
-            "Directeur de publication : à compléter",
-            "Contact : bonjour@maboiteajouets.fr",
+            "SIRET : 89158238900021",
+            "Date de création : 28/03/2025",
+            "Email : info.maboiteajouets@gmail.com",
+            "Téléphone : 0785301551",
           ],
         },
         {

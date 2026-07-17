@@ -129,11 +129,19 @@ export function CartDrawer() {
                           href={`/produit/${line.product.slug}`}
                           onClick={closeCart}
                           className={cn(
-                            "shrink-0 w-20 h-20 rounded-xl flex items-center justify-center text-4xl",
+                            "shrink-0 w-20 h-20 rounded-xl flex items-center justify-center text-4xl overflow-hidden",
                             line.product.bgClass,
                           )}
                         >
-                          {line.product.images[0]}
+                          {typeof line.product.images[0] === 'string' && line.product.images[0].startsWith('/') ? (
+                            <img
+                              src={line.product.images[0]}
+                              alt={line.product.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            line.product.images[0]
+                          )}
                         </Link>
                         <div className="flex-1 min-w-0">
                           <Link

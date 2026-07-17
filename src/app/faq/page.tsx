@@ -32,7 +32,7 @@ const FAQS = [
   },
   {
     q: "Puis-je modifier ma commande après validation ?",
-    a: "Contactez-nous dans les 2h suivant votre commande à bonjour@maboiteajouets.fr. Au-delà, la commande est en préparation.",
+    a: "Contactez-nous dans les 2h suivant votre commande à info.maboiteajouets@gmail.com. Au-delà, la commande est en préparation.",
   },
   {
     q: "Livrez-vous à l'international ?",
@@ -40,7 +40,7 @@ const FAQS = [
   },
   {
     q: "Comment vous contacter ?",
-    a: "Écrivez-nous à bonjour@maboiteajouets.fr ou via notre formulaire de contact. Nous répondons sous 24h ouvrées.",
+    a: "Email : info.maboiteajouets@gmail.com | Téléphone : 0785301551 | Formulaire de contact sur notre site. Nous répondons sous 24h ouvrées.",
   },
 ];
 

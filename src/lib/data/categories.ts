@@ -1,14 +1,7 @@
 import type { Category } from "@/lib/types";
 
 export const CATEGORIES: Category[] = [
-  {
-    slug: "peluches",
-    name: "Peluches",
-    description: "Doudous tout doux pour câlins et rêves",
-    icon: "🧸",
-    color: "coral",
-    bgClass: "bg-pinkwash",
-  },
+
   {
     slug: "jouets-educatifs",
     name: "Jouets éducatifs",
@@ -26,12 +19,12 @@ export const CATEGORIES: Category[] = [
     bgClass: "bg-[#FFF7E0]",
   },
   {
-    slug: "jeux-de-societe",
-    name: "Jeux de société",
-    description: "Des moments en famille inoubliables",
-    icon: "🎲",
-    color: "grape",
-    bgClass: "bg-[#F3EDFA]",
+    slug: "jeux-de-construction",
+    name: "Jeux de Construction",
+    description: "Construire, créer et imaginer sans limites",
+    icon: "🧱",
+    color: "amber",
+    bgClass: "bg-[#FFF5E0]",
   },
   {
     slug: "jouets-bebe",
@@ -48,6 +41,14 @@ export const CATEGORIES: Category[] = [
     icon: "🏃",
     color: "leaf",
     bgClass: "bg-[#EFF7DE]",
+  },
+  {
+    slug: "tapis-bebe",
+    name: "Tapis bébé",
+    description: "Tapis d'éveil et de jeu pour les tout-petits",
+    icon: "🛏️",
+    color: "amber",
+    bgClass: "bg-[#FFF7E0]",
   },
 ];
 

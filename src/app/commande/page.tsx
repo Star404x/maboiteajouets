@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CheckoutView } from "@/components/checkout/CheckoutView";
+import { CheckoutPageClient } from "@/components/checkout/CheckoutPageClient";
 
 export const metadata: Metadata = {
   title: "Commande",
@@ -13,7 +13,7 @@ export default function CheckoutPage() {
       <h1 className="font-display font-bold text-navy text-display-md md:text-display-lg mb-10 text-center">
         Finaliser la <span className="text-coral">commande</span>
       </h1>
-      <CheckoutView />
+      <CheckoutPageClient />
     </div>
   );
 }
