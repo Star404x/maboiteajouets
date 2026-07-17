@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# Allow production env files for Netlify deployment
+!.env.production
 
 # vercel
 .vercel
@@ -39,3 +41,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Netlify
+.netlify/functions-internal
+/.cache
