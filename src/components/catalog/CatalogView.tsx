@@ -2,8 +2,21 @@
 
 import { useMemo, useState } from "react";
 import { PackageX } from "lucide-react";
-import { PRODUCTS } from "@/lib/data/products";
+import { PRODUCTS as PRODUCTS_BASE } from "@/lib/data/products";
+import { REVIEWS } from "@/lib/data/reviews";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import type { Product } from "@/lib/types";
+
+// Enrich products with review counts at runtime
+function enrichProducts(products: Product[]): Product[] {
+  return products.map((product) => {
+    const productNum = product.id.replace('p-', '');
+    const reviewCount = REVIEWS.filter((r) => r.id.startsWith(`r-${productNum}`)).length;
+    return { ...product, reviewCount };
+  });
+}
+
+const PRODUCTS = enrichProducts(PRODUCTS_BASE);
 import { CatalogFilters, type Filters } from "./CatalogFilters";
 import { Button } from "@/components/ui/Button";
 
