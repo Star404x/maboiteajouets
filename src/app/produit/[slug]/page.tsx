@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getProductsByCategory } from "@/lib/db";
 import { PRODUCTS } from "@/lib/data/products";
+import { REVIEWS } from "@/lib/data/reviews";
+import type { Review } from "@/lib/types";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
@@ -41,6 +43,12 @@ export default async function ProductPage({
   const product = await getProductBySlug(slug);
   if (!product) notFound();
 
+  // Load reviews for this product at build-time
+  const productNum = product.id.replace('p-', '');
+  const productReviews: Review[] = REVIEWS.filter((r) =>
+    r.id.startsWith(`r-${productNum}`)
+  );
+
   const allRelated = await getProductsByCategory(product.category);
   const related = allRelated.filter((p) => p.slug !== slug).slice(0, 4);
 
@@ -54,7 +62,7 @@ export default async function ProductPage({
         ]}
       />
 
-      <ProductDetail product={product} />
+      <ProductDetail product={product} reviews={productReviews} />
 
       {related.length > 0 && (
         <section className="mt-20 lg:mt-28">
@@ -64,6 +72,9 @@ export default async function ProductPage({
           <ProductGrid products={related} />
         </section>
       )}
+    </div>
+  );
+}
     </div>
   );
 }
