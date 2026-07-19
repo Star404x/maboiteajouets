@@ -61,7 +61,7 @@ export default function AdminOrdersPage() {
   const load = () => {
     setLoading(true);
     setError(null);
-    fetch("/.netlify/functions/admin-orders", { credentials: "include" })
+    fetch("/api/admin-orders", { credentials: "include" })
       .then((r) => {
         if (r.status === 401) throw new Error("Non autorisé — rechargez la page pour vous connecter");
         if (!r.ok) throw new Error(`Erreur ${r.status}`);
@@ -106,7 +106,7 @@ export default function AdminOrdersPage() {
               Actualiser
             </button>
             <a
-              href="/.netlify/functions/admin-orders?format=csv"
+              href="/api/admin-orders?format=csv"
               className="inline-flex items-center gap-2 px-4 py-2 bg-navy text-white rounded-xl hover:bg-navy/90 text-sm font-medium"
             >
               <Download className="w-4 h-4" />

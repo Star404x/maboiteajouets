@@ -101,7 +101,7 @@ export function StripePaymentForm({
           customerEmail,
         };
 
-        const response = await fetch("/.netlify/functions/create-payment-intent", {
+        const response = await fetch("/api/checkout/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -179,7 +179,7 @@ export function StripePaymentForm({
 
       console.log("📤 Envoi au serveur:", { orderId, total: amount, itemsCount: items?.length });
 
-      const response = await fetch("/.netlify/functions/create-payment-intent", {
+      const response = await fetch("/api/checkout/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

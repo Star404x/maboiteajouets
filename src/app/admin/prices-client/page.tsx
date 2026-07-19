@@ -80,7 +80,7 @@ export default function AdminPricesPage() {
     if (!product) return;
 
     try {
-      const response = await fetch("/.netlify/functions/webhook-update-price", {
+      const response = await fetch("/api/update-price", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
