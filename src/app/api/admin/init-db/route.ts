@@ -95,11 +95,23 @@ export async function POST(request: NextRequest) {
       ];
 
       for (const p of products) {
+        const [id, name, slug, category, categoryName, description, price, rating, reviewCount] = p as any[];
         await client.query(
           `INSERT INTO products (id, name, slug, category, categoryName, description, price, rating, reviewCount, inStock, images)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true, ARRAY['/products/'::text || $3 || '-1.png'])
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true, $10)
            ON CONFLICT DO NOTHING`,
-          p
+          [
+            id,
+            name,
+            slug,
+            category,
+            categoryName,
+            description,
+            price,
+            rating,
+            reviewCount,
+            [`/products/${slug}-1.png`],
+          ]
         );
       }
 
