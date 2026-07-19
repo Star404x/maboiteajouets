@@ -32,10 +32,25 @@ function getStripe(): Stripe {
 
 export async function POST(request: NextRequest) {
   console.log("\n[POST] Payment Intent request received");
+  console.log("[POST] Time:", new Date().toISOString());
 
   try {
     // Проверяем что Stripe инициализирован
-    if (!stripe) {
+    let stripeInstance: Stripe;
+    try {
+      stripeInstance = getStripe();
+    } catch (err: any) {
+      console.error("[ERROR] Failed to initialize Stripe:", err.message);
+      return NextResponse.json(
+        {
+          error: "Stripe initialization failed",
+          message: "STRIPE_SECRET_KEY not available or invalid"
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!stripeInstance) {
       console.error("[ERROR] Stripe not initialized");
       return NextResponse.json(
         {
@@ -87,7 +102,7 @@ export async function POST(request: NextRequest) {
     console.log(`[POST] Creating Payment Intent: €${amountInEuros}`);
 
     // Создаём Payment Intent в Stripe
-    const paymentIntent = await getStripe().paymentIntents.create({
+    const paymentIntent = await stripeInstance.paymentIntents.create({
       amount: amountInCents,
       currency: "eur",
       receipt_email: customerEmail,
