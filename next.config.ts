@@ -3,10 +3,10 @@ import type { NextConfig } from "next";
 // This allows both static pages AND dynamic API routes
 
 const nextConfig: NextConfig = {
-  // output: "export" = Static HTML export (safer for Railway)
-  // Server-side API routes not supported with export
-  // Use client-side fetching or serverless functions instead
-  output: "export",
+  // output: "standalone" = Node.js server with API routes
+  // Supports both static pages AND dynamic API routes
+  // API routes can use Node.js modules (pg, etc)
+  output: "standalone",
   images: { unoptimized: true },
   trailingSlash: false,
 };
