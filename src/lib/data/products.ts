@@ -225,9 +225,7 @@ export const PRODUCTS: Product[] = [
     "price": 46.8,
     "rating": 4.7,
     "reviewCount": 0,
-    "age": [
-      "0-12m"
-    ],
+    "age": [],
     "images": [
       "/products/mobile-musical-penguin-1.png"
     ],
@@ -439,9 +437,7 @@ export const PRODUCTS: Product[] = [
     "price": 186.8,
     "rating": 4.6,
     "reviewCount": 0,
-    "age": [
-      "1 à 5 ans"
-    ],
+    "age": [],
     "images": [
       "/products/circuit-train-figurines-1.png",
       "/products/circuit-train-figurines-2.png",
@@ -480,9 +476,7 @@ export const PRODUCTS: Product[] = [
     "price": 75.8,
     "rating": 4.7,
     "reviewCount": 0,
-    "age": [
-      "Dès 12 mois"
-    ],
+    "age": [],
     "images": [
       "/products/camion-pompier-figurines-1.png",
       "/products/camion-pompier-figurines-2.png",
@@ -519,9 +513,7 @@ export const PRODUCTS: Product[] = [
     "price": 46.8,
     "rating": 4.5,
     "reviewCount": 0,
-    "age": [
-      "À partir de 12 mois"
-    ],
+    "age": [],
     "images": [
       "/products/lot-mini-vehicules-1.png",
       "/products/lot-mini-vehicules-2.png",
@@ -791,9 +783,7 @@ export const PRODUCTS: Product[] = [
     "price": 101,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [
-      "12 mois et +"
-    ],
+    "age": [],
     "images": [
       "/products/table-activites-dinosaure-1.png",
       "/products/table-activites-dinosaure-2.png",
@@ -833,9 +823,7 @@ export const PRODUCTS: Product[] = [
     "price": 49.8,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [
-      "12 mois et +"
-    ],
+    "age": [],
     "images": [
       "/products/cube-volcan-activites-1.png",
       "/products/cube-volcan-activites-2.png",
@@ -875,9 +863,7 @@ export const PRODUCTS: Product[] = [
     "price": 47.9,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [
-      "6 mois et +"
-    ],
+    "age": [],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
       "/products/blocs-empiler-10-pieces-2.png",
@@ -914,9 +900,7 @@ export const PRODUCTS: Product[] = [
     "price": 56.8,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [
-      "2 à 6 ans"
-    ],
+    "age": [],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
       "/products/pierres-empiler-sweet-cocoon-2.png",
