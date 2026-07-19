@@ -1,16 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
-// Use DATABASE_URL from environment (Railway, Netlify, etc)
-const DB_URL = process.env.DATABASE_URL;
-if (!DB_URL) {
-  throw new Error('DATABASE_URL environment variable is not set');
-}
+// Create pool lazily on first request (Railway env vars not available at build time)
+let pool: Pool | null = null;
 
-const pool = new Pool({
-  connectionString: DB_URL,
-  max: 10,
-});
+function getPool() {
+  if (pool) return pool;
+  
+  const DB_URL = process.env.DATABASE_URL;
+  if (!DB_URL) {
+    throw new Error('DATABASE_URL environment variable is not set');
+  }
+  
+  pool = new Pool({
+    connectionString: DB_URL,
+    max: 10,
+  });
+  
+  return pool;
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -29,7 +37,8 @@ export async function POST(request: NextRequest) {
 
     console.log(`[API] UPDATE: ${productId} → €${newPrice}`);
 
-    const client = await pool.connect();
+    const dbPool = getPool();
+    const client = await dbPool.connect();
     try {
       const result = await client.query(
         "UPDATE products SET price = $1 WHERE id = $2 RETURNING id, name, price",

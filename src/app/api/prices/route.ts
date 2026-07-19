@@ -1,23 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
-// Use DATABASE_URL from environment (Railway, Netlify, etc)
-const DB_URL = process.env.DATABASE_URL;
-if (!DB_URL) {
-  throw new Error('DATABASE_URL environment variable is not set');
+// Create pool lazily on first request (Railway env vars not available at build time)
+let pool: Pool | null = null;
+
+function getPool() {
+  if (pool) return pool;
+  
+  const DB_URL = process.env.DATABASE_URL;
+  if (!DB_URL) {
+    throw new Error('DATABASE_URL environment variable is not set');
+  }
+  
+  console.log('[API prices] Using DATABASE_URL from environment');
+  console.log('[API prices] DB Host:', DB_URL.split('@')[1]?.split('/')[0] || 'unknown');
+  
+  pool = new Pool({
+    connectionString: DB_URL,
+  });
+  
+  return pool;
 }
-
-console.log('[API prices] Using DATABASE_URL from environment');
-console.log('[API prices] DB Host:', DB_URL.split('@')[1]?.split('/')[0] || 'unknown');
-
-const pool = new Pool({
-  connectionString: DB_URL,
-});
 
 export async function GET(request: NextRequest) {
   try {
     console.log("[GET /api/prices] Attempt 1: Testing pool connection...");
-    const client = await pool.connect();
+    const dbPool = getPool();
+    const client = await dbPool.connect();
     const result = await client.query("SELECT id, name, price FROM products ORDER BY id");
     client.release();
     console.log(`[GET /api/prices] ✅ Success: ${result.rows.length} products`);
@@ -63,7 +72,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const client = await pool.connect();
+    const dbPool = getPool();
+    const client = await dbPool.connect();
     console.log("[POST /api/prices] Updating product", id, "to price", price);
     const result = await client.query(
       "UPDATE products SET price = $1 WHERE id = $2 RETURNING id, name, price",
