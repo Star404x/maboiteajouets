@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
-// API Routes require standalone output (not export)
-// This allows both static pages AND dynamic API routes on Netlify
+// Railway deployment: Use standalone for Node.js server
+// This allows both static pages AND dynamic API routes
 
 const nextConfig: NextConfig = {
-  // Use export for static pages
-  // API routes will be handled by Netlify Functions
-  output: "export",
+  // output: "standalone" = Full Node.js server with API routes
+  // Includes everything needed to run the server independently
+  output: "standalone",
   images: { unoptimized: true },
   trailingSlash: false,
 };

@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 
-const DB_URL = "postgresql://netlifydb_owner:npg_uM9rTGXN2OUI@ep-soft-night-ajfp1t6i.c-3.us-east-2.db.netlify.com/netlifydb?sslmode=require";
+// Use DATABASE_URL from environment (Railway, Netlify, etc)
+const DB_URL = process.env.DATABASE_URL;
+if (!DB_URL) {
+  throw new Error('DATABASE_URL environment variable is not set');
+}
 
 const pool = new Pool({
   connectionString: DB_URL,

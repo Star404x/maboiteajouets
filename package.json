@@ -7,7 +7,7 @@
     "sync": "node scripts/sync-products-from-db.js",
     "build": "next build",
     "build:sync": "npm run sync && npm run build",
-    "start": "node server.js"
+    "start": "next start"
   },
   "dependencies": {
     "ai": "^3.1.0",
