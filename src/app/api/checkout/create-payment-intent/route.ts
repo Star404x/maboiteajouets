@@ -1,24 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-// Получаем Secret Key из environment variables (Railway)
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-
-console.log("[INIT] Stripe Payment Intent API");
-console.log("[INIT] STRIPE_SECRET_KEY available:", !!stripeSecretKey);
-
+// Инициализация Stripe
 let stripe: Stripe | null = null;
+let stripeInitialized = false;
 
-// Инициализируем Stripe при запуске модуля (lazy-load)
-if (stripeSecretKey) {
-  try {
-    stripe = new Stripe(stripeSecretKey);
-    console.log("[INIT] ✅ Stripe initialized successfully");
-  } catch (err: any) {
-    console.error("[INIT] ❌ Failed to initialize Stripe:", err.message);
+function getStripe(): Stripe {
+  if (!stripeInitialized) {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    
+    if (!stripeSecretKey) {
+      throw new Error('STRIPE_SECRET_KEY not found in environment');
+    }
+    
+    try {
+      stripe = new Stripe(stripeSecretKey);
+      stripeInitialized = true;
+      console.log("[INIT] ✅ Stripe initialized successfully");
+    } catch (err: any) {
+      console.error("[INIT] ❌ Failed to initialize Stripe:", err.message);
+      throw err;
+    }
   }
-} else {
-  console.error("[INIT] ❌ STRIPE_SECRET_KEY not found in environment!");
+  
+  if (!stripe) {
+    throw new Error('Stripe initialization failed');
+  }
+  
+  return stripe;
 }
 
 export async function POST(request: NextRequest) {
@@ -78,7 +87,7 @@ export async function POST(request: NextRequest) {
     console.log(`[POST] Creating Payment Intent: €${amountInEuros}`);
 
     // Создаём Payment Intent в Stripe
-    const paymentIntent = await stripe.paymentIntents.create({
+    const paymentIntent = await getStripe().paymentIntents.create({
       amount: amountInCents,
       currency: "eur",
       receipt_email: customerEmail,
