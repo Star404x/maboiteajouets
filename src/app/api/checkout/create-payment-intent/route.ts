@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-// Получаем Secret Key из environment variables (теперь установлены в Netlify!)
+// Получаем Secret Key из environment variables (Railway)
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 console.log("[INIT] Stripe Payment Intent API");
@@ -9,7 +9,7 @@ console.log("[INIT] STRIPE_SECRET_KEY available:", !!stripeSecretKey);
 
 let stripe: Stripe | null = null;
 
-// Инициализируем Stripe при запуске модуля
+// Инициализируем Stripe при запуске модуля (lazy-load)
 if (stripeSecretKey) {
   try {
     stripe = new Stripe(stripeSecretKey);

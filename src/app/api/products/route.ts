@@ -7,9 +7,24 @@ let pool: Pool | null = null;
 function getPool() {
   if (pool) return pool;
   
-  const DB_URL = process.env.DATABASE_URL;
+  // Try DATABASE_URL first
+  let DB_URL = process.env.DATABASE_URL;
+  
+  // If not set, try to construct from individual Railway variables (PGHOST, PGUSER, etc)
   if (!DB_URL) {
-    throw new Error('DATABASE_URL environment variable is not set');
+    const pgHost = process.env.PGHOST;
+    const pgPort = process.env.PGPORT || '5432';
+    const pgUser = process.env.PGUSER;
+    const pgPassword = process.env.PGPASSWORD;
+    const pgDatabase = process.env.PGDATABASE || 'railway';
+    
+    if (pgHost && pgUser && pgPassword) {
+      DB_URL = `postgresql://${pgUser}:${pgPassword}@${pgHost}:${pgPort}/${pgDatabase}?sslmode=require`;
+    }
+  }
+  
+  if (!DB_URL) {
+    throw new Error('DATABASE_URL not set and could not construct from PGHOST/PGUSER/PGPASSWORD');
   }
   
   pool = new Pool({
