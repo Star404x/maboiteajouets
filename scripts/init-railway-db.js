@@ -99,6 +99,31 @@ async function initDatabase() {
     `);
     console.log("✅ Orders table created/verified");
 
+    // Create users table
+    console.log("[INIT] Creating users table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id TEXT PRIMARY KEY,
+        email VARCHAR UNIQUE NOT NULL,
+        password_hash VARCHAR NOT NULL,
+        full_name VARCHAR,
+        phone VARCHAR,
+        address_line_1 VARCHAR,
+        address_line_2 VARCHAR,
+        city VARCHAR,
+        postal_code VARCHAR,
+        country VARCHAR DEFAULT 'FR',
+        newsletter_subscribed BOOLEAN DEFAULT false,
+        email_verified BOOLEAN DEFAULT false,
+        email_verified_at TIMESTAMP,
+        last_login TIMESTAMP,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+      );
+      CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+    `);
+    console.log("✅ Users table created/verified");
+
     // Check existing products
     const result = await client.query("SELECT COUNT(*) as count FROM products");
     const productCount = parseInt(result.rows[0].count);
