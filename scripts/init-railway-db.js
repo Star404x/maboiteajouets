@@ -72,6 +72,33 @@ async function initDatabase() {
     `);
     console.log("✅ Reviews table created/verified");
 
+    // Create orders table
+    console.log("[INIT] Creating orders table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS orders (
+        id TEXT PRIMARY KEY,
+        customer_email VARCHAR NOT NULL,
+        customer_name VARCHAR,
+        status VARCHAR DEFAULT 'pending',
+        total_amount DECIMAL NOT NULL,
+        currency VARCHAR DEFAULT 'EUR',
+        payment_intent_id VARCHAR UNIQUE,
+        items JSONB,
+        shipping_address JSONB,
+        billing_address JSONB,
+        shipping_cost DECIMAL DEFAULT 0,
+        tax DECIMAL DEFAULT 0,
+        tracking_number VARCHAR,
+        notes TEXT,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+      );
+      CREATE INDEX IF NOT EXISTS idx_orders_email ON orders(customer_email);
+      CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
+      CREATE INDEX IF NOT EXISTS idx_orders_payment_intent ON orders(payment_intent_id);
+    `);
+    console.log("✅ Orders table created/verified");
+
     // Check existing products
     const result = await client.query("SELECT COUNT(*) as count FROM products");
     const productCount = parseInt(result.rows[0].count);

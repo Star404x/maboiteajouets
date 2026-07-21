@@ -1,9 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { Pool } from "pg";
 
 // Инициализация Stripe
 let stripe: Stripe | null = null;
 let stripeInitialized = false;
+
+// Пул для Постпрес
+
+let pool: Pool | null = null;
+
+function getPool() {
+  if (pool) return pool;
+  
+  let DB_URL = process.env.DATABASE_URL;
+  
+  if (!DB_URL) {
+    const pgHost = process.env.PGHOST;
+    const pgPort = process.env.PGPORT || '5432';
+    const pgUser = process.env.PGUSER;
+    const pgPassword = process.env.PGPASSWORD;
+    const pgDatabase = process.env.PGDATABASE || 'railway';
+    
+    if (pgHost && pgUser && pgPassword) {
+      DB_URL = `postgresql://${pgUser}:${pgPassword}@${pgHost}:${pgPort}/${pgDatabase}?sslmode=require`;
+    }
+  }
+  
+  if (!DB_URL) {
+    throw new Error('DATABASE_URL not set');
+  }
+  
+  pool = new Pool({
+    connectionString: DB_URL,
+    max: 5,
+  });
+  
+  return pool;
+}
 
 function getStripe(): Stripe {
   if (!stripeInitialized) {
@@ -101,6 +135,27 @@ export async function POST(request: NextRequest) {
 
     console.log(`[POST] Creating Payment Intent: €${amountInEuros}`);
 
+    // Create or update order in database
+    console.log(`[POST] Creating/updating order in database: ${orderId}`);
+    const dbPool = getPool();
+    const dbClient = await dbPool.connect();
+
+    try {
+      // Create order if not exists
+      await dbClient.query(
+        `INSERT INTO orders (id, customer_email, total_amount, status, created_at, updated_at)
+         VALUES ($1, $2, $3, 'pending', NOW(), NOW())
+         ON CONFLICT (id) DO UPDATE SET 
+           customer_email = $2,
+           total_amount = $3,
+           updated_at = NOW()`,
+        [orderId, customerEmail, amountInCents / 100]
+      );
+      console.log(`[POST] ✅ Order created/updated in database`);
+    } finally {
+      dbClient.release();
+    }
+
     // Создаём Payment Intent в Stripe
     const paymentIntent = await stripeInstance.paymentIntents.create({
       amount: amountInCents,
@@ -115,6 +170,18 @@ export async function POST(request: NextRequest) {
     console.log("[POST] ✅ Payment Intent created successfully");
     console.log("[POST] Intent ID:", paymentIntent.id);
     console.log("[POST] Intent status:", paymentIntent.status);
+
+    // Update order with payment intent ID
+    const dbClient2 = await dbPool.connect();
+    try {
+      await dbClient2.query(
+        `UPDATE orders SET payment_intent_id = $1, updated_at = NOW() WHERE id = $2`,
+        [paymentIntent.id, orderId]
+      );
+      console.log(`[POST] ✅ Order updated with payment_intent_id`);
+    } finally {
+      dbClient2.release();
+    }
 
     // Возвращаем clientSecret для фронтенда
     return NextResponse.json({
