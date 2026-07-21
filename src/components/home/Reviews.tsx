@@ -3,24 +3,54 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Quote } from "lucide-react";
-import { REVIEWS } from "@/lib/data/reviews";
 import { Rating } from "@/components/ui/Rating";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
-/**
- * 🔴 AUDIT NOTE: These reviews are auto-generated placeholders.
- * Before launch, either:
- * 1. Remove this entire section
- * 2. Replace with real customer reviews verified post-purchase
- * 3. Add disclaimer that these are demo reviews
- * 
- * ⚠️ Claims about rating (4.9/5) and review counts have been removed.
- */
+interface Review {
+  id: string;
+  author: string;
+  rating: number;
+  content: string;
+  date: string;
+  avatarColor?: string;
+}
 
 import "swiper/css";
 import "swiper/css/pagination";
 
 export function Reviews() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/api/reviews?random=true&limit=6");
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch reviews");
+        }
+
+        const data = await response.json();
+        
+        if (data.success && data.reviews) {
+          setReviews(data.reviews);
+        }
+      } catch (err) {
+        console.error("[REVIEWS] Error fetching:", err);
+        setError(err instanceof Error ? err.message : "Unknown error");
+        // Fallback: if database empty, show empty state
+        setReviews([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
   return (
     <section className="container-wide py-16 lg:py-24">
       <div className="text-center mb-12 max-w-2xl mx-auto">
@@ -33,20 +63,33 @@ export function Reviews() {
 
       </div>
 
-      <Swiper
-        modules={[Autoplay, Pagination]}
-        spaceBetween={20}
-        slidesPerView={1}
-        breakpoints={{
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-        autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-        pagination={{ clickable: true, el: ".reviews-pagination" }}
-        loop
-        className="!pb-14"
-      >
-        {REVIEWS.map((r) => (
+      {loading && (
+        <div className="flex justify-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-coral"></div>
+        </div>
+      )}
+
+      {!loading && reviews.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-navy/60">Pas encore d'avis. Soyez le premier !</p>
+        </div>
+      )}
+
+      {!loading && reviews.length > 0 && (
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          pagination={{ clickable: true, el: ".reviews-pagination" }}
+          loop
+          className="!pb-14"
+        >
+          {reviews.map((r) => (
           <SwiperSlide key={r.id} className="!h-auto">
             <div className="h-full flex flex-col gap-4 p-6 rounded-3xl bg-white shadow-soft hover:shadow-card transition-all">
               <Quote className="w-8 h-8 text-coral/20" strokeWidth={3} />
@@ -73,8 +116,9 @@ export function Reviews() {
               </div>
             </div>
           </SwiperSlide>
-        ))}
-      </Swiper>
+          ))}
+        </Swiper>
+      )}
 
       <div className="reviews-pagination flex justify-center gap-2 -mt-6" />
 

@@ -51,6 +51,27 @@ async function initDatabase() {
     `);
     console.log("✅ Products table created/verified");
 
+    // Create reviews table
+    console.log("[INIT] Creating reviews table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS reviews (
+        id TEXT PRIMARY KEY,
+        productId TEXT NOT NULL,
+        author VARCHAR NOT NULL,
+        rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+        content TEXT NOT NULL,
+        date DATE NOT NULL,
+        avatarColor VARCHAR,
+        verified_purchase BOOLEAN DEFAULT false,
+        helpful_count INT DEFAULT 0,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (productId) REFERENCES products(id)
+      );
+      CREATE INDEX IF NOT EXISTS idx_reviews_productId ON reviews(productId);
+      CREATE INDEX IF NOT EXISTS idx_reviews_rating ON reviews(rating);
+    `);
+    console.log("✅ Reviews table created/verified");
+
     // Check existing products
     const result = await client.query("SELECT COUNT(*) as count FROM products");
     const productCount = parseInt(result.rows[0].count);
