@@ -7,6 +7,16 @@ import { REVIEWS } from "@/lib/data/reviews";
 import { Rating } from "@/components/ui/Rating";
 import { cn } from "@/lib/utils";
 
+/**
+ * 🔴 AUDIT NOTE: These reviews are auto-generated placeholders.
+ * Before launch, either:
+ * 1. Remove this entire section
+ * 2. Replace with real customer reviews verified post-purchase
+ * 3. Add disclaimer that these are demo reviews
+ * 
+ * ⚠️ Claims about rating (4.9/5) and review counts have been removed.
+ */
+
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -20,11 +30,7 @@ export function Reviews() {
         <h2 className="font-display font-bold text-navy text-display-md md:text-display-lg text-balance">
           Des parents <span className="text-coral">heureux</span>
         </h2>
-        <div className="mt-4 inline-flex items-center gap-2">
-          <Rating value={4.9} showCount={false} size="lg" />
-          <span className="font-display font-bold text-navy">4.9 / 5</span>
-          <span className="text-navy/60">· 2 500 avis vérifiés</span>
-        </div>
+
       </div>
 
       <Swiper

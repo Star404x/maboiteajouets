@@ -115,7 +115,7 @@ export function Hero() {
             >
               <span className="flex items-center gap-1.5">
                 <span className="text-sunflower">★★★★★</span>
-                <span>4.9/5 · 2 500 avis</span>
+                <span>Rejoignez nos clients satisfaits</span>
               </span>
               <span>🌱 Éco-responsable</span>
               <span>🇫🇷 Livré depuis la France</span>

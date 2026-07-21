@@ -3,7 +3,8 @@ import { CategoriesStrip } from "@/components/home/CategoriesStrip";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { BenefitsSection } from "@/components/home/BenefitsSection";
 import { NewProductsSlider } from "@/components/home/NewProductsSlider";
-import { BrandsStrip } from "@/components/home/BrandsStrip";
+// AUDIT: BrandsStrip removed until legal verification of brand usage rights
+// import { BrandsStrip } from "@/components/home/BrandsStrip";
 import { PromoBanner } from "@/components/home/PromoBanner";
 import { AgeSelector } from "@/components/home/AgeSelector";
 import { Reviews } from "@/components/home/Reviews";
@@ -21,7 +22,7 @@ export default function HomePage() {
       <AgeSelector />
       <PromoBanner />
       <Reviews />
-      <BrandsStrip />
+      {/* <BrandsStrip /> — REMOVED: Requires verification of brand usage rights */}
       <Newsletter />
       <InstagramGallery />
     </>

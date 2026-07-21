@@ -16,10 +16,10 @@ export default function LegalNoticePage() {
           heading: "Éditeur du site",
           body: [
             "Ma Boîte à Jouets",
-            "Siège social : Paris, France",
+            "Siège social : [ADRESSE COMPLÈTE À CONFIRMER]",
             "SIRET : 89158238900021",
-            "Date de création : 28/03/2025",
-            "Email : info.maboiteajouets@gmail.com",
+            "Date de création : [À CONFIRMER PAR LE PROPRIÉTAIRE]",
+            "Email : [REMPLIR AVEC ADRESSE PROFESSIONNELLE]",
             "Téléphone : 0785301551",
           ],
         },
