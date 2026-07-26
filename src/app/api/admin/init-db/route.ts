@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Verify admin API key
+function verifyAdminKey(request: NextRequest): boolean {
+  const authHeader = request.headers.get('Authorization');
+  const expectedKey = `Bearer ${process.env.ADMIN_API_KEY}`;
+  return authHeader === expectedKey;
+}
+
 export async function POST(request: NextRequest) {
+  // Check admin key
+  if (!verifyAdminKey(request)) {
+    return NextResponse.json(
+      { error: 'Unauthorized - invalid or missing ADMIN_API_KEY' },
+      { status: 401 }
+    );
+  }
+
   try {
     const { Pool } = await import("pg");
     const dbUrl = process.env.DATABASE_URL;

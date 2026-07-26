@@ -38,7 +38,22 @@ function getPool() {
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+// Verify admin API key
+function verifyAdminKey(request: NextRequest): boolean {
+  const authHeader = request.headers.get('Authorization');
+  const expectedKey = `Bearer ${process.env.ADMIN_API_KEY}`;
+  return authHeader === expectedKey;
+}
+
 export async function POST(request: NextRequest) {
+  // Check admin key
+  if (!verifyAdminKey(request)) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized - invalid or missing ADMIN_API_KEY' },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { productId, newPrice } = body;
