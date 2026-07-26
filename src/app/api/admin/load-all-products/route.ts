@@ -19,6 +19,10 @@ export async function POST(request: Request) {
     const client = await pool.connect();
 
     try {
+      // First, clear all products to avoid slug conflicts
+      console.log("[load-all-products] Clearing existing products...");
+      await client.query("DELETE FROM products");
+
       // Calculate reviewCount for each product from REVIEWS
       const reviewCountByProduct: { [key: string]: number } = {};
       REVIEWS.forEach((review) => {
@@ -47,47 +51,24 @@ export async function POST(request: Request) {
         const reviewCount = reviewCountByProduct[product.id] || 0;
         const slug = getSlug(product);
         
-        try {
-          const result = await client.query(
-            `INSERT INTO products (id, slug, name, description, price, images, category, rating, reviewcount)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-             ON CONFLICT (id) DO UPDATE SET 
-             name = $3, 
-             description = $4, 
-             price = $5, 
-             images = $6, 
-             category = $7, 
-             rating = $8, 
-             reviewcount = $9`,
-            [
-              product.id,
-              slug,
-              product.name,
-              product.description,
-              product.price,
-              product.images, // PostgreSQL array type
-              product.category,
-              product.rating,
-              reviewCount,
-            ]
-          );
+        const result = await client.query(
+          `INSERT INTO products (id, slug, name, description, price, images, category, rating, reviewcount)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+          [
+            product.id,
+            slug,
+            product.name,
+            product.description,
+            product.price,
+            product.images, // PostgreSQL array type
+            product.category,
+            product.rating,
+            reviewCount,
+          ]
+        );
 
-          if (result.rowCount === 1) {
-            const isUpdate = result.command === "UPDATE";
-            if (isUpdate) {
-              updated++;
-            } else {
-              inserted++;
-            }
-          }
-        } catch (error: any) {
-          // If it's a duplicate slug error on a new product, just update the existing one
-          if (error?.code === "23505" && error?.constraint === "products_slug_key") {
-            // Skip - will be updated via id conflict
-          } else {
-            // Re-throw other errors
-            throw error;
-          }
+        if (result.rowCount === 1) {
+          inserted++;
         }
       }
 
