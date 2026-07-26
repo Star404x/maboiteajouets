@@ -32,14 +32,19 @@ export function CatalogViewWithDB({
         const response = await fetch("/api/products");
         const data = await response.json();
         if (data.success && data.products) {
-          // Convert DB results to Product type
-          const dbProducts = data.products.map((p: any) => ({
-            ...PRODUCTS.find(sp => sp.id === p.id) || {},
-            id: p.id,
-            price: parseFloat(p.price),
-            reviewCount: p.reviewcount || 0,
-          }));
-          setProducts(dbProducts);
+          // Merge DB data (price, reviewCount) with static product data (rating, name, etc)
+          const mergedProducts = PRODUCTS.map(staticProduct => {
+            const dbProduct = data.products.find((p: any) => p.id === staticProduct.id);
+            if (dbProduct) {
+              return {
+                ...staticProduct,
+                price: parseFloat(dbProduct.price),
+                reviewCount: dbProduct.reviewcount || 0,
+              };
+            }
+            return staticProduct;
+          });
+          setProducts(mergedProducts);
         }
       } catch (error) {
         console.warn("[CatalogViewWithDB] Failed to fetch from DB, using static data:", error);
