@@ -51,7 +51,6 @@ export async function POST(request: Request) {
           `INSERT INTO products (id, slug, name, description, price, images, category, rating, reviewcount)
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
            ON CONFLICT (id) DO UPDATE SET 
-           slug = $2,
            name = $3, 
            description = $4, 
            price = $5, 
