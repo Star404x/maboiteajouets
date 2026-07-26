@@ -1,0 +1,1268 @@
+{
+  "communities": {
+    "0": [
+      "src_app_admin_prices_client_page",
+      "src_app_admin_prices_client_page_adminpricespage",
+      "src_app_admin_prices_client_page_demo_products",
+      "src_app_admin_prices_client_page_pricerow",
+      "src_app_favoris_page",
+      "src_app_favoris_page_favoritespage",
+      "src_app_not_found",
+      "src_app_not_found_notfound",
+      "src_app_panier_page",
+      "src_app_panier_page_cartpage",
+      "src_app_panier_page_metadata",
+      "src_components_brand_logo",
+      "src_components_brand_logo_logo",
+      "src_components_cart_cartdrawer",
+      "src_components_cart_cartdrawer_cartdrawer",
+      "src_components_cart_cartpageclient",
+      "src_components_cart_cartpageclient_cartpageclient",
+      "src_components_checkout_checkoutview",
+      "src_components_checkout_checkoutview_checkoutview",
+      "src_components_checkout_checkoutview_field",
+      "src_components_checkout_checkoutview_formdata",
+      "src_components_checkout_checkoutview_stepconfirmation",
+      "src_components_checkout_checkoutview_stepcontact",
+      "src_components_checkout_checkoutview_steppayment",
+      "src_components_checkout_checkoutview_steps",
+      "src_components_checkout_checkoutview_stepshipping",
+      "src_components_checkout_stripepaymentform",
+      "src_components_checkout_stripepaymentform_addressinfo",
+      "src_components_checkout_stripepaymentform_cartitem",
+      "src_components_checkout_stripepaymentform_customerinfo",
+      "src_components_checkout_stripepaymentform_stripepaymentform",
+      "src_components_checkout_stripepaymentform_stripepaymentformprops",
+      "src_components_home_featuredproducts",
+      "src_components_home_reviews",
+      "src_components_home_reviews_review",
+      "src_components_home_reviews_reviews",
+      "src_components_layout_header",
+      "src_components_layout_header_header",
+      "src_components_layout_header_nav",
+      "src_components_layout_mobilemenu",
+      "src_components_layout_mobilemenu_mobilemenu",
+      "src_components_layout_mobilemenu_nav",
+      "src_components_product_productcard",
+      "src_components_product_productcard_productcard",
+      "src_components_product_productdetail",
+      "src_components_product_productdetail_age_label",
+      "src_components_product_productdetail_productdetail",
+      "src_components_product_productgrid",
+      "src_components_product_productgrid_productgrid",
+      "src_components_product_productslider",
+      "src_components_product_quantityselector",
+      "src_components_product_quantityselector_quantityselector",
+      "src_components_search_searchmodal",
+      "src_components_search_searchmodal_searchmodal",
+      "src_components_ui_badge",
+      "src_components_ui_badge_badge",
+      "src_components_ui_badge_badge_styles",
+      "src_components_ui_button",
+      "src_components_ui_button_button",
+      "src_components_ui_button_buttonprops",
+      "src_components_ui_button_buttonvariants",
+      "src_components_ui_rating",
+      "src_components_ui_rating_rating",
+      "src_components_ui_rating_ratingprops",
+      "src_components_ui_rating_sizes",
+      "src_hooks_usepricecache",
+      "src_hooks_usepricecache_cachedprice",
+      "src_hooks_usepricecache_getallcachedprices",
+      "src_hooks_usepricecache_usepricecache",
+      "src_hooks_usepricesync",
+      "src_hooks_usepricesync_getpricefromsync",
+      "src_hooks_usepricesync_priceupdate",
+      "src_lib_store_cart",
+      "src_lib_store_cart_cartstate",
+      "src_lib_store_cart_computecart",
+      "src_lib_store_cart_usecart",
+      "src_lib_store_hydrationguard",
+      "src_lib_store_hydrationguard_useishydrated",
+      "src_lib_store_toast",
+      "src_lib_store_toast_listener",
+      "src_lib_store_toast_toast",
+      "src_lib_types_product",
+      "src_lib_utils",
+      "src_lib_utils_cn",
+      "src_lib_utils_computediscount",
+      "src_lib_utils_formatprice",
+      "src_lib_utils_slugify"
+    ],
+    "1": [
+      "src_app_a_propos_page",
+      "src_app_a_propos_page_aboutpage",
+      "src_app_a_propos_page_metadata",
+      "src_app_a_propos_page_values",
+      "src_app_compte_adresses_page",
+      "src_app_compte_adresses_page_addressespage",
+      "src_app_compte_adresses_page_metadata",
+      "src_app_compte_commandes_page",
+      "src_app_compte_commandes_page_metadata",
+      "src_app_compte_commandes_page_orderspage",
+      "src_app_compte_page",
+      "src_app_compte_page_accountpage",
+      "src_app_compte_page_links",
+      "src_app_compte_page_metadata",
+      "src_app_compte_profil_page",
+      "src_app_compte_profil_page_metadata",
+      "src_app_compte_profil_page_profilepage",
+      "src_app_connexion_page",
+      "src_app_connexion_page_loginpage",
+      "src_app_connexion_page_metadata",
+      "src_app_contact_page",
+      "src_app_contact_page_contactpage",
+      "src_app_contact_page_info",
+      "src_app_contact_page_metadata",
+      "src_app_faq_page",
+      "src_app_faq_page_faqpage",
+      "src_app_faq_page_faqs",
+      "src_app_faq_page_metadata",
+      "src_app_inscription_page",
+      "src_app_inscription_page_metadata",
+      "src_app_inscription_page_signuppage",
+      "src_app_livraison_page",
+      "src_app_livraison_page_metadata",
+      "src_app_livraison_page_shippingpage",
+      "src_app_meilleures_ventes_page",
+      "src_app_meilleures_ventes_page_bestsellerspage",
+      "src_app_meilleures_ventes_page_metadata",
+      "src_app_nouveautes_page",
+      "src_app_nouveautes_page_metadata",
+      "src_app_nouveautes_page_newproductspage",
+      "src_app_promotions_page",
+      "src_app_promotions_page_metadata",
+      "src_app_promotions_page_promopage",
+      "src_app_retours_page",
+      "src_app_retours_page_metadata",
+      "src_app_retours_page_returnspage",
+      "src_components_auth_loginform",
+      "src_components_auth_loginform_loginform",
+      "src_components_auth_signupform",
+      "src_components_auth_signupform_signupform",
+      "src_components_contact_contactform",
+      "src_components_contact_contactform_contactform",
+      "src_components_faq_faqlist",
+      "src_components_faq_faqlist_faq",
+      "src_components_faq_faqlist_faqlist",
+      "src_components_shared_breadcrumbs",
+      "src_components_shared_breadcrumbs_breadcrumbs",
+      "src_components_shared_breadcrumbs_crumb",
+      "src_components_shared_pagehero",
+      "src_components_shared_pagehero_pagehero",
+      "src_hooks_useauth",
+      "src_hooks_useauth_authstate",
+      "src_hooks_useauth_authuser",
+      "src_hooks_useauth_useauth",
+      "src_lib_data_products_getbestsellers",
+      "src_lib_data_products_getnewproducts",
+      "src_lib_data_products_getpromoproducts"
+    ],
+    "2": [
+      "bcryptjs",
+      "class_variance_authority",
+      "clsx",
+      "framer_motion",
+      "hookform_resolvers",
+      "jsonwebtoken",
+      "lucide_react",
+      "next",
+      "package_dependencies",
+      "package_dependencies_bcryptjs",
+      "package_dependencies_class_variance_authority",
+      "package_dependencies_clsx",
+      "package_dependencies_framer_motion",
+      "package_dependencies_hookform_resolvers",
+      "package_dependencies_jsonwebtoken",
+      "package_dependencies_lucide_react",
+      "package_dependencies_next",
+      "package_dependencies_pg",
+      "package_dependencies_radix_ui_react_dialog",
+      "package_dependencies_radix_ui_react_dropdown_menu",
+      "package_dependencies_radix_ui_react_slot",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_hook_form",
+      "package_dependencies_stripe",
+      "package_dependencies_stripe_react_stripe_js",
+      "package_dependencies_stripe_stripe_js",
+      "package_dependencies_swiper",
+      "package_dependencies_tailwind_merge",
+      "package_dependencies_zod",
+      "package_dependencies_zustand",
+      "pg",
+      "radix_ui_react_dialog",
+      "radix_ui_react_dropdown_menu",
+      "radix_ui_react_slot",
+      "react",
+      "react_dom",
+      "react_hook_form",
+      "stripe",
+      "stripe_react_stripe_js",
+      "stripe_stripe_js",
+      "swiper",
+      "tailwind_merge",
+      "zod",
+      "zustand"
+    ],
+    "3": [
+      "next_config_embed_reviews",
+      "next_config_embed_reviews_embedreviewspostbuild",
+      "next_config_embed_reviews_extractproductidfromslug",
+      "next_config_embed_reviews_generatereviewshtml",
+      "scripts_migrate_reviews_to_db",
+      "scripts_migrate_reviews_to_db_migratereviews",
+      "scripts_migrate_reviews_to_db_pool",
+      "scripts_migrate_reviews_to_db_reviews",
+      "src_app_produit_slug_page",
+      "src_app_produit_slug_page_generatemetadata",
+      "src_app_produit_slug_page_generatestaticparams",
+      "src_app_produit_slug_page_productpage",
+      "src_components_product_productreviews",
+      "src_components_product_productreviews_productreviews",
+      "src_components_product_productreviews_productreviewsprops",
+      "src_components_product_productreviewssection",
+      "src_components_product_productreviewssection_productreviewssection",
+      "src_components_product_productreviewssection_productreviewssectionprops",
+      "src_lib_data_reviews",
+      "src_lib_data_reviews_reviews",
+      "src_lib_db",
+      "src_lib_db_enrichproductswithreviews",
+      "src_lib_db_getproductbyslug",
+      "src_lib_db_getproducts",
+      "src_lib_db_getproductsbyage",
+      "src_lib_db_getproductsbycategory",
+      "src_lib_db_normalizeproduct",
+      "src_lib_db_pool",
+      "src_lib_db_product",
+      "src_lib_types",
+      "src_lib_types_agerange",
+      "src_lib_types_badge",
+      "src_lib_types_cartitem",
+      "src_lib_types_category",
+      "src_lib_types_categoryslug",
+      "src_lib_types_review"
+    ],
+    "4": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_postcss",
+      "package_devdependencies_types_bcryptjs",
+      "package_devdependencies_types_jsonwebtoken",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_pg",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_types_stripe",
+      "package_devdependencies_typescript",
+      "package_engines",
+      "package_engines_node",
+      "package_engines_npm",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_build_sync",
+      "package_scripts_dev",
+      "package_scripts_init_db",
+      "package_scripts_start",
+      "package_scripts_sync",
+      "package_version",
+      "tailwindcss",
+      "tailwindcss_postcss",
+      "types_bcryptjs",
+      "types_jsonwebtoken",
+      "types_node",
+      "types_pg",
+      "types_react",
+      "types_react_dom",
+      "types_stripe",
+      "typescript"
+    ],
+    "5": [
+      "src_app_boutique_page",
+      "src_app_boutique_page_boutiquepage",
+      "src_app_boutique_page_metadata",
+      "src_app_categorie_slug_page",
+      "src_app_categorie_slug_page_categorypage",
+      "src_app_categorie_slug_page_generatemetadata",
+      "src_app_categorie_slug_page_generatestaticparams",
+      "src_app_sitemap",
+      "src_app_sitemap_sitemap",
+      "src_components_catalog_catalogfilters",
+      "src_components_catalog_catalogfilters_age_options",
+      "src_components_catalog_catalogfilters_catalogfilters",
+      "src_components_catalog_catalogfilters_filters",
+      "src_components_catalog_catalogfilters_props",
+      "src_components_catalog_catalogfilters_sort_options",
+      "src_components_catalog_catalogparams",
+      "src_components_catalog_catalogparams_catalogparams",
+      "src_components_catalog_catalogview",
+      "src_components_catalog_catalogview_catalogview",
+      "src_lib_data_categories",
+      "src_lib_data_categories_categories",
+      "src_lib_data_categories_getcategory",
+      "src_lib_data_products",
+      "src_lib_data_products_getfeaturedproducts",
+      "src_lib_data_products_getproduct",
+      "src_lib_data_products_getproductsbyage",
+      "src_lib_data_products_getproductsbycategory",
+      "src_lib_data_products_getrelatedproducts",
+      "src_lib_data_products_products",
+      "src_lib_store_cart_cartline",
+      "src_lib_store_price_sync",
+      "src_lib_store_price_sync_auditcartprices",
+      "src_lib_store_price_sync_ensurepricesfresh",
+      "src_lib_store_price_sync_getcurrentprice",
+      "src_lib_store_price_sync_synccartlineprice"
+    ],
+    "6": [
+      "src_app_layout",
+      "src_app_layout_fredoka",
+      "src_app_layout_metadata",
+      "src_app_layout_nunito",
+      "src_app_layout_rootlayout",
+      "src_components_home_instagramgallery",
+      "src_components_home_instagramgallery_instagramgallery",
+      "src_components_home_instagramgallery_tiles",
+      "src_components_layout_footer",
+      "src_components_layout_footer_columns",
+      "src_components_layout_footer_footer",
+      "src_components_layout_footernewsletter",
+      "src_components_layout_footernewsletter_footernewsletter",
+      "src_components_layout_footernewsletter_rationale_14",
+      "src_components_layout_pricesyncprovider",
+      "src_components_layout_pricesyncprovider_pricesyncprovider",
+      "src_components_layout_scrolltotop",
+      "src_components_layout_scrolltotop_scrolltotop",
+      "src_components_legal_cookiebanner",
+      "src_components_legal_cookiebanner_cookiebanner",
+      "src_components_legal_cookiebanner_rationale_27",
+      "src_components_ui_socialicons",
+      "src_components_ui_socialicons_facebookicon",
+      "src_components_ui_socialicons_instagramicon",
+      "src_components_ui_socialicons_tiktokicon",
+      "src_components_ui_toaster",
+      "src_components_ui_toaster_toaster",
+      "src_hooks_usepricesync_usepricesync",
+      "src_lib_store_hydrationguard_hydrationguard",
+      "src_lib_store_toast_toaststore",
+      "src_lib_store_toast_toaststore_dismiss",
+      "src_lib_store_toast_toaststore_getstate",
+      "src_lib_store_toast_toaststore_notify",
+      "src_lib_store_toast_toaststore_push",
+      "src_lib_store_toast_toaststore_subscribe"
+    ],
+    "7": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "ref_mts",
+      "ref_next_dev_types_ts",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_exclude",
+      "tsconfig_include"
+    ],
+    "8": [
+      "src_app_api_auth_login_route",
+      "src_app_api_auth_login_route_getpool",
+      "src_app_api_auth_login_route_options",
+      "src_app_api_auth_login_route_post",
+      "src_app_api_auth_me_route",
+      "src_app_api_auth_me_route_get",
+      "src_app_api_auth_me_route_getpool",
+      "src_app_api_auth_me_route_options",
+      "src_app_api_auth_register_route",
+      "src_app_api_auth_register_route_getpool",
+      "src_app_api_auth_register_route_options",
+      "src_app_api_auth_register_route_post",
+      "src_lib_auth",
+      "src_lib_auth_createtoken",
+      "src_lib_auth_decodedtoken",
+      "src_lib_auth_gettokenfromheader",
+      "src_lib_auth_hashpassword",
+      "src_lib_auth_isvalidemail",
+      "src_lib_auth_isvalidpassword",
+      "src_lib_auth_tokenpayload",
+      "src_lib_auth_verifypassword",
+      "src_lib_auth_verifytoken"
+    ],
+    "9": [
+      "src_app_page",
+      "src_app_page_homepage",
+      "src_components_home_ageselector",
+      "src_components_home_ageselector_age_groups",
+      "src_components_home_ageselector_ageselector",
+      "src_components_home_benefitssection",
+      "src_components_home_benefitssection_benefits",
+      "src_components_home_benefitssection_benefitssection",
+      "src_components_home_categoriesstrip",
+      "src_components_home_categoriesstrip_categoriesstrip",
+      "src_components_home_featuredproducts_featuredproducts",
+      "src_components_home_hero",
+      "src_components_home_hero_hero",
+      "src_components_home_hero_heroillustration",
+      "src_components_home_newproductsslider",
+      "src_components_home_newproductsslider_newproductsslider",
+      "src_components_home_newsletter",
+      "src_components_home_newsletter_newsletter",
+      "src_components_home_newsletter_rationale_15",
+      "src_components_home_promobanner",
+      "src_components_home_promobanner_promobanner",
+      "src_components_product_productslider_productslider"
+    ],
+    "10": [
+      "scripts_generate_all_reviews",
+      "scripts_generate_all_reviews_allreviews",
+      "scripts_generate_all_reviews_colors",
+      "scripts_generate_all_reviews_counts",
+      "scripts_generate_all_reviews_fs",
+      "scripts_generate_all_reviews_getdatedaysago",
+      "scripts_generate_all_reviews_getrandomint",
+      "scripts_generate_all_reviews_idmatches",
+      "scripts_generate_all_reviews_path",
+      "scripts_generate_all_reviews_productids",
+      "scripts_generate_all_reviews_productscontent",
+      "scripts_generate_all_reviews_productspath",
+      "scripts_generate_all_reviews_reviewspath",
+      "scripts_generate_all_reviews_reviewtemplates",
+      "scripts_generate_all_reviews_shufflearray"
+    ],
+    "11": [
+      "scripts_sync_prices_everywhere",
+      "scripts_sync_prices_everywhere_cartcontent",
+      "scripts_sync_prices_everywhere_cartdrawer",
+      "scripts_sync_prices_everywhere_cartdrawerpath",
+      "scripts_sync_prices_everywhere_cartpage",
+      "scripts_sync_prices_everywhere_cartpagepath",
+      "scripts_sync_prices_everywhere_cartpath",
+      "scripts_sync_prices_everywhere_checkoutcontent",
+      "scripts_sync_prices_everywhere_checkoutpath",
+      "scripts_sync_prices_everywhere_fs",
+      "scripts_sync_prices_everywhere_path",
+      "scripts_sync_prices_everywhere_pricematches",
+      "scripts_sync_prices_everywhere_prices",
+      "scripts_sync_prices_everywhere_productscontent",
+      "scripts_sync_prices_everywhere_productspath"
+    ],
+    "12": [
+      "src_app_cgv_page",
+      "src_app_cgv_page_cgvpage",
+      "src_app_cgv_page_metadata",
+      "src_app_confidentialite_page",
+      "src_app_confidentialite_page_metadata",
+      "src_app_confidentialite_page_privacypage",
+      "src_app_cookies_page",
+      "src_app_cookies_page_cookiespage",
+      "src_app_cookies_page_metadata",
+      "src_app_mentions_legales_page",
+      "src_app_mentions_legales_page_legalnoticepage",
+      "src_app_mentions_legales_page_metadata",
+      "src_components_legal_legalpage",
+      "src_components_legal_legalpage_legalpage",
+      "src_components_legal_legalpage_legalpageprops"
+    ],
+    "13": [
+      "src_app_api_webhooks_stripe_route",
+      "src_app_api_webhooks_stripe_route_getpool",
+      "src_app_api_webhooks_stripe_route_getstripe",
+      "src_app_api_webhooks_stripe_route_handlechargerefunded",
+      "src_app_api_webhooks_stripe_route_handlepaymentintentfailed",
+      "src_app_api_webhooks_stripe_route_handlepaymentintentsucceeded",
+      "src_app_api_webhooks_stripe_route_options",
+      "src_app_api_webhooks_stripe_route_post",
+      "src_app_api_webhooks_stripe_route_rationale_163",
+      "src_app_api_webhooks_stripe_route_rationale_166",
+      "src_app_api_webhooks_stripe_route_rationale_169",
+      "src_app_api_webhooks_stripe_route_rationale_254"
+    ],
+    "14": [
+      "scripts_rebuild_products",
+      "scripts_rebuild_products_arrayend",
+      "scripts_rebuild_products_arraystart",
+      "scripts_rebuild_products_content",
+      "scripts_rebuild_products_filepath",
+      "scripts_rebuild_products_firstproduct",
+      "scripts_rebuild_products_fs",
+      "scripts_rebuild_products_helpers",
+      "scripts_rebuild_products_keepids",
+      "scripts_rebuild_products_keptproducts",
+      "scripts_rebuild_products_path"
+    ],
+    "15": [
+      "scripts_embed_review_counts",
+      "scripts_embed_review_counts_fs",
+      "scripts_embed_review_counts_matches",
+      "scripts_embed_review_counts_path",
+      "scripts_embed_review_counts_productscontent",
+      "scripts_embed_review_counts_productspath",
+      "scripts_embed_review_counts_reviewcounts",
+      "scripts_embed_review_counts_reviewscontent",
+      "scripts_embed_review_counts_reviewspath"
+    ],
+    "16": [
+      "vercel",
+      "vercel_buildcommand",
+      "vercel_env",
+      "vercel_env_next_public_site_url",
+      "vercel_env_node_env",
+      "vercel_envprefix",
+      "vercel_framework",
+      "vercel_outputdirectory"
+    ],
+    "17": [
+      "concept_hanging_toy_set",
+      "concept_pink_quilted_play_mat",
+      "concept_tummy_time_pillow",
+      "concept_wooden_baby_activity_gym",
+      "public_products_tapis_eveil_bois_2",
+      "public_products_tapis_eveil_bois_3",
+      "public_products_tapis_eveil_bois_4"
+    ],
+    "18": [
+      "scripts_update_prices",
+      "scripts_update_prices_content",
+      "scripts_update_prices_fs",
+      "scripts_update_prices_matches",
+      "scripts_update_prices_path",
+      "scripts_update_prices_productregex",
+      "scripts_update_prices_productspath"
+    ],
+    "19": [
+      "src_app_commande_page",
+      "src_app_commande_page_checkoutpage",
+      "src_app_commande_page_metadata",
+      "src_components_checkout_checkoutpageclient",
+      "src_components_checkout_checkoutpageclient_checkoutpageclient",
+      "src_components_checkout_checkoutpageclient_getstripepromise",
+      "src_components_checkout_checkoutpageclient_stripepromise"
+    ],
+    "20": [
+      "railway",
+      "railway_build",
+      "railway_build_builder",
+      "railway_deploy",
+      "railway_deploy_startcommand",
+      "railway_schema"
+    ],
+    "21": [
+      "scripts_upload_images_to_db",
+      "scripts_upload_images_to_db_fs",
+      "scripts_upload_images_to_db_images",
+      "scripts_upload_images_to_db_path",
+      "scripts_upload_images_to_db_pool",
+      "scripts_upload_images_to_db_uploadimages"
+    ],
+    "22": [
+      "src_hooks_useproductreviews",
+      "src_hooks_useproductreviews_review",
+      "src_hooks_useproductreviews_reviewsresponse",
+      "src_hooks_useproductreviews_reviewstats",
+      "src_hooks_useproductreviews_useproductreviews",
+      "src_hooks_useproductreviews_useproductreviewsoptions"
+    ],
+    "23": [
+      "scripts_check_product_images",
+      "scripts_check_product_images_checkimages",
+      "scripts_check_product_images_fs",
+      "scripts_check_product_images_path",
+      "scripts_check_product_images_pool"
+    ],
+    "24": [
+      "scripts_sync_products_from_db",
+      "scripts_sync_products_from_db_fs",
+      "scripts_sync_products_from_db_path",
+      "scripts_sync_products_from_db_pool",
+      "scripts_sync_products_from_db_syncproducts"
+    ],
+    "25": [
+      "scripts_upload_images_base64",
+      "scripts_upload_images_base64_fs",
+      "scripts_upload_images_base64_images",
+      "scripts_upload_images_base64_pool",
+      "scripts_upload_images_base64_uploadimages"
+    ],
+    "26": [
+      "src_app_admin_orders_page",
+      "src_app_admin_orders_page_adminorderspage",
+      "src_app_admin_orders_page_order",
+      "src_app_admin_orders_page_orderitem",
+      "src_app_admin_orders_page_statuscolor"
+    ],
+    "27": [
+      "src_app_api_checkout_create_payment_intent_route",
+      "src_app_api_checkout_create_payment_intent_route_getpool",
+      "src_app_api_checkout_create_payment_intent_route_getstripe",
+      "src_app_api_checkout_create_payment_intent_route_options",
+      "src_app_api_checkout_create_payment_intent_route_post"
+    ],
+    "28": [
+      "scripts_init_db",
+      "scripts_init_db_initdb",
+      "scripts_init_db_pool",
+      "scripts_init_db_products"
+    ],
+    "29": [
+      "scripts_migrate_reviews_sql",
+      "scripts_migrate_reviews_sql_fs",
+      "scripts_migrate_reviews_sql_path",
+      "scripts_migrate_reviews_sql_reviewsfile"
+    ],
+    "30": [
+      "scripts_update_review_counts",
+      "scripts_update_review_counts_pool",
+      "scripts_update_review_counts_updatereviewcounts",
+      "scripts_update_review_counts_updates"
+    ],
+    "31": [
+      "src_app_api_prices_route",
+      "src_app_api_prices_route_get",
+      "src_app_api_prices_route_getpool",
+      "src_app_api_prices_route_post"
+    ],
+    "32": [
+      "src_app_api_reviews_route",
+      "src_app_api_reviews_route_get",
+      "src_app_api_reviews_route_getpool",
+      "src_app_api_reviews_route_post"
+    ],
+    "33": [
+      "check_stripe",
+      "check_stripe_check",
+      "check_stripe_pool"
+    ],
+    "34": [
+      "scripts_add_product_balancoire_confortable",
+      "scripts_add_product_balancoire_confortable_addproduct",
+      "scripts_add_product_balancoire_confortable_pool"
+    ],
+    "35": [
+      "scripts_add_product_balle_prehension",
+      "scripts_add_product_balle_prehension_addproduct",
+      "scripts_add_product_balle_prehension_pool"
+    ],
+    "36": [
+      "scripts_add_product_baril_blocs",
+      "scripts_add_product_baril_blocs_addproduct",
+      "scripts_add_product_baril_blocs_pool"
+    ],
+    "37": [
+      "scripts_add_product_blocks_construction",
+      "scripts_add_product_blocks_construction_addproduct",
+      "scripts_add_product_blocks_construction_pool"
+    ],
+    "38": [
+      "scripts_add_product_blocs_10_pieces",
+      "scripts_add_product_blocs_10_pieces_addproduct",
+      "scripts_add_product_blocs_10_pieces_pool"
+    ],
+    "39": [
+      "scripts_add_product_blocs_empiler",
+      "scripts_add_product_blocs_empiler_addproduct",
+      "scripts_add_product_blocs_empiler_pool"
+    ],
+    "40": [
+      "scripts_add_product_boite_forme",
+      "scripts_add_product_boite_forme_addproduct",
+      "scripts_add_product_boite_forme_pool"
+    ],
+    "41": [
+      "scripts_add_product_camion_geant",
+      "scripts_add_product_camion_geant_addproduct",
+      "scripts_add_product_camion_geant_pool"
+    ],
+    "42": [
+      "scripts_add_product_camion_pompier_figurines",
+      "scripts_add_product_camion_pompier_figurines_addproduct",
+      "scripts_add_product_camion_pompier_figurines_pool"
+    ],
+    "43": [
+      "scripts_add_product_circuit_train_figurines",
+      "scripts_add_product_circuit_train_figurines_addproduct",
+      "scripts_add_product_circuit_train_figurines_pool"
+    ],
+    "44": [
+      "scripts_add_product_cube_volcan",
+      "scripts_add_product_cube_volcan_addproduct",
+      "scripts_add_product_cube_volcan_pool"
+    ],
+    "45": [
+      "scripts_add_product_lot_mini_vehicules",
+      "scripts_add_product_lot_mini_vehicules_addproduct",
+      "scripts_add_product_lot_mini_vehicules_pool"
+    ],
+    "46": [
+      "scripts_add_product_montagne_russe",
+      "scripts_add_product_montagne_russe_addproduct",
+      "scripts_add_product_montagne_russe_pool"
+    ],
+    "47": [
+      "scripts_add_product_panier_basket",
+      "scripts_add_product_panier_basket_addproduct",
+      "scripts_add_product_panier_basket_pool"
+    ],
+    "48": [
+      "scripts_add_product_pierres_sweet_cocoon",
+      "scripts_add_product_pierres_sweet_cocoon_addproduct",
+      "scripts_add_product_pierres_sweet_cocoon_pool"
+    ],
+    "49": [
+      "scripts_add_product_set_construction",
+      "scripts_add_product_set_construction_addproduct",
+      "scripts_add_product_set_construction_pool"
+    ],
+    "50": [
+      "scripts_add_product_table_balles_fun_ball",
+      "scripts_add_product_table_balles_fun_ball_addproduct",
+      "scripts_add_product_table_balles_fun_ball_pool"
+    ],
+    "51": [
+      "scripts_add_product_table_dinosaure",
+      "scripts_add_product_table_dinosaure_addproduct",
+      "scripts_add_product_table_dinosaure_pool"
+    ],
+    "52": [
+      "scripts_add_product_tapis_montgolfiere",
+      "scripts_add_product_tapis_montgolfiere_addproduct",
+      "scripts_add_product_tapis_montgolfiere_pool"
+    ],
+    "53": [
+      "scripts_add_stripe_column",
+      "scripts_add_stripe_column_addcolumn",
+      "scripts_add_stripe_column_pool"
+    ],
+    "54": [
+      "scripts_check_blocks_product",
+      "scripts_check_blocks_product_check",
+      "scripts_check_blocks_product_pool"
+    ],
+    "55": [
+      "scripts_check_categories",
+      "scripts_check_categories_checkcategories",
+      "scripts_check_categories_pool"
+    ],
+    "56": [
+      "scripts_check_db",
+      "scripts_check_db_checkdb",
+      "scripts_check_db_pool"
+    ],
+    "57": [
+      "scripts_check_db_schema",
+      "scripts_check_db_schema_checkschema",
+      "scripts_check_db_schema_pool"
+    ],
+    "58": [
+      "scripts_check_dinosaure",
+      "scripts_check_dinosaure_checkproduct",
+      "scripts_check_dinosaure_pool"
+    ],
+    "59": [
+      "scripts_check_mockups_remaining",
+      "scripts_check_mockups_remaining_checkmockups",
+      "scripts_check_mockups_remaining_pool"
+    ],
+    "60": [
+      "scripts_check_review_counts",
+      "scripts_check_review_counts_checkreviewcounts",
+      "scripts_check_review_counts_pool"
+    ],
+    "61": [
+      "scripts_create_orders_schema",
+      "scripts_create_orders_schema_createschema",
+      "scripts_create_orders_schema_pool"
+    ],
+    "62": [
+      "scripts_delete_all_mockups",
+      "scripts_delete_all_mockups_deleteallmockups",
+      "scripts_delete_all_mockups_pool"
+    ],
+    "63": [
+      "scripts_delete_and_add_blocks",
+      "scripts_delete_and_add_blocks_pool",
+      "scripts_delete_and_add_blocks_process"
+    ],
+    "64": [
+      "scripts_delete_blocks_product",
+      "scripts_delete_blocks_product_deleteproduct",
+      "scripts_delete_blocks_product_pool"
+    ],
+    "65": [
+      "scripts_delete_educatif_mockups",
+      "scripts_delete_educatif_mockups_deletemockups",
+      "scripts_delete_educatif_mockups_pool"
+    ],
+    "66": [
+      "scripts_delete_jeu_memoire",
+      "scripts_delete_jeu_memoire_deleteproduct",
+      "scripts_delete_jeu_memoire_pool"
+    ],
+    "67": [
+      "scripts_delete_mock_products",
+      "scripts_delete_mock_products_deleteproducts",
+      "scripts_delete_mock_products_pool"
+    ],
+    "68": [
+      "scripts_delete_mock_vehicles",
+      "scripts_delete_mock_vehicles_deleteproducts",
+      "scripts_delete_mock_vehicles_pool"
+    ],
+    "69": [
+      "scripts_delete_peluches_category",
+      "scripts_delete_peluches_category_deletecategory",
+      "scripts_delete_peluches_category_pool"
+    ],
+    "70": [
+      "scripts_fix_cube_images",
+      "scripts_fix_cube_images_fiximages",
+      "scripts_fix_cube_images_pool"
+    ],
+    "71": [
+      "scripts_fix_hape_images",
+      "scripts_fix_hape_images_fiximages",
+      "scripts_fix_hape_images_pool"
+    ],
+    "72": [
+      "scripts_fix_images_to_urls",
+      "scripts_fix_images_to_urls_fiximages",
+      "scripts_fix_images_to_urls_pool"
+    ],
+    "73": [
+      "scripts_fix_tapis_category",
+      "scripts_fix_tapis_category_fixcategory",
+      "scripts_fix_tapis_category_pool"
+    ],
+    "74": [
+      "scripts_init_railway_db",
+      "scripts_init_railway_db_initdatabase",
+      "scripts_init_railway_db_pool"
+    ],
+    "75": [
+      "scripts_list_all_products",
+      "scripts_list_all_products_listall",
+      "scripts_list_all_products_pool"
+    ],
+    "76": [
+      "scripts_restore_deleted_products",
+      "scripts_restore_deleted_products_pool",
+      "scripts_restore_deleted_products_restoreproducts"
+    ],
+    "77": [
+      "scripts_update_blocks_product_images",
+      "scripts_update_blocks_product_images_pool",
+      "scripts_update_blocks_product_images_updateproduct"
+    ],
+    "78": [
+      "scripts_update_blocs_empiler",
+      "scripts_update_blocs_empiler_pool",
+      "scripts_update_blocs_empiler_updateproduct"
+    ],
+    "79": [
+      "scripts_update_boite_forme",
+      "scripts_update_boite_forme_pool",
+      "scripts_update_boite_forme_updateproduct"
+    ],
+    "80": [
+      "scripts_update_boite_forme_prix",
+      "scripts_update_boite_forme_prix_pool",
+      "scripts_update_boite_forme_prix_updateproduct"
+    ],
+    "81": [
+      "scripts_update_camion_pompier",
+      "scripts_update_camion_pompier_pool",
+      "scripts_update_camion_pompier_updateproduct"
+    ],
+    "82": [
+      "scripts_update_category_jeux",
+      "scripts_update_category_jeux_pool",
+      "scripts_update_category_jeux_updatecategory"
+    ],
+    "83": [
+      "scripts_update_circuit_train",
+      "scripts_update_circuit_train_pool",
+      "scripts_update_circuit_train_updateproduct"
+    ],
+    "84": [
+      "scripts_update_cube_images",
+      "scripts_update_cube_images_pool",
+      "scripts_update_cube_images_updateimages"
+    ],
+    "85": [
+      "scripts_update_cube_volcan",
+      "scripts_update_cube_volcan_pool",
+      "scripts_update_cube_volcan_updateproduct"
+    ],
+    "86": [
+      "scripts_update_dinosaure_price",
+      "scripts_update_dinosaure_price_pool",
+      "scripts_update_dinosaure_price_updateprice"
+    ],
+    "87": [
+      "scripts_update_lot_mini_vehicules",
+      "scripts_update_lot_mini_vehicules_pool",
+      "scripts_update_lot_mini_vehicules_updateproduct"
+    ],
+    "88": [
+      "scripts_update_pierres_empiler",
+      "scripts_update_pierres_empiler_pool",
+      "scripts_update_pierres_empiler_updateproduct"
+    ],
+    "89": [
+      "scripts_update_product_tapis_montgolfiere",
+      "scripts_update_product_tapis_montgolfiere_pool",
+      "scripts_update_product_tapis_montgolfiere_updateproduct"
+    ],
+    "90": [
+      "scripts_update_set_construction_main_image",
+      "scripts_update_set_construction_main_image_pool",
+      "scripts_update_set_construction_main_image_updateproduct"
+    ],
+    "91": [
+      "scripts_update_table_dinosaure",
+      "scripts_update_table_dinosaure_pool",
+      "scripts_update_table_dinosaure_updateproduct"
+    ],
+    "92": [
+      "src_app_api_contact_route",
+      "src_app_api_contact_route_post",
+      "src_app_api_contact_route_rationale_24"
+    ],
+    "93": [
+      "src_app_api_products_route",
+      "src_app_api_products_route_get",
+      "src_app_api_products_route_getpool"
+    ],
+    "94": [
+      "src_app_api_update_price_route",
+      "src_app_api_update_price_route_getpool",
+      "src_app_api_update_price_route_post"
+    ],
+    "95": [
+      "src_app_commande_succes_page",
+      "src_app_commande_succes_page_metadata",
+      "src_app_commande_succes_page_successpage"
+    ],
+    "96": [
+      "src_app_deconnexion_page",
+      "src_app_deconnexion_page_logoutpage",
+      "src_app_deconnexion_page_metadata"
+    ],
+    "97": [
+      "src_components_home_brandsstrip",
+      "src_components_home_brandsstrip_brands",
+      "src_components_home_brandsstrip_brandsstrip"
+    ],
+    "98": [
+      "test_sync",
+      "test_sync_pool",
+      "test_sync_test"
+    ],
+    "99": [
+      "next_config_js_next_config",
+      "next_config_js_next_config_nextconfig"
+    ],
+    "100": [
+      "next_config_ts_next_config",
+      "next_config_ts_next_config_nextconfig"
+    ],
+    "101": [
+      "postcss_config",
+      "postcss_config_config"
+    ],
+    "102": [
+      "scripts_init",
+      "scripts_init_products"
+    ],
+    "103": [
+      "src_app_admin_prices_page",
+      "src_app_admin_prices_page_adminpricespage"
+    ],
+    "104": [
+      "src_app_api_admin_init_db_route",
+      "src_app_api_admin_init_db_route_post"
+    ],
+    "105": [
+      "src_app_robots",
+      "src_app_robots_robots"
+    ],
+    "106": [
+      "remove_mockups"
+    ]
+  },
+  "cohesion": {
+    "0": 0.06094627105052125,
+    "1": 0.052917232021709636,
+    "2": 0.044444444444444446,
+    "3": 0.07936507936507936,
+    "4": 0.05714285714285714,
+    "5": 0.08907563025210084,
+    "6": 0.08571428571428572,
+    "7": 0.06896551724137931,
+    "8": 0.1774891774891775,
+    "9": 0.12121212121212122,
+    "10": 0.13333333333333333,
+    "11": 0.13333333333333333,
+    "12": 0.17142857142857143,
+    "13": 0.2727272727272727,
+    "14": 0.18181818181818182,
+    "15": 0.2222222222222222,
+    "16": 0.25,
+    "17": 0.7619047619047619,
+    "18": 0.2857142857142857,
+    "19": 0.3333333333333333,
+    "20": 0.3333333333333333,
+    "21": 0.3333333333333333,
+    "22": 0.3333333333333333,
+    "23": 0.4,
+    "24": 0.4,
+    "25": 0.4,
+    "26": 0.5,
+    "27": 0.6,
+    "28": 0.5,
+    "29": 0.5,
+    "30": 0.5,
+    "31": 0.8333333333333334,
+    "32": 0.8333333333333334,
+    "33": 0.6666666666666666,
+    "34": 0.6666666666666666,
+    "35": 0.6666666666666666,
+    "36": 0.6666666666666666,
+    "37": 0.6666666666666666,
+    "38": 0.6666666666666666,
+    "39": 0.6666666666666666,
+    "40": 0.6666666666666666,
+    "41": 0.6666666666666666,
+    "42": 0.6666666666666666,
+    "43": 0.6666666666666666,
+    "44": 0.6666666666666666,
+    "45": 0.6666666666666666,
+    "46": 0.6666666666666666,
+    "47": 0.6666666666666666,
+    "48": 0.6666666666666666,
+    "49": 0.6666666666666666,
+    "50": 0.6666666666666666,
+    "51": 0.6666666666666666,
+    "52": 0.6666666666666666,
+    "53": 0.6666666666666666,
+    "54": 0.6666666666666666,
+    "55": 0.6666666666666666,
+    "56": 0.6666666666666666,
+    "57": 0.6666666666666666,
+    "58": 0.6666666666666666,
+    "59": 0.6666666666666666,
+    "60": 0.6666666666666666,
+    "61": 0.6666666666666666,
+    "62": 0.6666666666666666,
+    "63": 0.6666666666666666,
+    "64": 0.6666666666666666,
+    "65": 0.6666666666666666,
+    "66": 0.6666666666666666,
+    "67": 0.6666666666666666,
+    "68": 0.6666666666666666,
+    "69": 0.6666666666666666,
+    "70": 0.6666666666666666,
+    "71": 0.6666666666666666,
+    "72": 0.6666666666666666,
+    "73": 0.6666666666666666,
+    "74": 0.6666666666666666,
+    "75": 0.6666666666666666,
+    "76": 0.6666666666666666,
+    "77": 0.6666666666666666,
+    "78": 0.6666666666666666,
+    "79": 0.6666666666666666,
+    "80": 0.6666666666666666,
+    "81": 0.6666666666666666,
+    "82": 0.6666666666666666,
+    "83": 0.6666666666666666,
+    "84": 0.6666666666666666,
+    "85": 0.6666666666666666,
+    "86": 0.6666666666666666,
+    "87": 0.6666666666666666,
+    "88": 0.6666666666666666,
+    "89": 0.6666666666666666,
+    "90": 0.6666666666666666,
+    "91": 0.6666666666666666,
+    "92": 0.6666666666666666,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 0.6666666666666666,
+    "96": 0.6666666666666666,
+    "97": 0.6666666666666666,
+    "98": 0.6666666666666666,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_lib_utils_cn",
+      "label": "cn()",
+      "degree": 40
+    },
+    {
+      "id": "src_components_shared_breadcrumbs_breadcrumbs",
+      "label": "Breadcrumbs()",
+      "degree": 21
+    },
+    {
+      "id": "src_components_ui_button_button",
+      "label": "Button",
+      "degree": 21
+    },
+    {
+      "id": "src_components_shared_pagehero_pagehero",
+      "label": "PageHero()",
+      "degree": 17
+    },
+    {
+      "id": "src_lib_utils_formatprice",
+      "label": "formatPrice()",
+      "degree": 17
+    },
+    {
+      "id": "src_lib_store_cart_usecart",
+      "label": "useCart",
+      "degree": 16
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "src_lib_data_products_products",
+      "label": "PRODUCTS",
+      "degree": 11
+    },
+    {
+      "id": "src_components_product_productcard_productcard",
+      "label": "ProductCard()",
+      "degree": 10
+    },
+    {
+      "id": "src_components_product_productgrid_productgrid",
+      "label": "ProductGrid()",
+      "degree": 10
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ProductReviews()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/product/ProductReviews.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `ProductReviews()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "AdminPricesPage()",
+      "target": "formatPrice()",
+      "source_files": [
+        "src/app/admin/prices-client/page.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `AdminPricesPage()` unexpectedly reaches hub `formatPrice()`"
+    },
+    {
+      "source": "generateMetadata()",
+      "target": "getCategory()",
+      "source_files": [
+        "src/app/categorie/[slug]/page.tsx",
+        "src/lib/data/categories.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `generateMetadata()` unexpectedly reaches hub `getCategory()`"
+    },
+    {
+      "source": "CategoryPage()",
+      "target": "getCategory()",
+      "source_files": [
+        "src/app/categorie/[slug]/page.tsx",
+        "src/lib/data/categories.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `CategoryPage()` unexpectedly reaches hub `getCategory()`"
+    },
+    {
+      "source": "CatalogFilters()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/catalog/CatalogFilters.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `cn()` connect `Product Catalog UI` to `Static Account Pages`, `Product Reviews Migration`, `Shop Catalog Pages`, `App Layout Footer`, `Homepage Components`?",
+      "why": "High betweenness centrality (0.023) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Breadcrumbs()` connect `Static Account Pages` to `Product Catalog UI`, `Product Reviews Migration`, `Legal Pages`, `Shop Catalog Pages`?",
+      "why": "High betweenness centrality (0.016) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Button` connect `Product Catalog UI` to `Static Account Pages`, `Shop Catalog Pages`, `Homepage Components`, `App Layout Footer`?",
+      "why": "High betweenness centrality (0.012) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `{ Pool }`, `nextConfig`, `nextConfig` to the rest of the system?",
+      "why": "288 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Product Catalog UI` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06094627105052125 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Static Account Pages` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.052917232021709636 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `NPM Dependencies` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
