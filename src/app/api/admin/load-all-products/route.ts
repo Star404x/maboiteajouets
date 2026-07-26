@@ -35,18 +35,20 @@ export async function POST(request: Request) {
         const reviewCount = reviewCountByProduct[product.id] || 0;
         
         const result = await client.query(
-          `INSERT INTO products (id, name, description, price, images, category, rating, reviewcount)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+          `INSERT INTO products (id, slug, name, description, price, images, category, rating, reviewcount)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
            ON CONFLICT (id) DO UPDATE SET 
-           name = $2, 
-           description = $3, 
-           price = $4, 
-           images = $5, 
-           category = $6, 
-           rating = $7, 
-           reviewcount = $8`,
+           slug = $2,
+           name = $3, 
+           description = $4, 
+           price = $5, 
+           images = $6, 
+           category = $7, 
+           rating = $8, 
+           reviewcount = $9`,
           [
             product.id,
+            product.slug,
             product.name,
             product.description,
             product.price,
