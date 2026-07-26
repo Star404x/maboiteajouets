@@ -33,7 +33,8 @@ export async function POST(request: NextRequest) {
 
     console.log("[INIT] ✅ Connected");
 
-    // Create table
+    // Create products table
+    console.log("[INIT] Creating products table...");
     await client.query(`
       CREATE TABLE IF NOT EXISTS products (
         id TEXT PRIMARY KEY,
@@ -53,100 +54,126 @@ export async function POST(request: NextRequest) {
         badge VARCHAR,
         bgClass VARCHAR,
         created_at TIMESTAMP DEFAULT NOW()
-      );
+      )
     `);
+    console.log("[INIT] ✅ Products table");
 
-    // Check existing data
-    const result = await client.query("SELECT COUNT(*) as count FROM products");
-    const count = parseInt(result.rows[0].count);
-
-    if (count === 0) {
-      console.log("[INIT] Loading sample products...");
-      const products = [
-        [
-          "p-009",
-          "Boîte d'activités Hape",
-          "boite-activites-hape",
-          "jouets-bebe",
-          "Jouets bébé",
-          "Boîte d'activités 5 faces avec engrenages, boules, blocs, labyrinthe et miroir pour éveiller la motricité.",
-          36.4,
-          4.8,
-          245,
-        ],
-        [
-          "p-015",
-          "O-Ball - Ballon sensoriel multicolore",
-          "balle-prehension-multicolore",
-          "jouets-bebe",
-          "Jouets bébé",
-          "Ballon avec trous pour une bonne prise en main - stimule les sens et la motricité fine.",
-          7.8,
-          4.7,
-          180,
-        ],
-        [
-          "p-017",
-          "Cube sensoriel Ludi",
-          "cube-sensoriel-ludi",
-          "jouets-bebe",
-          "Jouets bébé",
-          "Cube avec 6 activités différentes pour éveiller bébé - sons, textures, couleurs.",
-          13.9,
-          4.8,
-          92,
-        ],
-        [
-          "p-021",
-          "Actiroller - Rouleau Musical Miniland",
-          "actiroller-rouleau-musical",
-          "jouets-bebe",
-          "Jouets bébé",
-          "Rouleau musical qui roule et produit des sons mélodieux.",
-          32.8,
-          4.7,
-          78,
-        ],
-      ];
-
-      for (const p of products) {
-        const [id, name, slug, category, categoryName, description, price, rating, reviewCount] = p as any[];
-        await client.query(
-          `INSERT INTO products (id, name, slug, category, categoryName, description, price, rating, reviewCount, inStock, images)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true, $10)
-           ON CONFLICT DO NOTHING`,
-          [
-            id,
-            name,
-            slug,
-            category,
-            categoryName,
-            description,
-            price,
-            rating,
-            reviewCount,
-            [`/products/${slug}-1.png`],
-          ]
-        );
+    // Create reviews table with explicit error handling
+    console.log("[INIT] Creating reviews table...");
+    try {
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS reviews (
+          id TEXT PRIMARY KEY,
+          productId TEXT NOT NULL,
+          author VARCHAR NOT NULL,
+          rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+          content TEXT NOT NULL,
+          date DATE NOT NULL,
+          avatarColor VARCHAR,
+          verified_purchase BOOLEAN DEFAULT false,
+          helpful_count INT DEFAULT 0,
+          created_at TIMESTAMP DEFAULT NOW(),
+          FOREIGN KEY (productId) REFERENCES products(id)
+        )
+      `);
+      
+      // Create indexes separately
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_reviews_productId ON reviews(productId)`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_reviews_rating ON reviews(rating)`);
+      
+      console.log("[INIT] ✅ Reviews table");
+    } catch (e) {
+      const err = e as any;
+      console.error("[INIT] ⚠️ Reviews table:", err.message);
+      if (!err.message?.includes("already exists")) {
+        throw e;
       }
-
-      console.log(`[INIT] ✅ Loaded ${products.length} products`);
-    } else {
-      console.log(`[INIT] ℹ️  Database already has ${count} products`);
     }
 
+    // Create orders table
+    console.log("[INIT] Creating orders table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS orders (
+        id TEXT PRIMARY KEY,
+        customer_email VARCHAR NOT NULL,
+        customer_name VARCHAR,
+        status VARCHAR DEFAULT 'pending',
+        total_amount DECIMAL NOT NULL,
+        currency VARCHAR DEFAULT 'EUR',
+        payment_intent_id VARCHAR UNIQUE,
+        items JSONB,
+        shipping_address JSONB,
+        billing_address JSONB,
+        shipping_cost DECIMAL DEFAULT 0,
+        tax DECIMAL DEFAULT 0,
+        tracking_number VARCHAR,
+        notes TEXT,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    console.log("[INIT] ✅ Orders table");
+
+    // Create users table
+    console.log("[INIT] Creating users table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id TEXT PRIMARY KEY,
+        email VARCHAR UNIQUE NOT NULL,
+        password_hash VARCHAR NOT NULL,
+        full_name VARCHAR,
+        created_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    console.log("[INIT] ✅ Users table");
+
+    // Insert sample reviews
+    console.log("[INIT] Inserting sample data...");
+    const sampleReviews = [
+      { id: "r-001", productId: "p-009", author: "Marie D.", rating: 5, content: "Excellent qualité!", date: "2026-07-20", avatarColor: "pink" },
+      { id: "r-002", productId: "p-009", author: "Jean P.", rating: 4, content: "Très bon produit", date: "2026-07-19", avatarColor: "blue" },
+      { id: "r-003", productId: "p-015", author: "Sophie L.", rating: 5, content: "Adorable!", date: "2026-07-18", avatarColor: "green" },
+      { id: "r-004", productId: "p-017", author: "Luc M.", rating: 4, content: "Bon rapport qualité-prix", date: "2026-07-17", avatarColor: "yellow" },
+    ];
+
+    for (const review of sampleReviews) {
+      try {
+        await client.query(
+          `INSERT INTO reviews (id, productId, author, rating, content, date, avatarColor) 
+           VALUES ($1, $2, $3, $4, $5, $6, $7)
+           ON CONFLICT (id) DO NOTHING`,
+          [review.id, review.productId, review.author, review.rating, review.content, review.date, review.avatarColor]
+        );
+      } catch (e) {
+        console.warn("[INIT] Could not insert review:", (e as Error).message);
+      }
+    }
+
+    console.log("[INIT] ✅ Sample data inserted");
+
+    // Check final state
+    const productCount = await client.query("SELECT COUNT(*) FROM products");
+    const reviewCount = await client.query("SELECT COUNT(*) FROM reviews");
+    const orderCount = await client.query("SELECT COUNT(*) FROM orders");
+    const userCount = await client.query("SELECT COUNT(*) FROM users");
+
     client.release();
-    await pool.end();
+    pool.end();
 
     return NextResponse.json({
       success: true,
-      message: "Database initialized",
-      productsCount: Math.max(count, 4),
+      message: "Database initialized successfully",
+      tables: {
+        products: productCount.rows[0].count,
+        reviews: reviewCount.rows[0].count,
+        orders: orderCount.rows[0].count,
+        users: userCount.rows[0].count,
+      },
     });
-  } catch (error: any) {
-    console.error("[INIT] ❌ Error:", error.message);
+  } catch (error) {
+    console.error("[INIT] Fatal error:", error);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { error: error instanceof Error ? error.message : "Unknown error" },
       { status: 500 }
     );
   }

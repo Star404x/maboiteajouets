@@ -35,6 +35,23 @@ export async function POST(request: NextRequest) {
     const client = await dbPool.connect();
 
     try {
+      // Check if reviews table exists
+      const tableCheck = await client.query(`
+        SELECT EXISTS (
+          SELECT FROM information_schema.tables 
+          WHERE table_name = 'reviews'
+        )
+      `);
+
+      if (!tableCheck.rows[0].exists) {
+        return NextResponse.json({
+          success: false,
+          error: "reviews table does not exist - run /api/admin/init-db first",
+          productsUpdated: 0,
+          products: []
+        });
+      }
+
       // Get count of reviews per product
       const reviewCounts = await client.query(`
         SELECT productId, COUNT(*) as count
@@ -45,22 +62,26 @@ export async function POST(request: NextRequest) {
       console.log(`[SYNC] Found reviews for ${reviewCounts.rows.length} products`);
 
       // Update each product's reviewCount
+      let updated = 0;
       for (const row of reviewCounts.rows) {
-        await client.query(
+        const result = await client.query(
           "UPDATE products SET reviewCount = $1 WHERE id = $2",
           [row.count, row.productId]
         );
+        if (result.rowCount && result.rowCount > 0) {
+          updated++;
+        }
         console.log(`[SYNC] ✅ ${row.productId}: ${row.count} reviews`);
       }
 
       // Reset reviewCount to 0 for products with no reviews
-      const zeroReviews = await client.query(`
+      const zeroResult = await client.query(`
         UPDATE products 
         SET reviewCount = 0 
         WHERE id NOT IN (SELECT DISTINCT productId FROM reviews)
       `);
 
-      console.log(`[SYNC] ✅ Reset ${zeroReviews.rowCount} products with no reviews`);
+      console.log(`[SYNC] ✅ Reset ${zeroResult.rowCount || 0} products with no reviews`);
 
       // Get final result
       const final = await client.query(`
@@ -72,7 +93,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         message: "Review counts synced successfully",
-        productsUpdated: reviewCounts.rows.length + (zeroReviews.rowCount || 0),
+        productsUpdated: updated,
+        totalProducts: final.rows.length,
         products: final.rows
       });
 
@@ -82,7 +104,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("[SYNC] Error:", error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Unknown error" },
+      { error: error instanceof Error ? error.message : "Unknown error", success: false },
       { status: 500 }
     );
   }
