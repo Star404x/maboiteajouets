@@ -5,6 +5,9 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
 import { CatalogParams } from "@/components/catalog/CatalogParams";
 
+// ISR: Revalidate every 60 seconds to pick up price changes from DB
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Boutique — Tous nos jouets",
   description:

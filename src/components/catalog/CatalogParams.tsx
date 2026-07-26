@@ -1,15 +1,15 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { CatalogView } from "./CatalogView";
+import { CatalogViewWithDB } from "./CatalogViewWithDB";
 
 /**
- * Extract query params on the client (compatible with static export).
+ * Extract query params on the client and fetch fresh product data from DB.
  */
 export function CatalogParams() {
   const params = useSearchParams();
   return (
-    <CatalogView
+    <CatalogViewWithDB
       initialCategory={params.get("category") ?? undefined}
       initialAge={params.get("age") ?? undefined}
     />
