@@ -30,9 +30,22 @@ export async function POST(request: Request) {
       let inserted = 0;
       let updated = 0;
 
+      // Helper to generate slug if missing
+      const getSlug = (product: any): string => {
+        if (product.slug) return product.slug;
+        // Fallback: generate from name
+        return product.name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+      };
+
       // Insert or update all products from static PRODUCTS array
       for (const product of PRODUCTS) {
         const reviewCount = reviewCountByProduct[product.id] || 0;
+        const slug = getSlug(product);
         
         const result = await client.query(
           `INSERT INTO products (id, slug, name, description, price, images, category, rating, reviewcount)
@@ -48,7 +61,7 @@ export async function POST(request: Request) {
            reviewcount = $9`,
           [
             product.id,
-            product.slug,
+            slug,
             product.name,
             product.description,
             product.price,
