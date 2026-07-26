@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Star } from "lucide-react";
+import { Pool } from "pg";
 // Removed DB imports - using static PRODUCTS data for SSG
 import { PRODUCTS } from "@/lib/data/products";
 import { REVIEWS } from "@/lib/data/reviews";
+
+// ISR: Revalidate every 60 seconds to pick up price changes from DB
+export const revalidate = 60;
 import type { Review } from "@/lib/types";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { ProductGrid } from "@/components/product/ProductGrid";
@@ -36,16 +40,56 @@ export async function generateMetadata({
   };
 }
 
+// Fetch fresh product data from DB if available
+async function getProductFromDB(slug: string) {
+  try {
+    const dbUrl = process.env.DATABASE_URL;
+    if (!dbUrl) return null;
+    
+    const pool = new Pool({ connectionString: dbUrl, max: 1 });
+    const client = await pool.connect();
+    
+    try {
+      const result = await client.query(
+        "SELECT * FROM products WHERE slug = $1",
+        [slug]
+      );
+      
+      if (result.rows.length > 0) {
+        return result.rows[0];
+      }
+    } finally {
+      client.release();
+      pool.end();
+    }
+  } catch (e) {
+    // Fall back to static data on DB error
+    console.warn("[ProductPage] DB fetch failed, using static data");
+  }
+  return null;
+}
+
 export default async function ProductPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  // Use PRODUCTS data (available at build time) instead of DB query
-  // This avoids database connection errors during static generation
+  
+  // Try to fetch fresh product data from DB (ISR revalidates every 60s)
+  let dbProduct = await getProductFromDB(slug);
+  
+  // Fall back to static PRODUCTS data
   let product = PRODUCTS.find((prod) => prod.slug === slug);
   if (!product) notFound();
+  
+  // If DB product exists, update price from DB
+  if (dbProduct) {
+    product = { ...product, price: parseFloat(dbProduct.price) };
+    if (dbProduct.reviewcount) {
+      product = { ...product, reviewCount: dbProduct.reviewcount };
+    }
+  }
 
   // Load reviews for this product at build-time
   const productNum = product.id.replace('p-', '');
