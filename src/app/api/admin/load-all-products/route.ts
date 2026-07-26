@@ -50,7 +50,7 @@ export async function POST(request: Request) {
             product.name,
             product.description,
             product.price,
-            product.images, // Array, PostgreSQL will handle it
+            product.images, // PostgreSQL array type
             product.category,
             product.rating,
             reviewCount,
