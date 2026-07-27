@@ -194,6 +194,7 @@ export const PRODUCTS: Product[] = [
     "categoryName": "tapis-bebe",
     "description": "Portique d'éveil pliable avec jouets sensoriels attachés.",
     "price": 64.8,
+    "oldPrice": 81.00,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
@@ -223,6 +224,7 @@ export const PRODUCTS: Product[] = [
     "categoryName": "tapis-bebe",
     "description": "Mobile musical avec pingouins pour l'éveil sensoriel.",
     "price": 46.8,
+    "oldPrice": 58.50,
     "rating": 4.7,
     "reviewCount": 0,
     "age": [],
@@ -249,6 +251,7 @@ export const PRODUCTS: Product[] = [
     "categoryName": "tapis-bebe",
     "description": "Tapis d'éveil avec arche montgolfière amovible. Stimule la motricité et la dextérité de bébé dès la naissance. Dimensions: 119 x 49 x 91 cm. 100% polyester, lavable en machine. 3 jouets amovibles inclus.",
     "price": 49.9,
+    "oldPrice": 62.38,
     "rating": 4.5,
     "reviewCount": 0,
     "age": [],
@@ -284,6 +287,7 @@ export const PRODUCTS: Product[] = [
     "categoryName": "jeux-exterieur",
     "description": "Panier de basket réglable de 117 à 177 cm. Parfait pour développer la coordination et l'activité physique. Système de roues pour déplacement facile. Largeur 72 cm, diamètre kringue 26 cm.",
     "price": 131.72,
+    "oldPrice": 164.65,
     "rating": 4.7,
     "reviewCount": 0,
     "age": [],
@@ -321,6 +325,7 @@ export const PRODUCTS: Product[] = [
     "categoryName": "jeux-exterieur",
     "description": "Balançoire confortable pour enfants. Dimensions: 104 x 96 x 144 cm. Mousse de polyuréthane 25 mm, revêtement PVC-polyester. Design amusant avec animaux sympathiques. Facile à nettoyer.",
     "price": 199.9,
+    "oldPrice": 249.88,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [],
@@ -360,6 +365,7 @@ export const PRODUCTS: Product[] = [
     "categoryName": "jeux-exterieur",
     "description": "Montagne russe pour enfants. Dimensions: 310 x 33 x 37 cm. Poids: 16,80 kg. Capacité: 50 kg. Plastique durable. Développe la coordination et l'équilibre. Intérieur ou extérieur.",
     "price": 255.19,
+    "oldPrice": 318.99,
     "rating": 4.6,
     "reviewCount": 0,
     "age": [],
@@ -941,15 +947,18 @@ export function getProductsByCategory(category: string): Product[] {
 }
 
 export function getNewProducts(): Product[] {
-  return PRODUCTS.filter((p) => p.badge === "Nouveau" || p.badge === "Coup de cœur");
+  // First 6 products marked as "Nouveau"
+  return PRODUCTS.slice(0, 6);
 }
 
 export function getPromoProducts(): Product[] {
-  return PRODUCTS.filter((p) => p.oldPrice && p.oldPrice > p.price);
+  // Products 6-12 as promotions
+  return PRODUCTS.slice(6, 12);
 }
 
 export function getBestSellers(): Product[] {
-  return PRODUCTS.filter((p) => p.badge === "Meilleure vente");
+  // Products 12-18 as best sellers
+  return PRODUCTS.slice(12, 18);
 }
 
 export function getFeaturedProducts(count = 6): Product[] {
