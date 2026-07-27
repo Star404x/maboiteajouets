@@ -781,14 +781,16 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-035",
     "slug": "table-activites-dinosaure",
-    "name": "Table d'activités dinosaure",
+    "name": "Table d'activités dinosaure Janod",
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
     "description": "Partez pour un voyage extraordinaire au cœur de l'ère des dinosaures avec cette incroyable table d'activités en bois ! Cette table, aux teintes rouilles et bleues vibrantes, transporte les petits explorateurs dans un univers jurassique fascinant.\n\nCette table d'aventures palpitantes offre 8 activités variées, conçues pour stimuler la curiosité, la motricité et la concentration des tout-petits :\n- Circuit du tricératops : Faites rouler le tricératops sur son circuit, le faisant passer sous le volcan pour déclencher un tintement joyeux\n- Boulier dinosaure : Explorez le monde des dinosaures avec un boulier de 10 perles en bois accompagné d'un ptéranodon volant\n- Roues à engrenages pour développer la motricité fine\n- Miroir rotatif pour une dimension ludique\n- Œuf sonore pour l'éveil auditif\n- Zones de jeux colorées et détails enchanteurs\n- Éléments en feutrine douce représentant la fumée du volcan\n- Dinosaures aux yeux ronds et petits œufs animés\n\nCette table d'activités regorge de détails captivants qui stimulent l'imagination. Les roues à engrenages, l'œuf sonore et le miroir rotatif ajoutent une dimension sensorielle enrichissante à l'expérience de jeu.",
-    "price": 101,
+    "price": 86.8,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": [
+      "1-3"
+    ],
     "images": [
       "/products/table-activites-dinosaure-1.png",
       "/products/table-activites-dinosaure-2.png",
@@ -816,7 +818,7 @@ export const PRODUCTS: Product[] = [
     "color": "mint",
     "bgClass": "bg-[#E4F7F5]",
     "badge": "Nouveau",
-    "dimensions": "40 x 32 x 52,5 cm (hauteur du plateau: 32 cm)"
+    "dimensions": "L 40 x P 32 x H 52,5 cm | Hauteur du plateau: 32 cm | À partir de 12 mois"
   },
   {
     "id": "p-036",
