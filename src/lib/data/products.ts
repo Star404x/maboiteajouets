@@ -904,14 +904,16 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-038",
     "slug": "pierres-empiler-sweet-cocoon",
-    "name": "Pierres à empiler sweet cocoon",
+    "name": "Pierres à empiler sweet cocoon Janod",
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
     "description": "Ces pierres d'équilibre en bois constituent un jeu de manipulation aussi esthétique que stimulant pour les jeunes enfants. Composé de 20 pierres aux formes variées et aux découpes uniques, ce jeu invite les tout-petits à explorer la construction libre et l'équilibre.\n\nLes couleurs vitaminées apportent une dimension visuelle joyeuse qui attire naturellement l'attention et stimule l'éveil sensoriel.\n\nDécouvrez différentes façons de jouer :\n- Créer des tours et des structures d'équilibre\n- Expérimenter avec les formes irrégulières\n- Inventer des sculptures originales et créatives\n- Développer la reconnaissance de motifs et de formes\n\nGrâce à leurs formes irrégulières, ces pierres encouragent la réflexion, la concentration et la créativité. Cette liberté de manipulation nourrit l'autonomie progressive et renforce la confiance en soi lorsqu'ils parviennent à maintenir leurs structures en équilibre.\n\nPédagogie :\nParfaitement adapté pour les approches Montessori et Pikler, ce matériel s'intègre dans les espaces de jeu libre, les crèches, micro-crèches et établissements d'accueil du jeune enfant.\n\nCaractéristiques :\n- 20 pierres en bois de pin\n- Formes uniques et variées pour chaque pièce\n- Peinture à l'eau pour une sécurité maximale\n- Design français\n- Dimensions générales: 25 x 8 x 20 cm",
-    "price": 56.8,
+    "price": 51.8,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": [
+      "2-6"
+    ],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
       "/products/pierres-empiler-sweet-cocoon-2.png",
@@ -938,7 +940,7 @@ export const PRODUCTS: Product[] = [
     "color": "mint",
     "bgClass": "bg-[#E4F7F5]",
     "badge": "Nouveau",
-    "dimensions": "25 x 8 x 20 cm (grandes pierres: 12 x 2,5 x 6 cm, petites: 3,5 cm)"
+    "dimensions": "L 25 x P 8 x H 20 cm | 20 pièrres multicolores | 2-6 ans (Réf. J5213 Janod, Design Français)"
   }
 ];
 
