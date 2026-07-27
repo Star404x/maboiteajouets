@@ -823,14 +823,16 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-036",
     "slug": "cube-volcan-activites",
-    "name": "Cube volcan d'activités",
+    "name": "Cube volcan d'activités Janod",
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
     "description": "Imaginez un volcan coloré, orné d'adorables illustrations de dinosaures, prêt à stimuler la curiosité de votre enfant. Ce cube Dino est une invitation à l'exploration, avec des activités captivantes à chaque coin.\n\nCe volcan multi-activités offre des expériences sensorielles variées :\n\nÀ l'avant : Boîte à formes avec dinosaures (Tyrannosaures, Tricératops, Ptéranodons) à encastrer dans les formes correspondantes. Les pièces tombent doucement grâce à la feutrine au fond de la boîte, sans faire de bruit, ce qui permet à votre enfant de les récupérer facilement par la grande ouverture sur le côté.\n\nÀ l'arrière : Trois engrenages à tourner pour développer la motricité fine et la coordination.\n\nCôté gauche : Un miroir pour stimuler la découverte de soi.\n\nSur le dessus : Un labyrinthe captivant et un boulier avec 8 jolies perles en bois.\n\nCe cube de jeux est facilement transportable et spécialement conçu pour les petits explorateurs du monde des dinosaures. Chaque activité développe la curiosité, la motricité et la concentration de votre enfant.",
     "price": 49.8,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": [
+      "1-3"
+    ],
     "images": [
       "/products/cube-volcan-activites-1.png",
       "/products/cube-volcan-activites-2.png",
@@ -858,7 +860,7 @@ export const PRODUCTS: Product[] = [
     "color": "mint",
     "bgClass": "bg-[#E4F7F5]",
     "badge": "Nouveau",
-    "dimensions": "16,8 x 16,2 x 21 cm"
+    "dimensions": "L 16.8 x P 16.2 x H 21 cm | À partir de 12 mois (Réf. J5614)"
   },
   {
     "id": "p-037",
