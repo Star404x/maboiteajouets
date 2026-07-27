@@ -35,6 +35,10 @@ export function LoginForm() {
     const result = await login(formData.email, formData.password);
 
     if (result.success) {
+      // Save user name to localStorage for header
+      if (result.user?.fullName) {
+        localStorage.setItem('user_name', result.user.fullName);
+      }
       // Redirect to account page
       router.push("/compte");
     } else {

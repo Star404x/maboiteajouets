@@ -52,6 +52,10 @@ export function SignupForm() {
     );
 
     if (result.success) {
+      // Save user name to localStorage for header
+      if (result.user?.fullName) {
+        localStorage.setItem('user_name', result.user.fullName);
+      }
       setSuccess(true);
       setFormData({
         email: "",

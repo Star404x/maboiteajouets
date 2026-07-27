@@ -26,6 +26,9 @@ export function Header() {
   const [catOpen, setCatOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [isAuthed, setIsAuthed] = useState(false);
+  const [userName, setUserName] = useState('');
   const openCart = useCart((s) => s.openCart);
   const items = useCart((s) => s.items);
   const favorites = useCart((s) => s.favorites);
@@ -40,6 +43,14 @@ export function Header() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    // Check auth status
+    const token = localStorage.getItem('auth_token');
+    const name = localStorage.getItem('user_name');
+    setIsAuthed(!!token);
+    setUserName(name || '');
   }, []);
 
   return (
@@ -144,13 +155,64 @@ export function Header() {
                 <Search className="w-5 h-5" />
               </button>
 
-              <Link
-                href="/compte"
-                className="hidden sm:inline-flex h-11 w-11 items-center justify-center rounded-full text-navy/80 hover:text-coral hover:bg-coral/5 transition-colors"
-                aria-label="Mon compte"
-              >
-                <User className="w-5 h-5" />
-              </Link>
+              {/* Profile Menu */}
+              {isAuthed ? (
+                <div className="relative hidden sm:block">
+                  <button
+                    onClick={() => setProfileOpen(!profileOpen)}
+                    className="h-11 px-4 inline-flex items-center gap-2 rounded-full text-navy/80 hover:text-coral hover:bg-coral/5 transition-colors text-sm font-semibold"
+                  >
+                    <User className="w-5 h-5" />
+                    <span className="max-w-[120px] truncate">{userName.split(' ')[0]}</span>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", profileOpen && "rotate-180")} />
+                  </button>
+
+                  <AnimatePresence>
+                    {profileOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute right-0 top-full mt-2 w-48 bg-white rounded-2xl shadow-card border border-navy/5 overflow-hidden"
+                      >
+                        <Link href="/compte" className="block px-4 py-3 hover:bg-gray-50 text-sm font-semibold text-navy">
+                          Dashboard
+                        </Link>
+                        <Link href="/compte/profil" className="block px-4 py-3 hover:bg-gray-50 text-sm text-navy/70 hover:text-navy">
+                          Mon Profil
+                        </Link>
+                        <Link href="/compte/commandes" className="block px-4 py-3 hover:bg-gray-50 text-sm text-navy/70 hover:text-navy">
+                          Mes Commandes
+                        </Link>
+                        <Link href="/compte/favoris" className="block px-4 py-3 hover:bg-gray-50 text-sm text-navy/70 hover:text-navy">
+                          Mes Favoris
+                        </Link>
+                        <button
+                          onClick={() => {
+                            localStorage.removeItem('auth_token');
+                            localStorage.removeItem('user_name');
+                            setIsAuthed(false);
+                            setProfileOpen(false);
+                            window.location.href = '/';
+                          }}
+                          className="w-full text-left px-4 py-3 hover:bg-red-50 text-sm text-red-600 font-semibold border-t border-navy/5"
+                        >
+                          Déconnexion
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  href="/connexion"
+                  className="hidden sm:inline-flex h-11 w-11 items-center justify-center rounded-full text-navy/80 hover:text-coral hover:bg-coral/5 transition-colors"
+                  aria-label="Se connecter"
+                >
+                  <User className="w-5 h-5" />
+                </Link>
+              )}
 
               <Link
                 href="/favoris"
