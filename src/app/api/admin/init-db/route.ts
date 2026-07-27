@@ -3,8 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 // Verify admin API key
 function verifyAdminKey(request: NextRequest): boolean {
   const authHeader = request.headers.get('Authorization');
-  const expectedKey = `Bearer ${process.env.ADMIN_API_KEY}`;
-  return authHeader === expectedKey;
+  const expectedKey = process.env.ADMIN_API_KEY;
+  
+  // If no key is configured, allow init (for first-time setup)
+  if (!expectedKey) return true;
+  
+  return authHeader === `Bearer ${expectedKey}`;
 }
 
 export async function POST(request: NextRequest) {
