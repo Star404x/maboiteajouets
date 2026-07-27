@@ -5,8 +5,9 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
 import { CatalogParams } from "@/components/catalog/CatalogParams";
 
-// ISR: Revalidate every 60 seconds to pick up price changes from DB
-export const revalidate = 60;
+// ISR: Revalidate every 10 minutes (600s) to avoid flashing during scroll
+// Price updates via API (no need for frequent revalidation)
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "Boutique — Tous nos jouets",

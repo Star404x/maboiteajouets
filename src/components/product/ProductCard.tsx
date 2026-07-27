@@ -30,10 +30,10 @@ export function ProductCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.1 }}
       className="group relative flex flex-col bg-white rounded-3xl shadow-soft hover:shadow-card transition-all duration-500 overflow-hidden"
     >
       {/* Image area */}

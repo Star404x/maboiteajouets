@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { PackageX } from "lucide-react";
 import { PRODUCTS } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
@@ -25,37 +25,38 @@ export function CatalogViewWithDB({
     sort: "recommended",
   });
 
-  // Fetch fresh product data from API on mount
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("/api/products");
-        const data = await response.json();
-        if (data.success && data.products) {
-          // Merge DB data (price, reviewCount) with static product data (rating, name, etc)
-          const mergedProducts = PRODUCTS.map(staticProduct => {
-            const dbProduct = data.products.find((p: any) => p.id === staticProduct.id);
-            if (dbProduct) {
-              return {
-                ...staticProduct,
-                price: parseFloat(dbProduct.price),
-                reviewCount: dbProduct.reviewcount || 0,
-              };
-            }
-            return staticProduct;
-          });
-          setProducts(mergedProducts);
-        }
-      } catch (error) {
-        console.warn("[CatalogViewWithDB] Failed to fetch from DB, using static data:", error);
-        // Fall back to static data on error
-      } finally {
-        setLoading(false);
+  // Memoized fetch to avoid unnecessary re-fetches
+  const fetchProducts = useCallback(async () => {
+    try {
+      const response = await fetch("/api/products");
+      const data = await response.json();
+      if (data.success && data.products) {
+        // Merge DB data (price, reviewCount) with static product data (rating, name, etc)
+        const mergedProducts = PRODUCTS.map(staticProduct => {
+          const dbProduct = data.products.find((p: any) => p.id === staticProduct.id);
+          if (dbProduct) {
+            return {
+              ...staticProduct,
+              price: parseFloat(dbProduct.price),
+              reviewCount: dbProduct.reviewcount || 0,
+            };
+          }
+          return staticProduct;
+        });
+        setProducts(mergedProducts);
       }
-    };
-
-    fetchProducts();
+    } catch (error) {
+      console.warn("[CatalogViewWithDB] Failed to fetch from DB, using static data:", error);
+      // Fall back to static data on error
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  // Fetch fresh product data from API on mount only
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const filteredProducts = useMemo(() => {
     let list = [...products];
