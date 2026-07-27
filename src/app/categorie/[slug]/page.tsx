@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATEGORIES, getCategory } from "@/lib/data/categories";
 import { PRODUCTS } from "@/lib/data/products";
-import { ProductGrid } from "@/components/product/ProductGrid";
+import { CategoryProductsClient } from "@/components/catalog/CategoryProductsClient";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
 
@@ -68,7 +68,7 @@ export default async function CategoryPage({
               produit{products.length > 1 ? "s" : ""}
             </p>
           </div>
-          <ProductGrid products={products} />
+          <CategoryProductsClient staticProducts={products} />
         </>
       ) : (
         <p className="text-center py-20 text-navy/60">
