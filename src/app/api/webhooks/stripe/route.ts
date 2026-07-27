@@ -160,6 +160,41 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
       const order = result.rows[0];
       console.log(`[PAYMENT SUCCESS] ✅ Order updated: ${order.id}`);
 
+      // Get order items from orders table (they were stored as JSON)
+      const orderDetailsResult = await client.query(
+        `SELECT items FROM orders WHERE id = $1`,
+        [orderId]
+      );
+
+      if (orderDetailsResult.rows.length > 0 && orderDetailsResult.rows[0].items) {
+        const items = orderDetailsResult.rows[0].items;
+        console.log(`[PAYMENT SUCCESS] Creating order items...`);
+
+        for (const item of items) {
+          const itemId = `${orderId}-${item.productId}`;
+          try {
+            await client.query(
+              `INSERT INTO order_items (id, order_id, product_id, product_name, price, quantity, total)
+               VALUES ($1, $2, $3, $4, $5, $6, $7)
+               ON CONFLICT DO NOTHING`,
+              [
+                itemId,
+                orderId,
+                item.productId,
+                item.productName || item.name,
+                item.price,
+                item.quantity,
+                item.price * item.quantity,
+              ]
+            );
+          } catch (err) {
+            console.warn(`[PAYMENT SUCCESS] Warning creating item: ${(err as Error).message}`);
+          }
+        }
+
+        console.log(`[PAYMENT SUCCESS] ✅ Created order items for order ${orderId}`);
+      }
+
       // TODO: Send confirmation email
       console.log(`[PAYMENT SUCCESS] TODO: Send email to ${order.customer_email}`);
 

@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
 
     // Получаем данные из запроса
     const body = await request.json();
-    const { amount, orderId, customerEmail } = body;
+    const { amount, orderId, customerEmail, userId, items } = body;
 
     console.log("[POST] Request data:", { 
       amount, 
@@ -142,16 +142,42 @@ export async function POST(request: NextRequest) {
 
     try {
       // Create order if not exists
+      const itemsJson = items ? JSON.stringify(items) : null;
       await dbClient.query(
-        `INSERT INTO orders (id, customer_email, total_amount, status, created_at, updated_at)
-         VALUES ($1, $2, $3, 'pending', NOW(), NOW())
+        `INSERT INTO orders (id, customer_email, user_id, total_amount, status, items, items_count, created_at, updated_at)
+         VALUES ($1, $2, $3, $4, 'pending', $5, $6, NOW(), NOW())
          ON CONFLICT (id) DO UPDATE SET 
            customer_email = $2,
-           total_amount = $3,
+           user_id = $3,
+           total_amount = $4,
+           items = $5,
+           items_count = $6,
            updated_at = NOW()`,
-        [orderId, customerEmail, amountInCents / 100]
+        [orderId, customerEmail, userId || null, amountInCents / 100, itemsJson, items?.length || 0]
       );
       console.log(`[POST] ✅ Order created/updated in database`);
+
+      // Create order items if provided
+      if (items && Array.isArray(items)) {
+        for (const item of items) {
+          const itemId = `${orderId}-${item.productId}`;
+          await dbClient.query(
+            `INSERT INTO order_items (id, order_id, product_id, product_name, price, quantity, total)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
+             ON CONFLICT DO NOTHING`,
+            [
+              itemId,
+              orderId,
+              item.productId,
+              item.productName || item.name,
+              item.price,
+              item.quantity,
+              item.price * item.quantity,
+            ]
+          );
+        }
+        console.log(`[POST] ✅ Created ${items.length} order items`);
+      }
     } finally {
       dbClient.release();
     }

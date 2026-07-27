@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
     `);
     console.log("[INIT] ✅ Orders table");
 
-    // Create users table
+    // Create users table (expanded)
     console.log("[INIT] Creating users table...");
     await client.query(`
       CREATE TABLE IF NOT EXISTS users (
@@ -122,10 +122,102 @@ export async function POST(request: NextRequest) {
         email VARCHAR UNIQUE NOT NULL,
         password_hash VARCHAR NOT NULL,
         full_name VARCHAR,
-        created_at TIMESTAMP DEFAULT NOW()
+        phone VARCHAR,
+        birth_date DATE,
+        gender VARCHAR,
+        newsletter BOOLEAN DEFAULT true,
+        avatar_url VARCHAR,
+        bio TEXT,
+        last_login TIMESTAMP,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
       )
     `);
     console.log("[INIT] ✅ Users table");
+
+    // Create user_addresses table
+    console.log("[INIT] Creating user_addresses table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS user_addresses (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        type VARCHAR,
+        first_name VARCHAR NOT NULL,
+        last_name VARCHAR NOT NULL,
+        street VARCHAR NOT NULL,
+        city VARCHAR NOT NULL,
+        postal_code VARCHAR NOT NULL,
+        country VARCHAR NOT NULL,
+        phone VARCHAR,
+        is_default BOOLEAN DEFAULT false,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_addresses_user_id ON user_addresses(user_id)`);
+    console.log("[INIT] ✅ User addresses table");
+
+    // Create order_items table
+    console.log("[INIT] Creating order_items table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS order_items (
+        id TEXT PRIMARY KEY,
+        order_id TEXT NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+        product_id TEXT NOT NULL,
+        product_name VARCHAR NOT NULL,
+        price DECIMAL NOT NULL,
+        quantity INT NOT NULL,
+        total DECIMAL NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items(order_id)`);
+    console.log("[INIT] ✅ Order items table");
+
+    // Create wishlists table
+    console.log("[INIT] Creating wishlists table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS wishlists (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        product_id TEXT NOT NULL,
+        added_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(user_id, product_id)
+      )
+    `);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_wishlists_user_id ON wishlists(user_id)`);
+    console.log("[INIT] ✅ Wishlists table");
+
+    // Create user_activity table
+    console.log("[INIT] Creating user_activity table...");
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS user_activity (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        action VARCHAR NOT NULL,
+        details TEXT,
+        ip_address VARCHAR,
+        user_agent VARCHAR,
+        created_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_activity_user_id ON user_activity(user_id)`);
+    console.log("[INIT] ✅ User activity table");
+
+    // Add user_id and user references to orders (if not exists)
+    console.log("[INIT] Updating orders table...");
+    try {
+      await client.query(`
+        ALTER TABLE orders 
+        ADD COLUMN IF NOT EXISTS user_id TEXT REFERENCES users(id),
+        ADD COLUMN IF NOT EXISTS shipping_address_id TEXT REFERENCES user_addresses(id),
+        ADD COLUMN IF NOT EXISTS items_count INT DEFAULT 0
+      `);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders(user_id)`);
+      console.log("[INIT] ✅ Orders table updated");
+    } catch (e) {
+      console.warn("[INIT] Orders table update:", (e as Error).message);
+    }
 
     // Insert sample reviews
     console.log("[INIT] Inserting sample data...");
