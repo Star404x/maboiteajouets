@@ -865,14 +865,16 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-037",
     "slug": "blocs-empiler-10-pieces",
-    "name": "Blocs à empiler - 10 pièces",
+    "name": "Blocs à empiler - 10 pièces Hape",
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
     "description": "Ce set de 10 blocs à empiler est pensé pour les jeunes enfants. Les blocs sont en bois, avec des bords en silicone souple. Ils sont faciles à prendre en main et plus silencieux quand ils tombent ou s'entrechoquent.\n\nActivités variées et libres :\n- Empiler les blocs pour créer des tours\n- Aligner et observer les lettres, les chiffres et les motifs\n- Trier les blocs par couleur\n- Inventer de petites constructions personnelles\n\nCe jeu laisse une vraie place à la motricité libre. L'enfant choisit sa façon de jouer, seul ou avec l'adulte à côté. Il manipule, recommence, ajuste son geste. C'est simple, mais très riche pour le développement de l'enfant.\n\nBénéfices développementaux :\n- Stimule la motricité fine et la coordination œil-main\n- Favorise l'autonomie et l'exploration\n- Soutient l'éveil, la concentration et les premières notions de tri\n- Idéal pour une utilisation en crèche, micro-crèche ou MAM\n\nParfait pour les temps d'éveil, sur un tapis ou dans un coin calme de l'espace enfant.",
-    "price": 47.9,
+    "price": 42.9,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": [
+      "0-2"
+    ],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
       "/products/blocs-empiler-10-pieces-2.png",
@@ -897,7 +899,7 @@ export const PRODUCTS: Product[] = [
     "color": "mint",
     "bgClass": "bg-[#E4F7F5]",
     "badge": "Nouveau",
-    "dimensions": "5,5 x 18 x 21 cm (set de 10 blocs)"
+    "dimensions": "L 5.5 x P 18 x H 21 cm | Set de 10 blocs avec décors | Dès 6 mois (Réf. J6360 Hape)"
   },
   {
     "id": "p-038",
