@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { getPromoProducts } from "@/lib/data/products";
-import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
+import { PromoClient } from "@/components/catalog/PromoClient";
 
 export const metadata: Metadata = {
   title: "Promotions",
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function PromoPage() {
-  const products = getPromoProducts();
   return (
     <div className="container-wide py-8 lg:py-14">
       <Breadcrumbs items={[{ label: "Promotions" }]} />
@@ -21,7 +19,7 @@ export default function PromoPage() {
         accent="promotion"
         description="Faites plaisir tout en économisant."
       />
-      <ProductGrid products={products} />
+      <PromoClient />
     </div>
   );
 }

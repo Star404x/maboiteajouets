@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { getBestSellers } from "@/lib/data/products";
-import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { PageHero } from "@/components/shared/PageHero";
+import { BestSellersClient } from "@/components/catalog/BestSellersClient";
 
 export const metadata: Metadata = {
   title: "Meilleures ventes",
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function BestSellersPage() {
-  const products = getBestSellers();
   return (
     <div className="container-wide py-8 lg:py-14">
       <Breadcrumbs items={[{ label: "Meilleures ventes" }]} />
@@ -21,7 +19,7 @@ export default function BestSellersPage() {
         accent="ventes"
         description="Les incontournables qui font le bonheur des enfants."
       />
-      <ProductGrid products={products} />
+      <BestSellersClient />
     </div>
   );
 }
