@@ -436,14 +436,16 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-026",
     "slug": "circuit-train-figurines",
-    "name": "Circuit de train avec figurines",
+    "name": "Circuit de train avec figurines - Sélection Papouille",
     "category": "vehicules",
     "categoryName": "vehicules",
     "description": "Le circuit de train est une aventure ludique conçue pour éveiller la curiosité et stimuler l'imagination des enfants. Ce set captivant comprend un train à pousser avec un wagon passager, un conducteur de train et deux passagers animés.\n\nContenu complet :\n- 1 train à pousser motorisé\n- 1 wagon passager\n- 1 conducteur de train avec bras et jambes mobiles\n- 2 passagers avec bras et jambes mobiles (avec clics et ventres qui couinent)\n- Circuit en forme de 8 avec rails\n- Plus de 19 pièces en total\n\nCaractéristiques spéciales :\n- Figurines dotées de bras et jambes mobiles\n- Clics sonores et effets amusants\n- Circuit en forme de 8 stimule la créativité et la motricité fine\n- Idéal pour les jeux collectifs et les histoires imaginatives\n\nDéveloppement de l'enfant :\nCe jouet est idéal pour aborder des thèmes éducatifs tels que les moyens de transport, les voyages ou la sécurité routière. Il encourage la communication et le jeu de groupe, tout en développant la coordination main-œil, la résolution de problèmes et les compétences sociales grâce aux scénarios d'histoires imaginatives.\n\nPoids : 1,7 kg\nPerfait pour les crèches, micro-crèches et structures d'accueil de jeunes enfants.",
-    "price": 186.8,
+    "price": 166.8,
     "rating": 4.6,
     "reviewCount": 0,
-    "age": [],
+    "age": [
+      "1-5"
+    ],
     "images": [
       "/products/circuit-train-figurines-1.png",
       "/products/circuit-train-figurines-2.png",
@@ -470,7 +472,7 @@ export const PRODUCTS: Product[] = [
     "color": "amber",
     "bgClass": "bg-gradient-to-br from-amber-100 to-amber-50",
     "badge": "Nouveau",
-    "dimensions": "33 x 26,5 x 14,7 cm (emballage)"
+    "dimensions": "L 33 x P 26.5 x H 14.7 cm | 19 pièces (train, wagon, figurines) | Poids 1.7 kg (Réf. J5981)"
   },
   {
     "id": "p-027",
