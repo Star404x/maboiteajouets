@@ -739,15 +739,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-034",
     "slug": "boite-forme-bois",
-    "name": "Boite à forme en bois",
+    "name": "Boite à forme en bois Goki",
     "category": "jouets-educatifs",
     "categoryName": "jouets-educatifs",
-    "description": "La Boîte à Formes Goki : Un outil ludique pour l'éveil des jeunes enfants. Jouet éducatif essentiel pour le développement de la motricité fine des jeunes enfants, que ce soit en crèche ou à la maison.",
-    "price": 43.5,
+    "description": "La Boîte à Formes Goki : Un outil ludique pour l'éveil des jeunes enfants. La Boîte à Formes de Goki est un jouet éducatif essentiel pour le développement de la motricité fine des jeunes enfants, que ce soit en crèche ou à la maison. Elle offre une opportunité amusante et interactive pour les enfants de découvrir les couleurs et les formes, contribuant ainsi à leur épanouissement global. Avec ses 10 pièces à encastrer, ce jouet ludique stimule la reconnaissance des formes et développe la coordination main-œil des tout-petits.",
+    "price": 48.5,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "0-12m",
       "1-3"
     ],
     "images": [
@@ -765,18 +764,18 @@ export const PRODUCTS: Product[] = [
     "inStock": true,
     "stockCount": 0,
     "materials": [
-      "Bois",
+      "Bois massif",
       "Peintures à base d'eau non toxiques"
     ],
     "safety": [
       "Certifié CE",
       "BPA Free",
       "Peintures non toxiques",
-      "Tests en laboratoire certifié"
+      "Tests en laboratoire indépendant certifié"
     ],
     "color": "mint",
     "bgClass": "bg-[#E4F7F5]",
-    "dimensions": "16 x 16 x 10 cm (Poids: 0,87 kg, 10 pièces à encastrer)",
+    "dimensions": "L 16 x H 16 x P 10 cm | Poids: 0,87 kg | 10 pièces à encastrer",
     "stripeLink": "https://buy.stripe.com/00w28qdQP2RHaG0gj0fw400"
   },
   {
