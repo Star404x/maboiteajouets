@@ -11,11 +11,23 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="container-wide py-8 lg:py-14">
-      <Breadcrumbs items={[{ label: "Connexion" }]} />
-      <PageHero eyebrow="Authentification" title="Se connecter" accent="connexion" />
+    <div className="min-h-screen flex flex-col">
+      <div className="container-wide py-8 lg:py-14 flex-1">
+        <Breadcrumbs items={[{ label: "Connexion" }]} />
+        <div className="max-w-md mx-auto py-12 lg:py-20">
+          <div className="text-center mb-10">
+            <p className="text-xs font-bold uppercase tracking-wider text-coral mb-3">
+              Authentification
+            </p>
+            <h1 className="font-display font-bold text-navy text-3xl md:text-4xl mb-2">
+              Connexion
+            </h1>
+            <p className="text-navy/70 text-sm">Accédez à votre compte</p>
+          </div>
 
-      <LoginForm />
+          <LoginForm />
+        </div>
+      </div>
     </div>
   );
 }

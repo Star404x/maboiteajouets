@@ -47,15 +47,15 @@ export function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {(formError || error) && (
         <div className="p-4 rounded-2xl bg-red-50 border border-red-200">
-          <p className="text-sm text-red-800">{formError || error}</p>
+          <p className="text-sm text-red-800 font-medium">{formError || error}</p>
         </div>
       )}
 
       <div>
-        <label className="block text-sm font-semibold text-navy mb-2">
+        <label className="block text-sm font-semibold text-navy mb-3">
           Email
         </label>
         <input
@@ -63,56 +63,56 @@ export function LoginForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="you@example.com"
-          className="w-full px-4 py-3 rounded-2xl border border-navy/10 focus:outline-none focus:border-coral"
+          placeholder="votre@email.com"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/10 transition-colors"
           required
           autoComplete="email"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-navy mb-2">
-          Password
+        <label className="block text-sm font-semibold text-navy mb-3">
+          Mot de passe
         </label>
         <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
-          placeholder="Your password"
-          className="w-full px-4 py-3 rounded-2xl border border-navy/10 focus:outline-none focus:border-coral"
+          placeholder="Entrez votre mot de passe"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/10 transition-colors"
           required
           autoComplete="current-password"
         />
       </div>
 
       <div className="flex items-center justify-between text-sm">
-        <label className="flex items-center gap-2">
+        <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
-            className="rounded"
+            className="w-4 h-4 rounded border-gray-300 cursor-pointer"
           />
-          <span className="text-navy/60">Remember me</span>
+          <span className="text-navy/70">Se souvenir de moi</span>
         </label>
-        <Link href="#" className="text-coral font-semibold hover:underline">
-          Forgot password?
+        <Link href="#" className="text-coral font-semibold hover:text-coral/80 transition-colors">
+          Mot de passe oublié ?
         </Link>
       </div>
 
       <Button
         type="submit"
         disabled={isLoading}
-        className="w-full"
+        className="w-full mt-8 py-3 bg-navy text-white font-semibold rounded-xl hover:bg-navy/90 transition-colors disabled:opacity-50"
       >
-        {isLoading ? "Logging in..." : "Log In"}
+        {isLoading ? "Connexion en cours..." : "Se connecter"}
       </Button>
 
-      <p className="text-center text-sm text-navy/60">
-        Don't have an account?{" "}
-        <Link href="/inscription" className="text-coral font-semibold hover:underline">
-          Sign up
+      <div className="text-center text-sm text-navy/70 pt-2">
+        Pas encore de compte ?{" "}
+        <Link href="/inscription" className="text-coral font-semibold hover:text-coral/80 transition-colors">
+          Créer un compte
         </Link>
-      </p>
+      </div>
     </form>
   );
 }

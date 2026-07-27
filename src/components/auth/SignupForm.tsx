@@ -30,17 +30,17 @@ export function SignupForm() {
 
     // Validation
     if (!formData.email || !formData.password || !formData.passwordConfirm) {
-      setFormError("All fields are required");
+      setFormError("Tous les champs sont requis");
       return;
     }
 
     if (formData.password !== formData.passwordConfirm) {
-      setFormError("Passwords do not match");
+      setFormError("Les mots de passe ne correspondent pas");
       return;
     }
 
     if (formData.password.length < 8) {
-      setFormError("Password must be at least 8 characters long");
+      setFormError("Le mot de passe doit contenir au moins 8 caractères");
       return;
     }
 
@@ -64,36 +64,51 @@ export function SignupForm() {
         passwordConfirm: "",
       });
     } else {
-      setFormError(result.error || "Registration failed");
+      setFormError(result.error || "Inscription échouée");
     }
   };
 
   if (success) {
     return (
-      <div className="max-w-md mx-auto p-8 rounded-3xl bg-green-50 border-2 border-green-200">
-        <h2 className="font-display font-bold text-green-900 mb-4">
-          ✅ Account Created!
+      <div className="p-6 rounded-2xl bg-green-50 border-2 border-green-200">
+        <h2 className="font-display font-bold text-green-900 mb-3 text-lg">
+          ✅ Compte créé avec succès !
         </h2>
         <p className="text-sm text-green-800 mb-6">
-          Your account has been created successfully. You can now log in.
+          Votre compte a été créé. Vous pouvez maintenant vous connecter.
         </p>
-        <Button asChild className="w-full">
-          <Link href="/connexion">Go to Login</Link>
+        <Button asChild className="w-full bg-green-600 hover:bg-green-700">
+          <Link href="/connexion">Aller à la connexion</Link>
         </Button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {(formError || error) && (
         <div className="p-4 rounded-2xl bg-red-50 border border-red-200">
-          <p className="text-sm text-red-800">{formError || error}</p>
+          <p className="text-sm text-red-800 font-medium">{formError || error}</p>
         </div>
       )}
 
       <div>
-        <label className="block text-sm font-semibold text-navy mb-2">
+        <label className="block text-sm font-semibold text-navy mb-3">
+          Nom complet
+        </label>
+        <input
+          type="text"
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
+          placeholder="Votre nom"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/10 transition-colors"
+          autoComplete="name"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-semibold text-navy mb-3">
           Email
         </label>
         <input
@@ -101,73 +116,62 @@ export function SignupForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="you@example.com"
-          className="w-full px-4 py-3 rounded-2xl border border-navy/10 focus:outline-none focus:border-coral"
+          placeholder="votre@email.com"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/10 transition-colors"
           required
+          autoComplete="email"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-navy mb-2">
-          Full Name (optional)
-        </label>
-        <input
-          type="text"
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-          placeholder="Your Name"
-          className="w-full px-4 py-3 rounded-2xl border border-navy/10 focus:outline-none focus:border-coral"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-semibold text-navy mb-2">
-          Password
+        <label className="block text-sm font-semibold text-navy mb-3">
+          Mot de passe
         </label>
         <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
-          placeholder="At least 8 characters"
-          className="w-full px-4 py-3 rounded-2xl border border-navy/10 focus:outline-none focus:border-coral"
+          placeholder="Min. 8 caractères"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/10 transition-colors"
           required
+          autoComplete="new-password"
         />
         <p className="text-xs text-navy/60 mt-2">
-          Must contain uppercase, lowercase, and numbers
+          Doit contenir majuscules, minuscules et chiffres
         </p>
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-navy mb-2">
-          Confirm Password
+        <label className="block text-sm font-semibold text-navy mb-3">
+          Confirmez le mot de passe
         </label>
         <input
           type="password"
           name="passwordConfirm"
           value={formData.passwordConfirm}
           onChange={handleChange}
-          placeholder="Repeat password"
-          className="w-full px-4 py-3 rounded-2xl border border-navy/10 focus:outline-none focus:border-coral"
+          placeholder="Confirmez votre mot de passe"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/10 transition-colors"
           required
+          autoComplete="new-password"
         />
       </div>
 
       <Button
         type="submit"
         disabled={isLoading}
-        className="w-full"
+        className="w-full mt-8 py-3 bg-navy text-white font-semibold rounded-xl hover:bg-navy/90 transition-colors disabled:opacity-50"
       >
-        {isLoading ? "Creating account..." : "Create Account"}
+        {isLoading ? "Inscription en cours..." : "Créer le compte"}
       </Button>
 
-      <p className="text-center text-sm text-navy/60">
-        Already have an account?{" "}
-        <Link href="/connexion" className="text-coral font-semibold hover:underline">
-          Log in
+      <div className="text-center text-sm text-navy/70 pt-2">
+        Déjà un compte ?{" "}
+        <Link href="/connexion" className="text-coral font-semibold hover:text-coral/80 transition-colors">
+          Se connecter
         </Link>
-      </p>
+      </div>
     </form>
   );
 }
