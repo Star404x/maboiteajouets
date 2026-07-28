@@ -537,7 +537,7 @@ Développement de l'enfant :
 
 Avantages pratiques :
 Particulièrement adaptés aux environnements collectifs - crèche, micro-crèche, EAJE - ces véhicules sont durables, faciles à nettoyer et toujours prêts à l'action. Une valeur sûre pour animer les journées avec les enfants.",
-    "price": 46.8,
+    "price": 47.8,
     "rating": 4.5,
     "reviewCount": 0,
     "age": ["0-12m", "1-3"],
