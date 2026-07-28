@@ -444,7 +444,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.6,
     "reviewCount": 0,
     "age": [
-      "1-5"
+      "3-5"
     ],
     "images": [
       "/products/circuit-train-figurines-1.png",
@@ -875,7 +875,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "0-2"
+      "0-12m"
     ],
     "images": [
       "/products/blocs-empiler-10-pieces-1.png",
@@ -914,7 +914,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
-      "2-6"
+      "3-5"
     ],
     "images": [
       "/products/pierres-empiler-sweet-cocoon-1.png",
