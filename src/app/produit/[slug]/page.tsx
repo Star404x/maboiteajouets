@@ -6,9 +6,11 @@ import { Pool } from "pg";
 import { PRODUCTS } from "@/lib/data/products";
 import { REVIEWS } from "@/lib/data/reviews";
 
-// ISR: Revalidate every 60 seconds to pick up price changes from DB
-export const revalidate = 60;
+// ISR: Revalidate every 10 seconds (Railway CDN respects Next.js ISR)
+// Use /api/revalidate for on-demand invalidation
+export const revalidate = 10;
 import type { Review } from "@/lib/types";
+import { headers } from "next/headers";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";

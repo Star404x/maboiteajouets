@@ -9,6 +9,52 @@ const nextConfig: NextConfig = {
   output: "standalone",
   images: { unoptimized: true },
   trailingSlash: false,
+  
+  // CRITICAL FIX: Proper cache control headers for ISR
+  // Railway CDN was caching on s-maxage=31536000 (1 year)
+  // Now: ISR revalidates every 10 seconds
+  headers: async () => [
+    {
+      // Apply to product pages (ISR with short revalidate)
+      source: "/produit/:slug",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, s-maxage=10, stale-while-revalidate=60",
+        },
+      ],
+    },
+    {
+      // Apply to category pages
+      source: "/categorie/:slug",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, s-maxage=10, stale-while-revalidate=60",
+        },
+      ],
+    },
+    {
+      // Apply to homepage (ISR)
+      source: "/",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, s-maxage=60, stale-while-revalidate=300",
+        },
+      ],
+    },
+    {
+      // API routes: no cache
+      source: "/api/:path*",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=0, must-revalidate",
+        },
+      ],
+    },
+  ],
 };
 
 console.log('[next.config] Output mode:', nextConfig.output);

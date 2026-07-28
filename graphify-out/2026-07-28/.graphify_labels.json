@@ -67,8 +67,6 @@
   "65": "Delete Educatif Mockups",
   "66": "Delete Memory Game",
   "67": "Delete Mock Products",
-  "68": "🚀 Deployment Readiness Report",
-  "69": "ProtectedRoute.tsx",
   "70": "Fix Cube Images",
   "71": "Fix Hape Images",
   "72": "Fix Images To URLs",
@@ -96,15 +94,9 @@
   "94": "Update Price Route",
   "95": "Order Success Page",
   "96": "Logout Page",
-  "97": "cart.ts",
-  "98": "CheckoutPageClient.tsx",
-  "99": "create-assets.js",
-  "100": "create-reviews-table/route.ts",
   "101": "PostCSS Configuration",
   "102": "Database Schema Init",
   "103": "Admin Prices Page",
   "104": "DB Init API Route",
-  "105": "Robots SEO Config",
-  "106": "sync-review-counts/route.ts",
-  "107": "sync-review-counts.js"
+  "105": "Robots SEO Config"
 }
