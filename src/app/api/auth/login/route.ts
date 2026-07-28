@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 import { verifyPassword, createToken } from "@/lib/auth";
+import { authRateLimit } from "@/middleware/rateLimiter";
 
 let pool: Pool | null = null;
 
@@ -33,7 +34,7 @@ function getPool() {
   return pool;
 }
 
-export async function POST(request: NextRequest) {
+async function loginHandler(request: NextRequest) {
   console.log("[LOGIN] Login request received");
 
   try {
@@ -123,6 +124,9 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Apply rate limiting (5 requests per minute per IP)
+export const POST = authRateLimit(loginHandler);
 
 export async function OPTIONS() {
   return NextResponse.json({}, { status: 200 });
