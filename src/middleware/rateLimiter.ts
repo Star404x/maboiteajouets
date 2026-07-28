@@ -14,14 +14,20 @@ const rateLimitStore: RateLimitStore = {};
 export function rateLimit(options: {
   windowMs: number; // Time window in milliseconds
   maxRequests: number; // Max requests per window
-  keyGenerator?: (request: NextRequest) => string; // Custom key (default: IP)
+  keyGenerator?: (request: NextRequest) => string; // Custom key (default: x-forwarded-for or unknown)
 } = { windowMs: 60000, maxRequests: 100 }) {
   return (handler: (req: NextRequest) => Promise<NextResponse> | NextResponse) => {
     return async (request: NextRequest) => {
       // Generate rate limit key (IP or custom)
+      const getIp = () => {
+        const xff = request.headers.get('x-forwarded-for');
+        const ip = xff ? xff.split(',')[0] : 'unknown';
+        return ip;
+      };
+      
       const key = options.keyGenerator
         ? options.keyGenerator(request)
-        : request.ip || 'unknown';
+        : getIp();
 
       const now = Date.now();
       const record = rateLimitStore[key];
