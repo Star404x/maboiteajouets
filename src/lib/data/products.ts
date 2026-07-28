@@ -517,26 +517,7 @@ export const PRODUCTS: Product[] = [
     "name": "Lot de 4 mini véhicules Edushape",
     "category": "vehicules",
     "categoryName": "vehicules",
-    "description": "Ces 4 minis véhicules zoomeurs sont de véritables petites fusées sur roues ! Grâce à leur système de propulsion \"push-down\", il suffit de les faire reculer légèrement sur une surface plane pour qu'ils s'élancent à toute vitesse.
-
-Contenu et fonctionnement :
-- 4 mini véhicules colorés avec système push-down
-- Propulsion simple : reculez et relâchez pour action
-- Format compact et facile à manipuler
-- Sans piles ni entretien requis
-
-Caractéristiques de sécurité :
-Faciles à manipuler pour les petites mains, ils sont conçus avec des bords arrondis pour une utilisation en toute sécurité, même par les enfants de 12 mois. Robustes et colorés, ils attirent naturellement l'attention et encouragent les jeux d'imitation et les interactions collectives entre enfants.
-
-Développement de l'enfant :
-- Développe la motricité fine et la coordination
-- Stimule l'imagination avec les jeux de course
-- Encourage le jeu collectif et les interactions
-- Parfait pour les ateliers de manipulation
-- Idéal pour les coins voitures dans les espaces de jeu
-
-Avantages pratiques :
-Particulièrement adaptés aux environnements collectifs - crèche, micro-crèche, EAJE - ces véhicules sont durables, faciles à nettoyer et toujours prêts à l'action. Une valeur sûre pour animer les journées avec les enfants.",
+    "description": "Ces 4 minis véhicules zoomeurs sont de véritables petites fusées sur roues ! Grâce à leur système de propulsion \"push-down\", il suffit de les faire reculer légèrement sur une surface plane pour qu'ils s'élancent à toute vitesse.\n\nContenu et fonctionnement :\n- 4 mini véhicules colorés avec système push-down\n- Propulsion simple : reculez et relâchez pour action\n- Format compact et facile à manipuler\n- Sans piles ni entretien requis\n\nCaractéristiques de sécurité :\nFaciles à manipuler pour les petites mains, ils sont conçus avec des bords arrondis pour une utilisation en toute sécurité, même par les enfants de 12 mois. Robustes et colorés, ils attirent naturellement l'attention et encouragent les jeux d'imitation et les interactions collectives entre enfants.\n\nDéveloppement de l'enfant :\n- Développe la motricité fine et la coordination\n- Stimule l'imagination avec les jeux de course\n- Encourage le jeu collectif et les interactions\n- Parfait pour les ateliers de manipulation\n- Idéal pour les coins voitures dans les espaces de jeu\n\nAvantages pratiques :\nParticulièrement adaptés aux environnements collectifs - crèche, micro-crèche, EAJE - ces véhicules sont durables, faciles à nettoyer et toujours prêts à l'action. Une valeur sûre pour animer les journées avec les enfants.",
     "price": 47.8,
     "rating": 4.5,
     "reviewCount": 0,
