@@ -162,7 +162,7 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
 
       // Get order items from orders table (they were stored as JSON)
       const orderDetailsResult = await client.query(
-        `SELECT items FROM orders WHERE id = $1`,
+        `SELECT items, customer_name FROM orders WHERE id = $1`,
         [orderId]
       );
 
@@ -195,14 +195,27 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
         console.log(`[PAYMENT SUCCESS] ✅ Created order items for order ${orderId}`);
       }
 
-      // TODO: Send confirmation email
-      console.log(`[PAYMENT SUCCESS] TODO: Send email to ${order.customer_email}`);
+      // Send confirmation email (lazy load to avoid build-time errors)
+      try {
+        const { sendOrderConfirmation } = await import('@/lib/email');
+        const items = orderDetailsResult.rows[0].items || [];
+        if (items.length > 0) {
+          await sendOrderConfirmation(
+            order.customer_email,
+            order.customer_name || 'Valued Customer',
+            orderId,
+            items,
+            order.total_amount
+          );
+          console.log(`[PAYMENT SUCCESS] ✅ Confirmation email sent to ${order.customer_email}`);
+        }
+      } catch (emailErr: any) {
+        console.error(`[PAYMENT SUCCESS] ⚠️ Failed to send confirmation email:`, emailErr.message);
+        // Don't throw - order was successful, email is not critical
+      }
 
-      // TODO: Update inventory
-      console.log(`[PAYMENT SUCCESS] TODO: Update inventory for order ${order.id}`);
-
-      // TODO: Create shipping label
-      console.log(`[PAYMENT SUCCESS] TODO: Create shipping label for order ${order.id}`);
+      // TODO: Update inventory (phase 2)
+      // TODO: Create shipping label (phase 2)
     } finally {
       client.release();
     }
@@ -298,6 +311,6 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
 }
 
 // Explicit OPTIONS for CORS
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS() {
   return NextResponse.json({}, { status: 200 });
 }
