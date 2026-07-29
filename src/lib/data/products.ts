@@ -11,8 +11,8 @@ export const PRODUCTS: Product[] = [
     "name": "Boîte d'activités Hape",
     "category": "jouets-bebe",
     "categoryName": "jouets-bebe",
-    "description": "Boîte d'activités 5 faces avec engrenages, boules, blocs, labyrinthe et miroir pour éveiller la motricité.",
-    "price": 36.4,
+    "description": "Boîte d'activités triptyque 5 faces avec engrenages, boules, blocs, labyrinthe et miroir pour refléter le sourire de votre enfant. Dimensions: L 25.5 x H 21.5 cm. À partir de 10 mois. Composée d'engrenages, boules, blocs et labyrinthe avec couleurs, mouvements et miroir pour éveiller la motricité fine et la découverte sensorielle. Conforme aux normes de sécurité en vigueur pour jouets bébé et enfant. Certifié CE et NF EN 71-1/2/3.",
+    "price": 59.4,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
