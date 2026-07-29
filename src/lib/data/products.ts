@@ -666,14 +666,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-032",
     "slug": "set-construction-60",
-    "name": "Set de construction 60 pcs",
+    "name": "Set de construction 60 pcs Janod",
     "category": "jeux-de-construction",
     "categoryName": "jeux-de-construction",
-    "description": "60 pièces en bois FSC de 6 couleurs différentes. Avec 8 modèles inclus. Parfait pour la créativité et l'imagination!",
-    "price": 22.39,
+    "description": "60 pièces en bois de hêtre massif certifié FSC de 6 couleurs différentes. Avec 8 modèles inclus et cartes instructions. Blocs de 8 x 1 x 2 cm peints à l'eau. Stimule la concentration et la construction visuo-spatiale tout en encourageant la motricité fine. Compatible avec set 100 pcs pour plus de possibilités. Idéal pour enfants à partir de 4 ans.",
+    "price": 45.39,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": ["3-5"],
     "images": [
       "/products/set-construction-60-5.png",
       "/products/set-construction-60-1.png",
