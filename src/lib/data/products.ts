@@ -553,7 +553,6 @@ export const PRODUCTS: Product[] = [
     "id": "p-029",
     "slug": "camion-geant",
     "name": "Camion géant Gowi",
-    "brand": "Gowi",
     "category": "vehicules",
     "categoryName": "vehicules",
     "description": "Solide, ludique et parfaitement adapté aux tout-petits, ce camion de chantier robuste est le compagnon de jeu idéal pour stimuler l'imagination et la motricité des enfants. Grâce à sa structure renforcée et ses gros pneus en caoutchouc souple, il peut évoluer aussi bien en intérieur qu'en extérieur, sur sols lisses comme dans le bac à sable. Ce véhicule développe la coordination œil-main, encourage le mouvement, et participe activement à l'apprentissage par le jeu. Ses couleurs vives captent l'attention et stimulent la curiosité des enfants. Dimensions: 32 x 43 x 28 cm. Idéal pour crèches et structures d'accueil petite enfance. Garantie 2 ans.",
