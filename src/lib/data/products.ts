@@ -628,14 +628,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-031",
     "slug": "baril-blocs-bois",
-    "name": "Baril de 100 blocs de bois",
+    "name": "Baril de 100 blocs de bois Hape",
     "category": "jeux-de-construction",
     "categoryName": "jeux-de-construction",
-    "description": "101 pièces en bois colorées de formes différentes (cubes, cylindriques, triangulaires). Parfait pour construire châteaux, maisons, villages et bien plus!",
-    "price": 25.99,
+    "description": "101 pièces en bois colorées non-toxiques de formes différentes: cubes, cylindriques, triangulaires. Pas de fixation, pas de colle, ni de vis, ni de clou - juste créativité et imagination! Construisez châteaux, maisons, immeubles, villages. Dimensions: 22 x 13 x 27 cm. Idéal pour développer l'imagination et la créativité avec un maximum de possibilités de constructions.",
+    "price": 35.87,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": ["2-6"],
     "images": [
       "/products/baril-blocs-bois-1.png",
       "/products/baril-blocs-bois-2.png",
