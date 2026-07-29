@@ -556,7 +556,7 @@ export const PRODUCTS: Product[] = [
     "category": "vehicules",
     "categoryName": "vehicules",
     "description": "Camion géant Gowi. Dimensions: 32 x 43 x 28 cm. Plastique haute résistance, pneus en caoutchouc souple. À partir de 12 mois. Certifié CE et NF EN 71. Garantie 2 ans.",
-    "price": 59.9,
+    "price": 82.9,
     "rating": 4.6,
     "reviewCount": 0,
     "age": [],
