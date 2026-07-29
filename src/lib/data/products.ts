@@ -46,14 +46,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-015",
     "slug": "balle-prehension-multicolore",
-    "name": "O-Ball - Ballon sensoriel multicolore",
+    "name": "Balle de préhension multi-couleur caoutchouc LAP",
     "category": "jouets-bebe",
     "categoryName": "jouets-bebe",
-    "description": "Le classique ballon O-Ball aux 32 anneaux entrelacés. Ses couleurs vives (bleu, vert, rouge, jaune) stimulent la perception visuelle. Idéal pour développer le réflexe de préhension et la motricité fine. Plastique souple sans BPA. À partir de la naissance.",
-    "price": 7.8,
+    "description": "Balle multicolore de préhension en caoutchouc LAP pour découverte sensorielle exceptionnelle. Diamètre: 11,5 cm. Très légère, facile à lancer et à saisir, même avec un seul doigt. Reprise toujours sa forme d'origine. Adaptée aux petites mains en développement et aux personnes ayant des besoins spéciaux. Couleurs vives et variées stimulent les sens et favorisent le développement sensoriel. Conforme aux normes de sécurité pour jouets bébés et enfants. Certifié CE, normes NF EN 71-1/2/3. À partir de 6 mois. Garantie 1 an.",
+    "price": 30.8,
     "rating": 4.7,
     "reviewCount": 0,
-    "age": [],
+    "age": ["0-12m"],
     "images": [
       "/products/balle-prehension-1.png",
       "/products/balle-prehension-2.png",
