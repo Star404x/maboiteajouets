@@ -13,16 +13,19 @@ const logger = winston.createLogger({
     winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     winston.format.errors({ stack: true }),
     winston.format.json(),
-    !isProduction &&
-      winston.format.colorize({
-        colors: {
-          error: 'red',
-          warn: 'yellow',
-          info: 'green',
-          http: 'magenta',
-          debug: 'white',
-        },
-      })
+    ...(isProduction
+      ? []
+      : [
+          winston.format.colorize({
+            colors: {
+              error: 'red',
+              warn: 'yellow',
+              info: 'green',
+              http: 'magenta',
+              debug: 'white',
+            },
+          }),
+        ])
   ),
   transports: [
     // Console output
