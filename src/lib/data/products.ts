@@ -591,14 +591,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-030",
     "slug": "blocks-construction-m",
-    "name": "Mes premiers blocks de construction M",
+    "name": "Mes premiers block de construction M",
     "category": "jeux-de-construction",
     "categoryName": "jeux-de-construction",
-    "description": "118 pièces pour assembler diverses compositions. Développe l'imagination, la motricité et la perception de l'espace.",
-    "price": 74.95,
+    "description": "118 pièces comprenant blocs et accessoires pour assembler diverses compositions. Développe l'imagination, la motricité, la perception de l'espace et les lois de base de la physique. Boîte en plastique avec cartes d'exemples incluses. Lavable 40°C. Dimensions: 38 x 28 x 19 cm. À partir de 12 mois. Garantie 2 ans.",
+    "price": 103.95,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": ["1-3"],
     "images": [
       "/products/blocks-construction-m-1.png",
       "/products/blocks-construction-m-2.png",
