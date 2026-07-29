@@ -84,11 +84,11 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-016",
     "slug": "cube-sensoriel-ludi",
-    "name": "Cube sensoriel Ludi",
+    "name": "Cube de manipulation sensoriel Ludi",
     "category": "jouets-bebe",
     "categoryName": "jouets-bebe",
-    "description": "Cube avec différentes activités sensorielles pour l'éveil de bébé.",
-    "price": 13.9,
+    "description": "Cube d'éveil en tissu tout doux avec 7 activités sensorielles sur le thème de la jungle. Dimensions: 10 x 15 x 10 cm. Composition 100% polyester, lavable à la main. Poignée en tissu doux pour l'agripper, anneau transparent avec billes colorées, hochet feuille à mordiller, anneau de dentétion avec crochet pour poussette/siège-auto/lit. Faces: petit miroir, tissu minky doux en vagues, tissu plissé, papier bruissant, flamant rose. Parfait pour stimuler les sens, développer la dextérité et coordination. Compagnon idéal à la maison et en déplacement. Certifié CE.",
+    "price": 36.9,
     "rating": 4.8,
     "reviewCount": 0,
     "age": [
