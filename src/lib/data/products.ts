@@ -632,7 +632,7 @@ export const PRODUCTS: Product[] = [
     "category": "jeux-de-construction",
     "categoryName": "jeux-de-construction",
     "description": "101 pièces en bois colorées non-toxiques de formes différentes: cubes, cylindriques, triangulaires. Pas de fixation, pas de colle, ni de vis, ni de clou - juste créativité et imagination! Construisez châteaux, maisons, immeubles, villages. Dimensions: 22 x 13 x 27 cm. Idéal pour développer l'imagination et la créativité avec un maximum de possibilités de constructions.",
-    "price": 35.87,
+    "price": 48.99,
     "rating": 4.8,
     "reviewCount": 0,
     "age": ["2-6"],
