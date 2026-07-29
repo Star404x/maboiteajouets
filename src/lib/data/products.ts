@@ -704,14 +704,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-033",
     "slug": "blocs-empiler-exploration",
-    "name": "Blocs à empiler d'exploration",
+    "name": "Blocs à empiler d'exploration Goki",
     "category": "jeux-de-construction",
     "categoryName": "jeux-de-construction",
-    "description": "Blocs d'exploration avec kaleidoscope, perles et billes. Stimule la motricité fine et la découverte sensorielle!",
-    "price": 22.5,
+    "description": "Blocs d'exploration en bois et métal avec éléments interactifs: kaleidoscope, perles et billes colorées. Conçus pour éveiller la curiosité et stimuler la motricité fine des tout-petits. Dimensions: 18 x 18 x 4,3 cm. Favorise l'observation et la manipulation, développe la coordination œil-main et l'imagination. Textures et effets visuels variés encouragent la découverte sensorielle. Robustes pour un usage intensif. Idéal pour crèches, micro-crèches et structures d'accueil. Fabriqués en bois et métal, sécurisés pour les petites mains. À partir de 1 an.",
+    "price": 45.5,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": [],
+    "age": ["1-3"],
     "images": [
       "/products/blocs-empiler-exploration-1.png",
       "/products/blocs-empiler-exploration-2.png",
