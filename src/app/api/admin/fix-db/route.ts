@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createPool } from '@vercel/postgres';
+import { createClient } from '@vercel/postgres';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,8 +22,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const pool = createPool({ connectionString });
-    client = await pool.connect();
+    const db = createClient({ connectionString });
+    await db.connect();
+    client = db;
 
     // 1. Find products with NULL slug
     const nullSlugsResult = await client.query(
