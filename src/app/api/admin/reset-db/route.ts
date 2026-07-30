@@ -20,14 +20,13 @@ export async function POST(request: NextRequest) {
         await sql`
           INSERT INTO products (
             id, slug, name, category, categoryName, description, 
-            price, rating, "reviewCount", age, images, sku, brand
+            price, rating, "reviewCount", age, images
           )
           VALUES (
             ${product.id}, ${product.slug}, ${product.name}, 
             ${product.category}, ${product.categoryName}, ${product.description},
             ${product.price}, ${product.rating}, ${product.reviewCount || 0},
-            ${JSON.stringify(product.age || [])}, ${JSON.stringify(product.images || [])},
-            ${product.sku || null}, ${product.brand || null}
+            ${JSON.stringify(product.age || [])}, ${JSON.stringify(product.images || [])}
           )
         `;
         insertedCount++;
