@@ -235,6 +235,30 @@ export async function POST(request: NextRequest) {
 
     console.log("[INIT] ✅ Sample data inserted");
 
+    // Load all products from PRODUCTS array if products table is empty
+    const productCheckCount = await client.query("SELECT COUNT(*) FROM products WHERE id LIKE 'p-%'");
+    if (productCheckCount.rows[0].count < 20) {
+      console.log("[INIT] Loading all products from PRODUCTS array...");
+      try {
+        const { PRODUCTS } = await import("@/lib/data/products");
+        for (const p of PRODUCTS) {
+          try {
+            await client.query(
+              `INSERT INTO products (id, name, slug, category, categoryName, description, price, rating, reviewCount, images, materials, safety, badge, bgClass)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+               ON CONFLICT (id) DO NOTHING`,
+              [p.id, p.name, p.slug, p.category, p.categoryName, p.description, p.price, p.rating || 4.5, p.reviewCount || 0, JSON.stringify(p.images || []), JSON.stringify(p.materials || []), JSON.stringify(p.safety || []), p.badge, p.bgClass]
+            );
+          } catch (e) {
+            // Ignore duplicates
+          }
+        }
+        console.log("[INIT] ✅ All products loaded");
+      } catch (e) {
+        console.warn("[INIT] ⚠️ Could not load products:", (e as Error).message);
+      }
+    }
+
     // Check final state
     const productCount = await client.query("SELECT COUNT(*) FROM products");
     const reviewCount = await client.query("SELECT COUNT(*) FROM reviews");
