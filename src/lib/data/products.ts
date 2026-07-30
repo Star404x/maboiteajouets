@@ -122,14 +122,14 @@ export const PRODUCTS: Product[] = [
   {
     "id": "p-017",
     "slug": "actiroller-rouleau-musical",
-    "name": "Actiroller - Rouleau Musical Miniland",
+    "name": "Actiroller Rouleau Musical Miniland",
     "category": "jouets-bebe",
     "categoryName": "jouets-bebe",
-    "description": "Le rouleau musical ingénieux pour accompagner les tout-petits dès 6 mois dans leur développement psychomoteur. Sa forme cylindrique (largeur 18 cm) incite les bébés à ramper, se déplacer à quatre pattes et explorer. Surface douce et résistante en plastique robuste, parfait pour les espaces collectifs (crèches, salles de jeux). Stimule la coordination des mouvements et la manipulation fine. Léger mais solide, facile à manipuler par les enfants eux-mêmes. Idéal pour développer confiance et autonomie. Ludique et pédagogique!",
-    "price": 32.8,
+    "description": "L'Actiroller est un jouet d'éveil ingénieux pensé pour accompagner les tout-petits dès 6 mois dans leur développement psychomoteur, tout en garantissant autonomie et sécurité. Sa forme cylindrique de 18 cm de largeur incite les bébés à ramper, se déplacer à quatre pattes et explorer leur environnement. Sa surface douce et résistante en plastique robuste permet une utilisation dans les espaces collectifs (crèches, micro-crèches, salles de jeux) sans risque d'usure. Stimule la coordination des mouvements et la manipulation fine grâce à sa prise adaptée aux petites mains. Léger mais solide, facile à manipuler par les enfants eux-mêmes, favorisant leur confiance et autonomie. Poids: léger. Dimensions: largeur 18 cm. Matériaux: plastique résistant. Certifié CE, normes EN-71. Garan tie 2 ans.",
+    "price": 55.8,
     "rating": 4.7,
     "reviewCount": 0,
-    "age": [],
+    "age": ["0-12m"],
     "images": [
       "/products/actiroller-rouleau-musical-1.png",
       "/products/actiroller-rouleau-musical-2.png",
