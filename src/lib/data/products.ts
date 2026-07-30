@@ -635,7 +635,7 @@ export const PRODUCTS: Product[] = [
     "price": 48.99,
     "rating": 4.8,
     "reviewCount": 0,
-    "age": ["2-6"],
+    "age": ["3-5"],
     "images": [
       "/products/baril-blocs-bois-1.png",
       "/products/baril-blocs-bois-2.png",
