@@ -80,8 +80,9 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fixing database:', error);
+    const errorMsg = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: 'Failed to fix database', details: String(error) },
+      { error: 'Failed to fix database', details: errorMsg },
       { status: 500 }
     );
   }
