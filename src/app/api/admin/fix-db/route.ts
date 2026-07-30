@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     const total = integrityCheck.total;
     const nullSlugs = integrityCheck.null_slugs;
 
-    client.release();
+    // No need to release client for createClient
 
     return NextResponse.json({
       status: 'success',
@@ -99,9 +99,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fixing database:', error);
-    if (client) {
-      client.release();
-    }
+    // No need to release client for createClient
     return NextResponse.json(
       { error: 'Failed to fix database', details: String(error) },
       { status: 500 }
