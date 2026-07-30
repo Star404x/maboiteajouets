@@ -7,12 +7,17 @@ export async function POST(request: NextRequest) {
   let client;
   try {
     // Emergency fix - use DATABASE_URL directly
+    const connectionString = process.env.DATABASE_URL || 
+                             process.env.POSTGRES_URL || 
+                             process.env.POSTGRES_URL_NON_POOLING || 
+                             process.env.POSTGRES_PRISMA_URL;
+    
     console.log('[fix-db] Database integrity fix started');
-
-    const connectionString = process.env.DATABASE_URL;
+    console.log('[fix-db] Using connection string:', connectionString ? 'SET' : 'MISSING');
+    
     if (!connectionString) {
       return NextResponse.json(
-        { error: 'No database connection configured' },
+        { error: 'No database connection configured', env: Object.keys(process.env).filter(k => k.includes('POSTGRES') || k.includes('DATABASE')) },
         { status: 500 }
       );
     }
